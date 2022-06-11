@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Character {
 	//regular RPG data fields I guess
-	protected int level;
 	protected Job job;
     protected String name;
     protected String type;
@@ -1124,6 +1123,9 @@ public String nothingOverThere() {
     				System.out.println("You're already holding something in your main hand.");
     				return;
     				
+    			} else if (i.typeToString().equals("Weapon") && this.mainHand == null) {
+    				this.mainHand = i;
+    				i.onEquip(this);
     			}
     			
     			if(i.typeToString().equals("Head") && this.head == null){
@@ -1673,6 +1675,21 @@ public String nothingOverThere() {
     	
     }
     
+    public void changeJob(Character character, Job newJob) {
+    	this.job = newJob;
+    	character.job.level = newJob.level;
+    	character.vigor = newJob.vigor;
+    	character.speed = newJob.speed;
+    	character.stamina = newJob.stamina;
+    	character.magicPower = newJob.magicPower;
+    	character.battlePower = newJob.battlePower;
+    	character.defense = newJob.defense;
+    	character.magicDefense = newJob.defense;
+    	character.mBlock = newJob.mBlock;
+    	character.evade = newJob.evade;
+    	
+    }
+    
     public void lieInBed() {
     	System.out.println("You lie down in bed.");
     	this.inBed = true;
@@ -1710,6 +1727,7 @@ public String nothingOverThere() {
 	public void setFollowing(boolean following) {
 		this.following = following;
 	}
+	
 
     //public String getPronoun() {
         

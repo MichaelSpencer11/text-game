@@ -21,5 +21,6 @@ public class Automaton extends Character {
         this.currentRoom.people.add(this);
         
         
+        
     }
 }

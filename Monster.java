@@ -17,8 +17,8 @@ public class Monster {
 	protected int magicDefense;
 	protected int evade;
 	protected int MBlock;
-	protected ArrayList<String> stolenItems;
-	protected ArrayList<String> drops;
+	protected ArrayList<Item> stolenItems;
+	protected ArrayList<Item> drops;
 	
 	
 }

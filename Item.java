@@ -1,5 +1,8 @@
 package textgame;
 
+import java.util.ArrayList;
+
+
 //there are items in the game, here are some attributes and stuff
 public class Item {
 		protected int itemId;
@@ -11,6 +14,9 @@ public class Item {
 		protected boolean equipped;
 		protected boolean plural;
 		protected boolean takeable;
+		protected ArrayList<String> stolenFrom;
+		protected ArrayList<Effect> effects;
+		protected ArrayList<String> morphedInto;
 		
 		public Item() {
 			
@@ -44,5 +50,11 @@ public class Item {
 		
 		public String typeToString(){
 			return this.getClass().toString().substring(6);
+		}
+		
+		
+		public void onEquip(Character character) {
+			ApplyEffects.apply(effects, character);
+			
 		}
 	}

@@ -15,5 +15,5 @@ public class Weapon extends Item{
 	protected boolean canUse2Handed;
 	protected String element;
 	protected SpecialEffect specialEffect;
-	protected ArrayList<String> stolenFrom;
+	
 }
