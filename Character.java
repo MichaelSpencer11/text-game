@@ -1728,7 +1728,9 @@ public String nothingOverThere() {
 		this.following = following;
 	}
 	
+	public ArrayList<Item> getInventory () {return inventory;}
 
+	
     //public String getPronoun() {
         
     //}

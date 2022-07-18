@@ -1,6 +1,10 @@
-package textgame;
+package textgame.jobs;
 
 import java.util.Random;
+import textgame.Item;
+import textgame.Job;
+import textgame.Monster;
+import textgame.Player;
 
 public class Thief extends Job {
 	public Thief() {
@@ -18,10 +22,10 @@ public class Thief extends Job {
 	
 	public void steal(Monster monster, Player player) {
 		Random r = new Random();
-		int selected = r.nextInt(monster.stolenItems.size());
-		Item stolen = monster.stolenItems.get(selected);
-		monster.stolenItems.remove(selected);
-		player.inventory.add(stolen);
+		int selected = r.nextInt(monster.getStolenItems().size());
+		Item stolen = monster.getStolenItems().get(selected);
+		monster.getStolenItems().remove(selected);
+		player.getInventory().add(stolen);
 		
 	}
 }

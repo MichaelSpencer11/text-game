@@ -19,6 +19,23 @@ public class Monster {
 	protected int MBlock;
 	protected ArrayList<Item> stolenItems;
 	protected ArrayList<Item> drops;
-	
+
+	public int getLevel () {return level;}
+	public int getHP () {return hp;}
+	public int getMP () {return mp;}
+	public int getXP () {return xp;}
+	public int getGP () {return gp;}
+	public int getBattlePower () {return battlePower;}
+	public int getHitRate () {return hitRate;}
+	public int getMagicPower () {return magicPower;}
+	public int getSpeed () {return speed;}
+	public int getStamina () {return stamina;}
+	public int getDefense () {return defense;}
+	public int getMagicDefense () {return magicDefense;}
+	public int getEvade () {return evade;}
+	public int getMBlock () {return MBlock;}
+	public ArrayList<Item> getStolenItems () {return stolenItems;}
+	public ArrayList<Item> getDrops () {return drops;}
+
 	
 }
