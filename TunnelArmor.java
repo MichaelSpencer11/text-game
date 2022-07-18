@@ -2,6 +2,8 @@ package textgame;
 
 public class TunnelArmor extends Monster {
 	public TunnelArmor() {
+		
+		
 		this.level = 16;
 		this.hp = 1300;
 		this.mp = 900;
@@ -16,6 +18,9 @@ public class TunnelArmor extends Monster {
 		this.magicDefense = 145;
 		this.evade = 0;
 		this.MBlock = 0;
-		this.drops.add("AirLancet");
+		
+		//Initialize drops for TunnelArmor
+		final Weapon airLancet = new AirLancet();
+		this.stolenItems.add(airLancet);
 	}
 }
