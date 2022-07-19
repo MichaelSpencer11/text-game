@@ -1,4 +1,6 @@
-package textgame;
+package textgame.shields;
+
+import textgame.Shield;
 
 public class Buckler extends Shield {
 	

@@ -1,4 +1,7 @@
-package textgame;
+package textgame.weapons;
+
+import textgame.Effect;
+import textgame.Weapon;
 
 public class Assassin extends Weapon {
 	public Assassin() {
@@ -13,7 +16,7 @@ public class Assassin extends Weapon {
 		this.canUseRunic = true;
 		this.canUse2Handed = true;
 		this.element = null;
-		this.specialEffect.description = "Randomly attemtps to kill the enemy";
+		this.specialEffect.setDescription("Randomly attemtps to kill the enemy");
 		this.effects.add(new Effect("speed", 3));
 		this.effects.add(new Effect("magicPower", 2));
 		this.effects.add(new Effect("evade", 10));

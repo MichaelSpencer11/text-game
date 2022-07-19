@@ -1,7 +1,10 @@
-package textgame;
+package textgame.monsters;
+
+import textgame.Monster;
+import textgame.Room;
 
 public class WireyDragon extends Monster {
-	public WireyDragon() {
+	public WireyDragon(Room roomIn) {
 		this.level = 26;
 		this.hp = 2802;
 		this.mp = 200;
@@ -16,6 +19,8 @@ public class WireyDragon extends Monster {
 		this.magicDefense = 115;
 		this.evade = 0;
 		this.MBlock = 0;
+		roomIn.getMonsters().add(this);
+		this.description = "A " + this.typeToString() + ". Its muscles are taut and it stands with grey scales.";
 		
 	}
 }

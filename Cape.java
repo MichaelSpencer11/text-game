@@ -1,8 +1,8 @@
 package textgame;
 
-public class Back extends Item {
+public class Cape extends Item {
 
-	public Back(String name, String description, String desc2, Room room) {
+	public Cape(String name, String description, String desc2, Room room) {
 		this.itemName = name;
 		this.description = description;
 		this.closeDescription = desc2;

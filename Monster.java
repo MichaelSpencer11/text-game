@@ -19,6 +19,12 @@ public class Monster {
 	protected int MBlock;
 	protected ArrayList<Item> stolenItems;
 	protected ArrayList<Item> drops;
+	protected Room roomIn;
+	protected String description;
+
+	public String typeToString() {
+		return this.getClass().toString().substring(24);
+	}
 
 	public int getLevel () {return level;}
 	public int getHP () {return hp;}
@@ -36,6 +42,7 @@ public class Monster {
 	public int getMBlock () {return MBlock;}
 	public ArrayList<Item> getStolenItems () {return stolenItems;}
 	public ArrayList<Item> getDrops () {return drops;}
+	public String getDescription () {return description;}
 
 	
 }

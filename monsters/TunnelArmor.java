@@ -1,8 +1,12 @@
-package textgame;
+package textgame.monsters;
+
+import textgame.Monster;
+import textgame.Weapon;
+import textgame.weapons.AirLancet;
+import textgame.Room;
 
 public class TunnelArmor extends Monster {
-	public TunnelArmor() {
-		
+	public TunnelArmor(Room roomIn) {
 		
 		this.level = 16;
 		this.hp = 1300;
@@ -18,6 +22,8 @@ public class TunnelArmor extends Monster {
 		this.magicDefense = 145;
 		this.evade = 0;
 		this.MBlock = 0;
+		this.roomIn = roomIn;
+		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for TunnelArmor
 		final Weapon airLancet = new AirLancet();

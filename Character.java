@@ -127,6 +127,7 @@ public class Character {
         System.out.println(ConsoleColors.GREEN + "This area seems to be " + World.aAn(currentRoom.getTerrainType()) + " " + ConsoleColors.YELLOW + currentRoom.getTerrainType() + ConsoleColors.GREEN + " area." + ConsoleColors.RESET);
         currentRoom.printItems();
         currentRoom.printChars();
+		currentRoom.printMons();
         currentRoom.printAdjRooms();
         //currentRoom.printDoors();
         /*
@@ -184,6 +185,13 @@ public class Character {
         		 return;
         	}
         }
+
+		//looking at monsters in the room
+		for (Monster m : currentRoom.getMonsters()) {
+			if(inputString.substring(5).toLowerCase().equals(m.typeToString().toLowerCase())){
+				System.out.println(m.getDescription());
+			}
+		}
         
         
         //looking at items in your own inventory
