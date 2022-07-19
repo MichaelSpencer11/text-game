@@ -19,3 +19,18 @@ use ASP.NET CORE MVC, a relational database, and Vue.js //to make it live on the
 
 Sincerely Yours,
 Michael Spencer
+
+Instructions to play/test/develop:
+
+1. download git
+  https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+  
+2. Clone this repo in a local directory
+  In a command line interface, cd to projects folder and run:
+  git clone https://github.com/MichaelSpencer11/text-game.git
+3. Download VS Code
+  https://code.visualstudio.com/Download
+4. In VS Code, File > Open Folder, and choose the folder that has pom.xml, this is the main folder text_game
+5. Navigate to src > textgame > Main.java and open it in the editor
+6. In the upper right click the play button that upon mouseover says "Run Java"
+7. Open Input.java for a list of commands
