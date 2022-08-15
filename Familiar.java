@@ -60,6 +60,7 @@ public class Familiar extends Character{
 			System.out.println("Just look at me to see the state I'm currently in.");
 			return;
 		}
+		
 	}
 	
 	public void buddyRequest(String inputString) {

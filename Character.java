@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import textgame.items.Block;
+
 public class Character {
 	//regular RPG data fields I guess
 	protected Job job;
@@ -19,6 +21,7 @@ public class Character {
     protected String areaRace;
     protected Familiar familiar;
     protected Character follower;
+	protected Party currentParty;
     
     //states
     protected boolean standing;
@@ -47,6 +50,7 @@ public class Character {
     protected ArrayList<String> thoughts;
     protected int invLength = 38;
     protected boolean hasName;
+	protected Monster target;
     
     //equipped items
     protected Item mainHand;
@@ -1738,9 +1742,29 @@ public String nothingOverThere() {
 	
 	public ArrayList<Item> getInventory () {return inventory;}
 
+	//new type commands where the initial command is not sent, only what follows
+	public void attack(String monsterName) {
+		if(asleep){
+			System.out.println("You should wake up before you can do that.");
+			return;
+		}
+		
+		//finds the actual monster in the room
+		for ( Monster mon : currentRoom.monsters) {
+			System.out.println("Player string: {" + monsterName + "}. MonsterName: {" + mon.typeToString() + "}.");
+			if(monsterName.toLowerCase().equals(mon.typeToString().toLowerCase())){
+				target = mon;
+				break;
+			}
+		} 
+
+		System.out.println("Target: " + target.typeToString());
+
+
+	}
 	
     //public String getPronoun() {
-        
+         
     //}
 
     

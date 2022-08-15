@@ -54,7 +54,7 @@ public class Item {
 		
 		
 		public void onEquip(Character character) {
-			ApplyEffects.apply(effects, character);
+			Effect.apply(effects, character);
 			
 		}
 	}

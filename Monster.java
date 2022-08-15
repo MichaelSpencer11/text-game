@@ -3,6 +3,7 @@ package textgame;
 import java.util.ArrayList;
 
 public class Monster {
+	protected String name;
 	protected int level;
 	protected int hp;
 	protected int mp;

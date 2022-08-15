@@ -1,8 +1,12 @@
-package textgame;
+package textgame.items;
 
-public class Desk extends Item{
+import textgame.Item;
+import textgame.Room;
+
+public class Bed extends Item {
 	
-	public Desk(String name, String description, Room room) {
+	
+	public Bed(String name, String description, Room room) {
 		this.itemName = name;
 		this.description = description;
 		this.itemId = itemTracker++;

@@ -13,7 +13,7 @@ public class Weapon extends Item{
 	protected boolean canUseSwdtech;
 	protected boolean canUseRunic;
 	protected boolean canUse2Handed;
-	protected String element;
+	protected Element element;
 	protected SpecialEffect specialEffect;
 	
 }

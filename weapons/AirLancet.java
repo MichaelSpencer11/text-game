@@ -1,6 +1,7 @@
 package textgame.weapons;
 
 import textgame.Weapon;
+import textgame.elements.Air;
 
 public class AirLancet extends Weapon {
 	public AirLancet() {
@@ -15,7 +16,7 @@ public class AirLancet extends Weapon {
 		this.canUseSwdtech = false;
 		this.canUseRunic = true;
 		this.canUse2Handed = true;
-		this.element = "Wind";
+		this.element = new Air();;
 		this.specialEffect = null;
 		
 		

@@ -2,15 +2,11 @@ package textgame;
 
 //doors are for sure things in the world
 public class Door {
-	private String doorName;
-    private enum dirs{N, NE, E, SE, S, SW, W, NW, U, D};
     private static int DoorIdTracker;
     private int DoorId;
     private String doorDir;
     private boolean isOpened;
     private boolean isLocked;
-    private String doorType;
-    private String keyName = "";
     private Room room;
 
     public Door(String dir, String locked, Room room){

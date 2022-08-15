@@ -1,4 +1,6 @@
-package textgame;
+package textgame.items;
+
+import textgame.Item;
 
 public class Block extends Item {
 	
