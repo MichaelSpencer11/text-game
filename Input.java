@@ -9,6 +9,10 @@ public class Input{
 
     Scanner scanner = new Scanner(System.in);
     Player thisPlayer;
+
+    public Input(Player player){
+        this.thisPlayer = player;
+    }
     
     public void input(){
         while(true){
@@ -30,6 +34,12 @@ public class Input{
             }
             else if (inputString.length() > 3 && inputString.substring(0,4).equals("exit")){
                 System.exit(0);
+            }
+            else if(inputString.length() > 3 && inputString.substring(0,12).equals("party create")){
+                Party.createParty(inputString.substring(13));
+            }
+            else if(inputString.length() > 3 && inputString.substring(0, 9).equals(party.name + " add")){
+                
             }
             else if (inputString.length() > 3 && inputString.substring(0,thisPlayer.familiar.getName().length()).toLowerCase().equals(thisPlayer.familiar.getName().toLowerCase())){
                 thisPlayer.familiar.buddyRequest(inputString);
@@ -57,6 +67,9 @@ public class Input{
             }
             else if(inputString.equals("stand")) {
             	thisPlayer.stand();
+            }
+            else if(inputString.length() > 3 && inputString.substring(0,6).equals("attack")){
+                thisPlayer.attack(inputString.substring(7));
             }
             else if(inputString.length() > 3 && inputString.substring(0,4).equals("talk")) {
             	thisPlayer.talk(inputString);
@@ -133,8 +146,6 @@ public class Input{
     
 
 
-    public Input(Player player){
-        this.thisPlayer = player;
-    }
+    
     
 }
