@@ -32,15 +32,20 @@ public class Input{
             else if(inputString.equals("l")) {
             	thisPlayer.look(inputString);
             }
+            else if(inputString.equals("party list")){
+                System.out.println(inputString);
+                thisPlayer.currentParty.listMembers();
+            }
             else if (inputString.length() > 3 && inputString.substring(0,4).equals("exit")){
                 System.exit(0);
             }
             else if(inputString.length() > 3 && inputString.substring(0,12).equals("party create")){
-                Party.createParty(inputString.substring(13));
+                Party.createParty(inputString.substring(13), thisPlayer);
             }
-            else if(inputString.length() > 3 && inputString.substring(0, 9).equals(party.name + " add")){
-                
+            else if(inputString.length() > 3 && inputString.substring(0, 9).equals("party add")){
+                thisPlayer.currentParty.addMember(inputString.substring(10));
             }
+            
             else if (inputString.length() > 3 && inputString.substring(0,thisPlayer.familiar.getName().length()).toLowerCase().equals(thisPlayer.familiar.getName().toLowerCase())){
                 thisPlayer.familiar.buddyRequest(inputString);
             }

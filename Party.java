@@ -1,22 +1,22 @@
 package textgame;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Party {
-    protected String leaderName;
+    protected Character leader;
     protected String partyName;
-    protected ArrayList<Character> partyList;
-    protected List<Character> globalCharacterList;
+    protected ArrayList<Character> partyList = new ArrayList<Character>();
 
-    public Party(String name, List<Character> globalCharacterList){
+    public Party(String name, Character player){
         this.partyName = name;
-        this.globalCharacterList = globalCharacterList;
+        partyList.add(player);
+        this.leader = player;
+        player.currentParty = this;
     }
 
-    public static void createParty(String name){
-        Party party = new Party(name, World.getGlobalCharacterList());
-        
+    public static void createParty(String name, Player player){
+        Party party = new Party(name, player);
+        World.getGlobalPartyList().add(party);
         System.out.println("Party " + party.partyName + " was created.");
         
     }

@@ -14,9 +14,10 @@ public class Item {
 		protected boolean equipped;
 		protected boolean plural;
 		protected boolean takeable;
+		protected boolean consumable;
 		protected ArrayList<String> stolenFrom;
 		protected ArrayList<Effect> effects;
-		protected ArrayList<String> morphedInto;
+		protected ArrayList<Monster> morphedInto;
 		
 		public Item() {
 			

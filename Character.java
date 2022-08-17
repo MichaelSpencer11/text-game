@@ -5,10 +5,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 import textgame.items.Block;
+import textgame.jobs.BlackMage;
+import textgame.jobs.Monk;
+import textgame.jobs.RedMage;
+import textgame.jobs.Thief;
+import textgame.jobs.Warrior;
+import textgame.jobs.WhiteMage;
 
 public class Character {
 	//regular RPG data fields I guess
-	protected Job job;
+	public Job job;
     protected String name;
     protected String type;
     protected String description;
@@ -63,6 +69,14 @@ public class Character {
     protected Item feet;
     protected Item ring1;
     protected Item ring2;
+
+	//jobs
+	protected WhiteMage whiteMage;
+	protected BlackMage blackMage;
+	protected RedMage redMage;
+	protected Warrior warrior;
+	protected Monk monk;
+	protected Thief thief;
     
     
     public Character() {

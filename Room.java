@@ -320,8 +320,8 @@ public class Room {
     }	
     	
     //Constructor of room with doors
-    public Room(String terrainType, String name,String desc, Room room1, Room room2, Room room3, Room room4, Room room5,
-    		Room room6, Room room7, Room room8, Room room9, Room room10, Door[] doors){
+    public Room(String terrainType, String name,String desc, Room nRoom, Room neRoom, Room eRoom, Room seRoom, Room sRoom,
+    		Room swRoom, Room wRoom, Room nwRoom, Room uRoom, Room dRoom, Door[] doors){
     	this.name = name;
     	this.people = new ArrayList<Character>();
     	this.inventory = new ArrayList<Item>();
@@ -359,7 +359,7 @@ public class Room {
             this.roomTerrain = Terrain.town;
         }
     	
-    	this.nRoom = room1;
+    	this.nRoom = nRoom;
     	if(nRoom != null) {
     		nRoom.setsRoom(this);
     		nRoom.setHasS(true);
@@ -371,7 +371,7 @@ public class Room {
     		this.adjacentRooms.add(nRoom);
     		nRoom.adjacentRooms.add(this);
     	}
-    	this.neRoom = room2;
+    	this.neRoom = neRoom;
     	if(neRoom != null) {
     		neRoom.setSwRoom(this);
     		neRoom.setHasSW(true);
@@ -383,7 +383,7 @@ public class Room {
     		this.adjacentRooms.add(neRoom);
     		neRoom.adjacentRooms.add(this);
     	}
-    	this.eRoom = room3;
+    	this.eRoom = eRoom;
     	if(eRoom != null) {
     		eRoom.setwRoom(this);
     		eRoom.setHasW(true);
@@ -395,7 +395,7 @@ public class Room {
     		this.adjacentRooms.add(eRoom);
     		eRoom.adjacentRooms.add(this);
     	}
-    	this.seRoom = room4;
+    	this.seRoom = seRoom;
     	if(seRoom != null) {
     		seRoom.setNwRoom(this);
     		seRoom.setHasNW(true);
@@ -407,7 +407,7 @@ public class Room {
     		this.adjacentRooms.add(seRoom);
     		seRoom.adjacentRooms.add(this);
     	}
-    	this.sRoom = room5;
+    	this.sRoom = sRoom;
     	if(sRoom != null) {
     		sRoom.setnRoom(this);
     		sRoom.setHasN(true);
@@ -419,7 +419,7 @@ public class Room {
     		this.adjacentRooms.add(sRoom);
     		sRoom.adjacentRooms.add(this);
     	}
-    	this.swRoom = room6;
+    	this.swRoom = swRoom;
     	if(swRoom != null) {
     		swRoom.setNeRoom(this);
     		swRoom.setHasNE(true);
@@ -431,7 +431,7 @@ public class Room {
     		this.adjacentRooms.add(swRoom);
     		swRoom.adjacentRooms.add(this);
     	}
-    	this.wRoom = room7;
+    	this.wRoom = wRoom;
     	if(wRoom != null) {
     		wRoom.seteRoom(this);
     		wRoom.setHasE(true);
@@ -443,7 +443,7 @@ public class Room {
     		this.adjacentRooms.add(wRoom);
     		wRoom.adjacentRooms.add(this);
     	}
-    	this.nwRoom = room8;
+    	this.nwRoom = nwRoom;
     	if(nwRoom != null) {
     		nwRoom.setSeRoom(this);
     		nwRoom.setHasSE(true);
@@ -455,7 +455,7 @@ public class Room {
     		this.adjacentRooms.add(nwRoom);
     		nwRoom.adjacentRooms.add(this);
     	}
-    	this.uRoom = room9;
+    	this.uRoom = uRoom;
     	if(uRoom != null) {
     		uRoom.setdRoom(this);
     		uRoom.setHasD(true);
@@ -467,7 +467,7 @@ public class Room {
     		this.adjacentRooms.add(uRoom);
     		uRoom.adjacentRooms.add(this);
     	}
-    	this.dRoom = room10;
+    	this.dRoom = dRoom;
     	if(dRoom != null) {
     		dRoom.setuRoom(this);
     		dRoom.setHasU(true);

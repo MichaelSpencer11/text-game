@@ -3,35 +3,30 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
-import textgame.weapons.AirLancet;
 
-public class Darkwind extends Monster {
+public class Maliga extends Monster {
+    public Maliga(Room roomIn) {
 
-    public Darkwind(Room roomIn) {
-
-        this.level = 5;
-		this.hp = 34;
-		this.mp = 0;
-		this.xp = 28;
-		this.gp = 41;
+        this.level = 26;
+		this.hp = 952;
+		this.mp = 100;
+		this.xp = 360;
+		this.gp = 576;
 		this.battlePower = 13;
 		this.hitRate = 100;
 		this.magicPower = 10;
 		this.speed = 30;
-		this.stamina = 0;
-		this.defense = 55;
-		this.magicDefense = 140;
+		this.stamina = 1;
+		this.defense = 110;
+		this.magicDefense = 145;
 		this.evade = 0;
 		this.MBlock = 0;
 		this.roomIn = roomIn;
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final AirLancet airLancet = new AirLancet();
 		final Tonic tonic = new Tonic();
-		this.drops.add(airLancet);
 		this.stolenItems.add(tonic);
 
     }
-    
 }

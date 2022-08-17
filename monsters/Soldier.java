@@ -2,32 +2,32 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.Room;
-import textgame.weapons.Dirk;
+import textgame.items.Tonic;
 
-public class Alacran extends Monster {
-    public Alacran(Room roomIn) {
+public class Soldier extends Monster {
+    public Soldier(Room roomIn) {
 
-        //unfinished, needs stats
-        this.level = 6;
-		this.hp = 87;
+        this.level = 11;
+		this.hp = 100;
 		this.mp = 15;
-		this.xp = 37;
-		this.gp = 94;
-		this.battlePower = 20;
+		this.xp = 53;
+		this.gp = 80;
+		this.battlePower = 12;
 		this.hitRate = 100;
 		this.magicPower = 10;
 		this.speed = 30;
 		this.stamina = 0;
 		this.defense = 80;
-		this.magicDefense = 135;
+		this.magicDefense = 150;
 		this.evade = 0;
 		this.MBlock = 0;
 		this.roomIn = roomIn;
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final Dirk dirk = new Dirk();
-		this.stolenItems.add(dirk);
+		final Tonic tonic = new Tonic();
+		this.stolenItems.add(tonic);
+		this.drops.add(tonic);
 
     }
 }

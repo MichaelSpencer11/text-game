@@ -3,35 +3,30 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
-import textgame.weapons.AirLancet;
 
-public class Darkwind extends Monster {
+public class Wyvern extends Monster {
+    public Wyvern(Room roomIn) {
 
-    public Darkwind(Room roomIn) {
-
-        this.level = 5;
-		this.hp = 34;
-		this.mp = 0;
-		this.xp = 28;
-		this.gp = 41;
-		this.battlePower = 13;
+        this.level = 18;
+		this.hp = 892;
+		this.mp = 95;
+		this.xp = 484;
+		this.gp = 434;
+		this.battlePower = 15;
 		this.hitRate = 100;
 		this.magicPower = 10;
 		this.speed = 30;
-		this.stamina = 0;
-		this.defense = 55;
-		this.magicDefense = 140;
+		this.stamina = 1;
+		this.defense = 140;
+		this.magicDefense = 155;
 		this.evade = 0;
 		this.MBlock = 0;
 		this.roomIn = roomIn;
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final AirLancet airLancet = new AirLancet();
 		final Tonic tonic = new Tonic();
-		this.drops.add(airLancet);
 		this.stolenItems.add(tonic);
 
     }
-    
 }

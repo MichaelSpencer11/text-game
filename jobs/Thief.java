@@ -9,6 +9,8 @@ import textgame.Player;
 public class Thief extends Job {
 	public Thief() {
 		this.level = 1;
+		this.hp = 37;
+		this.mp = 28;
 		this.vigor = 37;
 		this.speed = 40;
 		this.stamina = 31;
