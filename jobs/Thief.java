@@ -30,4 +30,8 @@ public class Thief extends Job {
 		player.getInventory().add(stolen);
 		
 	}
+
+	public void attack(){
+		
+	}
 }

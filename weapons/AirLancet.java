@@ -16,7 +16,7 @@ public class AirLancet extends Weapon {
 		this.canUseSwdtech = false;
 		this.canUseRunic = true;
 		this.canUse2Handed = true;
-		this.element = new Air();;
+		this.element = new Air();
 		this.specialEffect = null;
 		
 		

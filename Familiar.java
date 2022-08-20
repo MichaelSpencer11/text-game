@@ -8,9 +8,9 @@ public class Familiar extends Character{
 	
 	private int famStoryCount = 0;
 	private boolean following;
-	private Player player;
+	private Character player;
 	
-	public Familiar(String description, Room firstRoom, Player player){
+	public Familiar(String description, Room firstRoom, Character player){
 		this.name = "someone";
 		this.type = this.typeToString();
 		this.description = description;

@@ -6,7 +6,7 @@ public class Effect {
 	protected String name;
 	protected long number;
 	protected static String currentEffect;
-	
+
 	static public void apply(ArrayList<Effect> effects, Character character){
 		for (Effect effect : effects) {
 			if(effect.name == "vigor") {

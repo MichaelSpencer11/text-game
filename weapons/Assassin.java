@@ -21,9 +21,9 @@ public class Assassin extends Weapon {
 		this.effects.add(new Effect("magicPower", 2));
 		this.effects.add(new Effect("evade", 10));
 		this.element = null;
-		this.morphedInto.add("Ninja");
-		this.morphedInto.add("Covert");
-		this.morphedInto.add("Outsider");
+		//this.morphedInto.add("Ninja");
+		//this.morphedInto.add("Covert");
+		//this.morphedInto.add("Outsider");
 		
 		
 	}

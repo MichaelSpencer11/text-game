@@ -17,6 +17,6 @@ public class ThunderRod extends Weapon{
 		this.canUse2Handed = true;
 		this.element = new Lightning();
 		this.specialEffect.setDescription("Randomly casts Bolt2");
-		this.morphedInto.add("Wizard");
+		//this.morphedInto.add("Wizard");
     }
 }

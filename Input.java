@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class Input{
 
     Scanner scanner = new Scanner(System.in);
-    Player thisPlayer;
+    Character thisPlayer;
 
-    public Input(Player player){
+    public Input(Character player){
         this.thisPlayer = player;
     }
     

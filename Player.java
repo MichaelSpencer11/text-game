@@ -1,6 +1,10 @@
 package textgame;
 
 import java.util.Scanner;
+
+import textgame.battle.ATBGauge;
+import textgame.jobs.Thief;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,6 +24,7 @@ public class Player extends Character{
         this.sitting = false;
         this.standing = true;
         this.hasName = false;
+        this.job = new Thief();
         this.currentRoom = firstRoom;
         this.currentRoom.people.add(this);
         /*

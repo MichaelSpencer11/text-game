@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import textgame.battle.ATBGauge;
+import textgame.battle.BattleMenu;
 import textgame.items.Block;
 import textgame.jobs.BlackMage;
 import textgame.jobs.Monk;
@@ -11,6 +13,7 @@ import textgame.jobs.RedMage;
 import textgame.jobs.Thief;
 import textgame.jobs.Warrior;
 import textgame.jobs.WhiteMage;
+import textgame.weapons.Dirk;
 
 public class Character {
 	//regular RPG data fields I guess
@@ -28,6 +31,7 @@ public class Character {
     protected Familiar familiar;
     protected Character follower;
 	protected Party currentParty;
+	protected long atbGauge;
     
     //states
     protected boolean standing;
@@ -38,8 +42,16 @@ public class Character {
     protected boolean asleep;
     protected boolean solid;
     protected boolean inBed;
+	protected boolean clear;
+	protected boolean petrified;
+	protected boolean frozen;
+	protected boolean stopped;
+	protected boolean berserked;
+	protected boolean protect;
     
     //stats
+	protected int hp;
+	protected int mp;
 	protected int vigor;
 	protected int speed;
 	protected int stamina;
@@ -49,18 +61,21 @@ public class Character {
 	protected int magicDefense;
 	protected int mBlock;
 	protected int evade;
+	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
+	protected int critChance = (int)((Math.random() * (32 - 1)) + 1);
     
     //location and other stuff
     protected Room currentRoom;
     protected ArrayList<Item> inventory;
+	protected ArrayList<Weapon> weapons;
     protected ArrayList<String> thoughts;
     protected int invLength = 38;
     protected boolean hasName;
 	protected Monster target;
     
     //equipped items
-    protected Item mainHand;
-    protected Item offHand;
+    protected Weapon mainHand;
+    protected Weapon offHand;
     protected Item head;
     protected Item hands;
     protected Item body;
@@ -92,6 +107,9 @@ public class Character {
         this.prone = false;
         this.sitting = false;
         this.standing = true;
+		this.job = thief;
+		final Dirk dirk = new Dirk();
+		this.mainHand = dirk;
         firstRoom.people.add(this);
         this.currentRoom = firstRoom;
         this.thoughts = new ArrayList<String>();
@@ -1137,23 +1155,12 @@ public String nothingOverThere() {
     		System.out.println("You can't do that while asleep.");
     		return;
     	}
+
+		for (Weapon w : this.weapons){
+
+		}
     	
-    	for (Item i : this.inventory) {
-    		if(inputString.substring(6).equals(i.getItemName())) {
-    			if(i.typeToString().equals("Tool") && this.mainHand == null)  {
-    				this.mainHand = i;
-    				System.out.println("You equip the " + i.getItemName() + ".");
-    				i.equipped = true;
-    				return;
-    			} else if (i.typeToString().equals("Weapon") && this.mainHand != null){
-    				System.out.println("You're already holding something in your main hand.");
-    				return;
-    				
-    			} else if (i.typeToString().equals("Weapon") && this.mainHand == null) {
-    				this.mainHand = i;
-    				i.onEquip(this);
-    			}
-    			
+    	for (Item i : this.inventory) {	
     			if(i.typeToString().equals("Head") && this.head == null){
     				this.head = i;
     				System.out.println("You equip the " + i.getItemName() + ".");
@@ -1228,9 +1235,9 @@ public String nothingOverThere() {
     			}
     			
     			
-    		}
     	}
     }
+    
     
     
     //unequip a weapon or clothing
@@ -1701,18 +1708,18 @@ public String nothingOverThere() {
     	
     }
     
-    public void changeJob(Character character, Job newJob) {
+    public void changeJob(Job newJob) {
     	this.job = newJob;
-    	character.job.level = newJob.level;
-    	character.vigor = newJob.vigor;
-    	character.speed = newJob.speed;
-    	character.stamina = newJob.stamina;
-    	character.magicPower = newJob.magicPower;
-    	character.battlePower = newJob.battlePower;
-    	character.defense = newJob.defense;
-    	character.magicDefense = newJob.defense;
-    	character.mBlock = newJob.mBlock;
-    	character.evade = newJob.evade;
+    	this.job.level = newJob.getLevel();
+    	this.vigor = newJob.vigor;
+    	this.speed = newJob.speed;
+    	this.stamina = newJob.stamina;
+    	this.magicPower = newJob.magicPower;
+    	this.battlePower = newJob.battlePower;
+    	this.defense = newJob.defense;
+    	this.magicDefense = newJob.defense;
+    	this.mBlock = newJob.mBlock;
+    	this.evade = newJob.evade;
     	
     }
     
@@ -1777,6 +1784,52 @@ public String nothingOverThere() {
 
 	}
 	
+	public Job getJob() {
+		return this.job;
+	}
+
+	public void startCounter(textgame.battle.Battle battle){
+		this.atbGauge = 0;
+        while(battle.getMonster().getHp() > 0){
+            World.setTimeout(() -> incrementATBGauge(), this.getSpeed() );
+			if(this.atbGauge >= 65536 ){
+				new BattleMenu(battle);
+				this.startCounter(battle);
+			}
+        }
+    }
+
+	public void incrementATBGauge() {
+		this.atbGauge += (96 * (this.job.speed + 20)) / 16;
+    }
+
+	public void attack() {
+		
+	}
+
+	public void magicMenu(){}
+
+	public int getHp() {return hp;}
+	public int getSpeed() {return speed;}
+	public boolean getClear(){return clear;}
+	public boolean getAsleep(){return asleep;}
+	public boolean getPetrify(){return petrified;}
+	public boolean getFrozen(){return frozen;}
+	public boolean getStop(){return stopped;}
+	public int getMBlock(){return mBlock;}
+	public int getBlockValue(){return blockValue;}
+	public Weapon getMainHand() {return mainHand;}
+	public int getVigor(){return vigor;}
+	public int getVigor2(){return vigor * 2;}
+	public boolean getBerserked(){return berserked;}
+	public int getCritChance() {return critChance;}
+	public boolean getProtect(){return protect;}
+
+	public void setBlockValue(int blockValue){
+		this.blockValue = blockValue;
+	}
+
+
     //public String getPronoun() {
          
     //}

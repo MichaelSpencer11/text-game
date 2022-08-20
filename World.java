@@ -39,6 +39,18 @@ public class World {
 		public static void setAllRoomsUnchecked() {
 			
 		}
+
+		public static void setTimeout(Runnable runnable, int delay){
+			new Thread(() -> {
+				try {
+					Thread.sleep(delay);
+					runnable.run();
+				}
+				catch (Exception e){
+					System.err.println(e);
+				}
+			}).start();
+		}
 		
 
 
@@ -74,7 +86,7 @@ public class World {
 		        Item silverRing = new Ring("silver ring", false, "A simple looking silver ring.", "On the inside of the ring there is a circle.", playerCloset);
 		        Item redRing = new Ring("red ring", false, "A simple lookinng red ring.", "This ring seems to be made out of some fiery red substance.", playerCloset);
 		        Item desk = new Desk("desk", "Your wooden desk in your room. It has a few nicks in the finish but is very sturdy.", room);
-		        Player player = new Player(room);
+		        Character player = new Character(room);
 		        Character familiar = new Familiar("Someone is standing or floating here, it is very hard to see them, they are almost not there but you know that there is definitely a presence here.", room, player);
 		        Character automaton = new Automaton("An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
 				WireyDragon wireyDragon = new WireyDragon(room);

@@ -14,7 +14,7 @@ public class Party {
         player.currentParty = this;
     }
 
-    public static void createParty(String name, Player player){
+    public static void createParty(String name, Character player){
         Party party = new Party(name, player);
         World.getGlobalPartyList().add(party);
         System.out.println("Party " + party.partyName + " was created.");

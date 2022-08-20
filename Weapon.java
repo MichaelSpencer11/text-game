@@ -15,5 +15,8 @@ public class Weapon extends Item{
 	protected boolean canUse2Handed;
 	protected Element element;
 	protected SpecialEffect specialEffect;
+
+	public int getBattlePower() {return battlePower;}
+	public int getHitRate() {return hitRate;}
 	
 }
