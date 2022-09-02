@@ -3,6 +3,8 @@ package textgame;
 import java.util.ArrayList;
 
 import textgame.battle.BattleMenu;
+import textgame.util.Random;
+import textgame.battle.Battle;
 
 public class Monster {
 	protected String name;
@@ -28,6 +30,8 @@ public class Monster {
 	protected int atbGauge = 0;
 	protected Character target;
 	protected boolean protect;
+	protected boolean berserked;
+	protected int critChance = Random.roll(1,32);
 
 	public String typeToString() {
 		return this.getClass().toString().substring(24);
@@ -37,17 +41,23 @@ public class Monster {
 		this.atbGauge += (96 * (speed + 20)) / 16;
     }
 
-	public void startCounter(textgame.battle.Battle battle){
-			while(battle.getPlayer().getHp() > 0){
+	public void startCounter(Battle battleContext){
+			while(battleContext.getPlayer().getHp() > 0){
 				World.setTimeout(() -> incrementATBGauge(), this.getSpeed() );
 				if(this.atbGauge >= 65536 ){
-					new BattleMenu(this);
+					new BattleMenu(this, battleContext);
 				}
 			}
 		
 	}
 
-	
+	public void attack() {
+
+	}
+
+	public void applyDamage(int damage){
+		this.hp = this.hp - damage;
+	}
 
 	public String getName () {return name;}
 	public int getLevel () {return level;}
@@ -68,7 +78,9 @@ public class Monster {
 	public int getBlockValue(){return blockValue;}
 	public ArrayList<Item> getStolenItems () {return stolenItems;}
 	public ArrayList<Item> getDrops () {return drops;}
-	public String getDescription () {return description;}
+	public String getDescription() {return description;}
+	public boolean getBerserked() {return berserked;}
+	public int getCritChance() {return critChance;}
 
 	
 }

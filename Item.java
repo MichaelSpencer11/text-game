@@ -18,6 +18,7 @@ public class Item {
 		protected ArrayList<String> stolenFrom;
 		protected ArrayList<Effect> effects;
 		protected ArrayList<Monster> morphedInto;
+		protected int dropRate;
 		
 		public Item() {
 			
@@ -31,10 +32,15 @@ public class Item {
 			this.itemId = itemTracker++;
 			this.roomIn = room;
 			this.takeable = true;
+
 			
 			room.getInventory().add(this);
 			
 			
+		}
+
+		public int getDropRate() {
+			return this.dropRate;
 		}
 		
 		public String getItemName() {

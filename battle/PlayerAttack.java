@@ -1,15 +1,17 @@
-package textgame;
+package textgame.battle;
 
 import java.net.SocketTimeoutException;
 
-import textgame.battle.Battle;
+import textgame.Action;
+import textgame.ConsoleColors;
+import textgame.util.Random;
 
-public class Attack extends Action {
+public class PlayerAttack extends Action {
     protected Battle battleContext;
     protected int attack;
     protected int damage;
     protected int damageMultiplier;
-    public Attack(Battle battleContext){
+    public PlayerAttack(Battle battleContext){
         this.battleContext = battleContext;
         if(this.hits()){
             attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getVigor2());
@@ -20,16 +22,17 @@ public class Attack extends Action {
             if( battleContext.getPlayer().getCritChance() == 32){
                 damageMultiplier += 2;
             }
-            damage = damage + ((damage / 2) * damageMultiplier)
+            damage = damage + ((damage / 2) * damageMultiplier);
             //Random variance
-            damage = (int)(damage * (Math.random() * (255 + 244) + 244));
+            damage = (int)(damage * Random.roll(244,255));
             //defense mod
-            damage = (damage * (255 - battleContext.getMonster().getDefense()) / 256) + 1;
+            damage = (int) (damage * (255 - battleContext.getMonster().getDefense()) / 256) + 1;
             //protect
             if(battleContext.getMonster().getProtect() == true){
-                damage = (damage * 170 / 256) + 1;
+                damage = (int)(damage * 170 / 256) + 1;
             }
-            System.out.println("You hit " + battleContext.getMonster().typeToString() + " for " + damage + " damage.");
+            battleContext.getMonster().applyDamage(damage); 
+            System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
         }
     }
 
@@ -57,7 +60,7 @@ public class Attack extends Action {
             return true;
         }
 
-        System.out.println("You miss the " + battleContext.getMonster().typeToString());
+        System.out.println(ConsoleColors.YELLOW + "You miss the " + battleContext.getMonster().typeToString() + ConsoleColors.RESET);
         return false;
 
     }

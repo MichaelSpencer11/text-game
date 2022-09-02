@@ -1,8 +1,9 @@
 package textgame;
 
 import java.util.ArrayList;
-import java.util.Random;
+import textgame.util.Random;
 import java.util.Scanner;
+
 
 import textgame.battle.ATBGauge;
 import textgame.battle.BattleMenu;
@@ -61,14 +62,18 @@ public class Character {
 	protected int magicDefense;
 	protected int mBlock;
 	protected int evade;
+	protected int gold;
+	protected int exp;
+	//computed properties
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
-	protected int critChance = (int)((Math.random() * (32 - 1)) + 1);
+	protected int critChance = Random.roll(1,32);
     
     //location and other stuff
     protected Room currentRoom;
     protected ArrayList<Item> inventory;
 	protected ArrayList<Weapon> weapons;
     protected ArrayList<String> thoughts;
+	protected ArrayList<Spell> spells;
     protected int invLength = 38;
     protected boolean hasName;
 	protected Monster target;
@@ -103,6 +108,7 @@ public class Character {
     public Character(Room firstRoom){
     	this.hasName = false;
     	this.inventory = new ArrayList<Item>();
+		this.spells = new ArrayList<Spell>();
     	this.asleep = false;
         this.prone = false;
         this.sitting = false;
@@ -1086,8 +1092,8 @@ public String nothingOverThere() {
 				"You see something dreadful in that direction and decide not to go.",
 				//The next line with the mental block becoming tangible must be the last string in this array
 				"A mental block is stopping you from going that way, the block is getting more tangible..."};
-		Random rand = new Random();
-		int r2 = rand.nextInt(phrases.length);
+
+		int r2 = Random.roll(1,phrases.length);
 		if(r2 == phrases.length - 1) {
 			Item block = new Block();
 			this.inventory.add(block);
@@ -1433,9 +1439,9 @@ public String nothingOverThere() {
     		System.out.println("You can't think while asleep, only dream.");
     		return;
     	}
-    	Random r = new Random();
+    	
     	System.out.println("A thought pops into your head.");
-    	System.out.println(thoughts.get(r.nextInt(thoughts.size())));
+    	System.out.println(thoughts.get(Random.roll(0,thoughts.size())));
     }
     
     public void stand() {
@@ -1807,7 +1813,10 @@ public String nothingOverThere() {
 		
 	}
 
-	public void magicMenu(){}
+	public void magicMenu(){
+		Scanner sc = new Scanner(System.in);
+		
+	}
 
 	public int getHp() {return hp;}
 	public int getSpeed() {return speed;}
@@ -1824,6 +1833,17 @@ public String nothingOverThere() {
 	public boolean getBerserked(){return berserked;}
 	public int getCritChance() {return critChance;}
 	public boolean getProtect(){return protect;}
+	public int getExp() {return exp;}
+	public int getGold(){return gold;}
+
+	public void addExp(int exp){
+		this.exp += exp;
+		
+	}
+
+	public void addItem(Item i){
+		this.inventory.add(i);
+	}
 
 	public void setBlockValue(int blockValue){
 		this.blockValue = blockValue;
