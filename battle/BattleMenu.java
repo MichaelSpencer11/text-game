@@ -23,7 +23,7 @@ public class BattleMenu {
                 battleContext.getPlayer().itemMenu();
                 break;
             case "4":
-                //player.flee();
+                battleContext.getPlayer().flee();
                 break;
 
         }

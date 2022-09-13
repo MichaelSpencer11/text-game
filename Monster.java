@@ -14,6 +14,8 @@ public class Monster {
 	protected int xp;
 	protected int gp;
 	protected int battlePower;
+	protected int vigor = Random.roll(56,63);
+	protected int vigor2 = vigor * 2;
 	protected int hitRate;
 	protected int magicPower;
 	protected int speed;
@@ -81,6 +83,7 @@ public class Monster {
 	public String getDescription() {return description;}
 	public boolean getBerserked() {return berserked;}
 	public int getCritChance() {return critChance;}
+	public int getVigor2() {return vigor2;}
 
 	
 }

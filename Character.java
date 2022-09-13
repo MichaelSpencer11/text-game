@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import textgame.util.Random;
 import java.util.Scanner;
 
-
 import textgame.battle.ATBGauge;
 import textgame.battle.BattleMenu;
 import textgame.items.Block;
@@ -64,7 +63,6 @@ public class Character {
 	protected int evade;
 	protected int gold;
 	protected int exp;
-	//computed properties
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
 	protected int critChance = Random.roll(1,32);
     
@@ -1815,6 +1813,8 @@ public String nothingOverThere() {
 
 	public void magicMenu(){
 		Scanner sc = new Scanner(System.in);
+		this.spells.forEach(s -> System.out.println(s) );
+		Spell spell = new Spell(sc.nextLine());
 		
 	}
 
@@ -1835,10 +1835,14 @@ public String nothingOverThere() {
 	public boolean getProtect(){return protect;}
 	public int getExp() {return exp;}
 	public int getGold(){return gold;}
+	public int getDefense(){return defense;}
 
 	public void addExp(int exp){
 		this.exp += exp;
-		
+	}
+
+	public void applyDamage(int damage){
+		this.hp = this.hp - damage;
 	}
 
 	public void addItem(Item i){
