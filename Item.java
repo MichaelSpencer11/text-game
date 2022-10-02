@@ -8,6 +8,7 @@ public class Item {
 		protected int itemId;
 		protected static int itemTracker;
 		protected String itemName;
+		protected String itemEffect;
 		protected String description;
 		protected String closeDescription;
 		protected Room roomIn;

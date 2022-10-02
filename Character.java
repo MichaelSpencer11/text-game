@@ -14,6 +14,7 @@ import textgame.jobs.Thief;
 import textgame.jobs.Warrior;
 import textgame.jobs.WhiteMage;
 import textgame.weapons.Dirk;
+import textgame.Item;
 
 public class Character {
 	//regular RPG data fields I guess
@@ -1817,6 +1818,20 @@ public String nothingOverThere() {
 		Spell spell = new Spell(sc.nextLine());
 		
 	}
+
+	public void itemMenu(){
+		Scanner sc = new Scanner(System.in);
+		this.printInv();
+		String selection = sc.nextLine();
+		for(Item i : this.inventory){
+			if(selection.equals(i.getItemName())){
+				System.out.println("Who to use on?");
+				i.applyEffect(sc.nextLine());
+				
+			}
+		}
+	}
+
 
 	public int getHp() {return hp;}
 	public int getSpeed() {return speed;}
