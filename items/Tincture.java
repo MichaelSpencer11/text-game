@@ -8,12 +8,11 @@ public class Tincture extends Item {
     private boolean empty = false;
     public Tincture(){
         this.itemName = "Tincture";
-        this.consumable = true;
-        this.dropRate = 40;
+        this.dropRate = 85;
         
     }
 
-    public void useTincture(Player player) {
+    public void applyEffect(Player player) {
         player.job.addMp(healingAmount);
         this.empty = true;
 

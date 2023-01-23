@@ -8,11 +8,12 @@ public class Tonic extends Item {
     private boolean empty = false;
     public Tonic(){
         this.itemName = "Tonic";
-        this.consumable = true;
+        this.dropRate = 95;
+
         
     }
 
-    public void useTonic(Player player) {
+    public void applyEffect(Player player) {
         player.job.addHp(healingAmount);
         this.empty = true;
 

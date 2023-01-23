@@ -48,7 +48,7 @@ public class MonsterAttack extends Action {
             return true;
         }
         //when implementing ninja
-        // if(battleContext.getMonster().getImage()){
+        // if(battleContext.getPlayer().getImage()){
 
         // }
         

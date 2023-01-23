@@ -11,10 +11,17 @@ public class PlayerAttack extends Action {
     protected int attack;
     protected int damage;
     protected int damageMultiplier;
+    protected boolean magical;
+    protected boolean physical;
     public PlayerAttack(Battle battleContext){
         this.battleContext = battleContext;
         if(this.hits()){
+            if(this.magical = true){
+                
+            } else {
+            // 1b
             attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getVigor2());
+            }
             damageMultiplier = 0;
             if(battleContext.getPlayer().getBerserked()){
                 damageMultiplier += 1;
@@ -37,6 +44,7 @@ public class PlayerAttack extends Action {
     }
 
     public boolean hits(){
+        
         if(battleContext.getPlayer().getClear()){
             return true;
         }

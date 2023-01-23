@@ -1813,23 +1813,38 @@ public String nothingOverThere() {
 	}
 
 	public void magicMenu(){
+		if(this.spells.length > 0){
 		Scanner sc = new Scanner(System.in);
 		this.spells.forEach(s -> System.out.println(s) );
 		Spell spell = new Spell(sc.nextLine());
-		
+		}
 	}
 
 	public void itemMenu(){
+		Item itemSelection;
+		Character charSelection;
+		String selection;
 		Scanner sc = new Scanner(System.in);
 		this.printInv();
-		String selection = sc.nextLine();
+		selection = sc.nextLine();
 		for(Item i : this.inventory){
 			if(selection.equals(i.getItemName())){
-				System.out.println("Who to use on?");
-				i.applyEffect(sc.nextLine());
-				
+				itemSelection = i;
 			}
 		}
+		System.out.println("Who to use on?");
+		for (Character c: this.currentRoom.people){
+			System.out.println(c.name);
+		}
+		selection = sc.nextLine();
+		for(Character c: this.currentRoom.people){
+			if(selection.equals(c.name)){
+				charSelection = c;
+			}
+		}
+		itemSelection.applyEffect(charSelection);
+		
+		
 	}
 
 

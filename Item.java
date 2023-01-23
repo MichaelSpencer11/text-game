@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 
 //there are items in the game, here are some attributes and stuff
-public class Item {
+public abstract class Item {
 		protected int itemId;
 		protected static int itemTracker;
 		protected String itemName;
-		protected String itemEffect;
 		protected String description;
 		protected String closeDescription;
 		protected Room roomIn;
@@ -65,4 +64,7 @@ public class Item {
 			Effect.apply(effects, character);
 			
 		}
+
+		public abstract void applyEffect(Character character);
+		
 	}
