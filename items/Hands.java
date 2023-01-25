@@ -1,4 +1,6 @@
-package textgame;
+package textgame.items;
+
+import textgame.Room;
 
 public class Hands extends Item {
 

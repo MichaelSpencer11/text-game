@@ -1,7 +1,11 @@
-package textgame;
+package textgame.weapons;
 
 import java.util.ArrayList;
 import java.util.List;
+import textgame.EquipableBy;
+import textgame.elements.*;
+import textgame.Item;
+import textgame.SpecialEffect;
 
 public class Weapon extends Item{
 	protected String type;
@@ -19,5 +23,7 @@ public class Weapon extends Item{
 
 	public int getBattlePower() {return battlePower;}
 	public int getHitRate() {return hitRate;}
+
+	
 	
 }

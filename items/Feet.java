@@ -1,8 +1,10 @@
-package textgame;
+package textgame.items;
 
-public class Ring extends Item {
+import textgame.Room;
 
-	public Ring(String name, boolean plural, String description, String desc2, Room room) {
+public class Feet extends Item {
+
+	public Feet(String name, boolean plural, String description, String desc2, Room room) {
 		this.itemName = name;
 		this.plural = plural;
 		this.description = description;

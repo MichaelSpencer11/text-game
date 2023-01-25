@@ -2,7 +2,6 @@ package textgame;
 
 import java.util.ArrayList;
 
-
 //there are items in the game, here are some attributes and stuff
 public abstract class Item {
 		protected int itemId;
@@ -16,7 +15,6 @@ public abstract class Item {
 		protected boolean takeable;
 		protected boolean consumable;
 		protected ArrayList<String> stolenFrom;
-		protected ArrayList<Effect> effects;
 		protected ArrayList<Monster> morphedInto;
 		protected int dropRate;
 		
@@ -60,11 +58,5 @@ public abstract class Item {
 		}
 		
 		
-		public void onEquip(Character character) {
-			Effect.apply(effects, character);
-			
-		}
-
-		public abstract void applyEffect(Character character);
 		
 	}

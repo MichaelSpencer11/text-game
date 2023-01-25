@@ -1,6 +1,6 @@
 package textgame.jobs;
 
-import textgame.Job;
+import textgame.spells.*;
 
 public class BlackMage extends Job {
 
@@ -17,6 +17,6 @@ public class BlackMage extends Job {
 		this.magicDefense = 40;
 		this.mBlock = 7;
 		this.evade = 14;
-		
+		this.spells.add(new Fire());	
 	}
 }

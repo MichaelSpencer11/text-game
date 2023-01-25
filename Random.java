@@ -1,4 +1,4 @@
-package textgame.util;
+package textgame;
 
 public class Random {
 

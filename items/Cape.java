@@ -1,10 +1,11 @@
-package textgame;
+package textgame.items;
 
-public class Feet extends Item {
+import textgame.Room;
 
-	public Feet(String name, boolean plural, String description, String desc2, Room room) {
+public class Cape extends Item {
+
+	public Cape(String name, String description, String desc2, Room room) {
 		this.itemName = name;
-		this.plural = plural;
 		this.description = description;
 		this.closeDescription = desc2;
 		this.itemId = itemTracker++;

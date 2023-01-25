@@ -3,13 +3,15 @@ package textgame;
 import java.util.ArrayList;
 
 import textgame.battle.BattleMenu;
-import textgame.util.Random;
+import textgame.elements.Element;
+import textgame.Random;
 import textgame.battle.Battle;
 
 public class Monster {
 	protected String name;
 	protected int level;
 	protected int hp;
+	protected int maxHp;
 	protected int mp;
 	protected int xp;
 	protected int gp;
@@ -25,13 +27,18 @@ public class Monster {
 	protected int evade;
 	protected int MBlock;
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
-	protected ArrayList<Item> stolenItems;
-	protected ArrayList<Item> drops;
+	protected ArrayList<Item> stolenItems = new ArrayList<Item>();
+	protected ArrayList<Item> drops = new ArrayList<Item>();
 	protected Room roomIn;
 	protected String description;
 	protected int atbGauge = 0;
 	protected Character target;
 	protected boolean protect;
+	protected boolean shell;
+	protected Element absorbs;
+	protected Element immune;
+	protected Element resistant;
+	protected Element weak;
 	protected boolean berserked;
 	protected int critChance = Random.roll(1,32);
 
@@ -61,6 +68,13 @@ public class Monster {
 		this.hp = this.hp - damage;
 	}
 
+	public void applyHealing(int amount){
+		hp = hp + amount;
+		if(hp > maxHp ){
+			hp = maxHp;
+		}
+	}
+
 	public String getName () {return name;}
 	public int getLevel () {return level;}
 	public int getHp () {return hp;}
@@ -76,6 +90,7 @@ public class Monster {
 	public int getMagicDefense () {return magicDefense;}
 	public int getEvade () {return evade;}
 	public boolean getProtect(){return protect;}
+	public boolean getShell(){return shell;}
 	public int getMBlock () {return MBlock;}
 	public int getBlockValue(){return blockValue;}
 	public ArrayList<Item> getStolenItems () {return stolenItems;}
@@ -84,6 +99,11 @@ public class Monster {
 	public boolean getBerserked() {return berserked;}
 	public int getCritChance() {return critChance;}
 	public int getVigor2() {return vigor2;}
+	public Element getAbsorbs(){return absorbs;}
+	public Element getImmune(){return immune;}
+	public Element getResistant(){return resistant;}
+	public Element getWeak(){return weak;}
+
 
 	
 }

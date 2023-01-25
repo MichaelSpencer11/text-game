@@ -16,15 +16,14 @@ public class PlayerAttack extends Action {
     public PlayerAttack(Battle battleContext){
         this.battleContext = battleContext;
         if(this.hits()){
-            if(this.magical = true){
-                
-            } else {
+            
             // 1b
             attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getVigor2());
-            }
+            //1d
+            damage = battleContext.getPlayer().getMainHand().getBattlePower() + ((battleContext.getPlayer().getLevel() ^ 2 * attack) / 256 ) * 3 / 2;
             damageMultiplier = 0;
             if(battleContext.getPlayer().getBerserked()){
-                damageMultiplier += 1;
+                damageMultiplier++;
             }
             if( battleContext.getPlayer().getCritChance() == 32){
                 damageMultiplier += 2;

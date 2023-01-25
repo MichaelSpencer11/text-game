@@ -2,6 +2,7 @@ package textgame;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import textgame.battle.Battle;
 
 //this is where all the commands live. 
 //there is an instance of the player so you can call the player's methods
@@ -73,8 +74,11 @@ public class Input{
             else if(inputString.equals("stand")) {
             	thisPlayer.stand();
             }
-            else if(inputString.length() > 3 && inputString.substring(0,6).equals("attack")){
-                thisPlayer.attack(inputString.substring(7));
+            else if(inputString.length() > 3 && inputString.substring(0,6).equals("target")){
+                thisPlayer.target(inputString.substring(7));
+            }
+            else if(inputString.equals("battle")){
+                new Battle(thisPlayer, thisPlayer.getTarget(), thisPlayer.getCurrentRoom());
             }
             else if(inputString.length() > 3 && inputString.substring(0,4).equals("talk")) {
             	thisPlayer.talk(inputString);

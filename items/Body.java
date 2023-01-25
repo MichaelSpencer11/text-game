@@ -1,9 +1,10 @@
-package textgame;
+package textgame.items;
 
-public class Head extends Item
-{
+import textgame.Room;
 
-	public Head(String name, String description, String desc2, Room room) {
+public class Body extends Item {
+
+	public Body(String name, String description, String desc2, Room room) {
 		this.itemName = name;
 		this.description = description;
 		this.closeDescription = desc2;

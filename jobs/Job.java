@@ -1,4 +1,4 @@
-package textgame;
+package textgame.jobs;
 
 public class Job {
 
@@ -14,6 +14,8 @@ public class Job {
 	protected int magicDefense;
 	protected int mBlock;
 	protected int evade;
+	protected ArrayList<Spell> spells;
+	protected ArrayList<Technique> techniques;
 
 	public void addHp(int hp){
 		this.hp += hp;
@@ -38,4 +40,5 @@ public class Job {
 	public int getMagicDefense(){return magicDefense;}
 	public int getMBlock(){return mBlock;}
 	public int getEvade(){return evade;}
+	public ArrayList<Spell> getSpells(){return spells;}
 }

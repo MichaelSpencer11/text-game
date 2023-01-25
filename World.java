@@ -2,9 +2,12 @@ package textgame;
 
 import java.util.ArrayList;
 
-import textgame.items.Bed;
-import textgame.items.Desk;
-import textgame.monsters.WireyDragon;
+import textgame.items.*;
+import textgame.Item;
+import textgame.monsters.*;
+import textgame.Party;
+import textgame.ConsoleColors;
+import textgame.Character;
 
 
 
@@ -60,7 +63,7 @@ public class World {
 			
 			    
 		        Room room = new Room("interior", "Your room","This is your room. Your twin size bed is against one wall. Your desk is against another. There is a black computer monitor, a keyboard and a mouse on the desk.", null, null, null, null, null, null, null, null, null, null);
-		        Item yourBed = new Bed("bed", "A basic twin four post bed. It is a little squeaky but pretty comfortable.", room);
+		        Bed yourBed = new Bed("bed", "A basic twin four post bed. It is a little squeaky but pretty comfortable.", room);
 		        Room playerCloset = new Room("interior", "Your closet","Your walk-in closet. There are clothes hanging up in the closet and some on the floor neatly placed under the racks.", null, null, room, null, null, null, null, null, null, null);
 		        Door closetDoor = new Door("east", "locked", playerCloset);
 		        Key closetDoorKey = new Key("closet door key", "A small door key", closetDoor, playerCloset);
@@ -77,24 +80,19 @@ public class World {
 		        
 		        //Item practiceStaff = new Weapon("wooden staff", "A wooden practice staff. It has a few nicks and cuts in it and is quite worn.", "The staff feels as heavy as a metal staff in your hand, but it is still made out of wood.", playerCloset);
 		        //Item practicesword = new Weapon("wooden sword", "A wooden practice sword. It has a few nicks and cuts in it and is quite worn.", "The sword feels as heavy as a metal sword in your hand, but it is still made out of wood.", playerCloset);
-		        Item noviceHood = new Head("novice hood", "A basic looking hood made of cotton.", "This hood is lined with some thick fabric on the inside.", playerCloset);
-		        Item bracelets = new Hands("bracelets", true, "A pair of bracelets made out of small colorful beads.", "The beads are made up of tiny crystals.", playerCloset);
-		        Item shirt = new Body("cotton shirt", "A white cotton shirt.", "The brand on the tag is unreadable.", playerCloset);
-		        Item cape = new Cape("cotton cape", "A simple grey cotton cape.", "There are small fringes on the ends of this cape.", playerCloset);
-		        Item jeans = new Legs("jeans", true, "A slightly worn pair of black jeans.", "The brand name on the tag reads 'Lev'.", playerCloset);
-		        Item mocs = new Feet("moccasins", true, "A pair of tan leather moccasins.", "You remember making these yourself.", playerCloset);
-		        Item silverRing = new Ring("silver ring", false, "A simple looking silver ring.", "On the inside of the ring there is a circle.", playerCloset);
-		        Item redRing = new Ring("red ring", false, "A simple lookinng red ring.", "This ring seems to be made out of some fiery red substance.", playerCloset);
-		        Item desk = new Desk("desk", "Your wooden desk in your room. It has a few nicks in the finish but is very sturdy.", room);
+		        Desk desk = new Desk("desk", "Your wooden desk in your room. It has a few nicks in the finish but is very sturdy.", room);
 		        Character player = new Character(room);
+				player.homePoint = room;
 		        Character familiar = new Familiar("Someone is standing or floating here, it is very hard to see them, they are almost not there but you know that there is definitely a presence here.", room, player);
 		        Character automaton = new Automaton("An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
-				WireyDragon wireyDragon = new WireyDragon(room);
+				Monster Leafer = new Leafer(room);
 		        System.out.println(ConsoleColors.CYAN + "Hello, welcome. Please 'look' or 'l' to look around the room. 'Take' some items and 'equip', 'unequip', and 'drop' them. Type 'help' to get some." + ConsoleColors.RESET );
 		        Input input = new Input(player);
 		        input.input();
 }
 		
+		public World(){}
+
 		public ArrayList<Room> getGlobalRoomList(){
 			return globalRoomList;
 		}

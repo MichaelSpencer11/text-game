@@ -1,5 +1,7 @@
 package textgame;
 
+import textgame.*;
+
 //import java.awt.Color;
 //import java.awt.Font;
 

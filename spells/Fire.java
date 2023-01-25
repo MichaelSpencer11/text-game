@@ -3,6 +3,7 @@ package textgame.spells;
 import textgame.elements.Element;
 
 public class Fire extends Spell {
+    private String name = "Fire";
     private String type = "Black Magic";
     private int mp = 4;
     private int spellPower = 21;
@@ -17,7 +18,7 @@ public class Fire extends Spell {
 
 
     public Fire(Monster target){
-        
+
     }
     
 }

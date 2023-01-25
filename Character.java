@@ -1,20 +1,22 @@
 package textgame;
 
 import java.util.ArrayList;
-import textgame.util.Random;
+import textgame.Random;
 import java.util.Scanner;
 
 import textgame.battle.ATBGauge;
 import textgame.battle.BattleMenu;
-import textgame.items.Block;
+import textgame.items.*;
+import textgame.jobs.*;
 import textgame.jobs.BlackMage;
 import textgame.jobs.Monk;
 import textgame.jobs.RedMage;
 import textgame.jobs.Thief;
 import textgame.jobs.Warrior;
 import textgame.jobs.WhiteMage;
-import textgame.weapons.Dirk;
+import textgame.weapons.*;
 import textgame.Item;
+import textgame.spells.*;
 
 public class Character {
 	//regular RPG data fields I guess
@@ -69,6 +71,7 @@ public class Character {
     
     //location and other stuff
     protected Room currentRoom;
+	protected Room homePoint;
     protected ArrayList<Item> inventory;
 	protected ArrayList<Weapon> weapons;
     protected ArrayList<String> thoughts;
@@ -1768,8 +1771,8 @@ public String nothingOverThere() {
 	
 	public ArrayList<Item> getInventory () {return inventory;}
 
-	//new type commands where the initial command is not sent, only what follows
-	public void attack(String monsterName) {
+	
+	public void target(String monsterName) {
 		if(asleep){
 			System.out.println("You should wake up before you can do that.");
 			return;
@@ -1787,10 +1790,6 @@ public String nothingOverThere() {
 		System.out.println("Target: " + target.typeToString());
 
 
-	}
-	
-	public Job getJob() {
-		return this.job;
 	}
 
 	public void startCounter(textgame.battle.Battle battle){
@@ -1812,11 +1811,11 @@ public String nothingOverThere() {
 		
 	}
 
-	public void magicMenu(){
+	public void magicMenu(Battle battleContext){
 		if(this.spells.length > 0){
 		Scanner sc = new Scanner(System.in);
 		this.spells.forEach(s -> System.out.println(s) );
-		Spell spell = new Spell(sc.nextLine());
+		Spell spell = new Spell(sc.nextLine(), battleContext);
 		}
 	}
 
@@ -1847,6 +1846,16 @@ public String nothingOverThere() {
 		
 	}
 
+	public void homePoint(){
+		this.currentRoom = homePoint;
+	}
+
+	public void flee(){
+		for (Room r : currentRoom.getAdjacentRooms()){
+			currentRoom = r;
+		}
+	}
+
 
 	public int getHp() {return hp;}
 	public int getSpeed() {return speed;}
@@ -1866,6 +1875,9 @@ public String nothingOverThere() {
 	public int getExp() {return exp;}
 	public int getGold(){return gold;}
 	public int getDefense(){return defense;}
+	public Monster getTarget(){return target;}
+	public Room getCurrentRoom(){return currentRoom;}
+	public Job getJob(){return job;}
 
 	public void addExp(int exp){
 		this.exp += exp;
