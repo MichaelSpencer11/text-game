@@ -4,7 +4,7 @@ import java.net.SocketTimeoutException;
 
 import textgame.Action;
 import textgame.ConsoleColors;
-import textgame.util.Random;
+import textgame.Random;
 
 public class PlayerAttack extends Action {
     protected Battle battleContext;
@@ -37,6 +37,8 @@ public class PlayerAttack extends Action {
             if(battleContext.getMonster().getProtect() == true){
                 damage = (int)(damage * 170 / 256) + 1;
             }
+            //reduction
+            damage = (int)(Math.ceil(damage / 1000));
             battleContext.getMonster().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
         }

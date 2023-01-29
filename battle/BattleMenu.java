@@ -6,30 +6,11 @@ import textgame.Monster;
 
 public class BattleMenu {
     public BattleMenu(textgame.battle.Battle battleContext){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("1.Attack");
-        System.out.println("2.Magic");
-        System.out.println("3.Item");
-        System.out.println("4.Flee");
-        switch(sc.nextLine()) {
-            case "1": 
-                new PlayerAttack(battleContext);
-                break;
-            case "2":
-                battleContext.getPlayer().magicMenu(battleContext);
-                break;
-            case "3":
-                battleContext.getPlayer().itemMenu();
-                break;
-            case "4":
-                battleContext.getPlayer().flee();
-                break;
 
-        }
     }
 
     public BattleMenu(Monster monster, textgame.battle.Battle battleContext){
 
-        monster.attack();
+        monster.attack(battleContext);
     }
 }

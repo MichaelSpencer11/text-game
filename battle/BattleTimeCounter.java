@@ -3,8 +3,10 @@ package textgame.battle;
 import textgame.World;
 
 public class BattleTimeCounter {
+ 
+
     public static long btCounter = 0;
-    public BattleTimeCounter(){
+    public BattleTimeCounter(Battle battleContext){
         
     }
 

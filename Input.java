@@ -13,8 +13,8 @@ public class Input{
 
     public Input(Character player){
         this.thisPlayer = player;
+        this.thisPlayer.currentRoom = player.currentRoom;
     }
-    
     public void input(){
         while(true){
             System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
@@ -36,6 +36,9 @@ public class Input{
             else if(inputString.equals("party list")){
                 System.out.println(inputString);
                 thisPlayer.currentParty.listMembers();
+            }
+            else if(inputString.equals("battle")){
+                new Battle(thisPlayer, thisPlayer.getTarget(), thisPlayer.getCurrentRoom());
             }
             else if (inputString.length() > 3 && inputString.substring(0,4).equals("exit")){
                 System.exit(0);
@@ -77,8 +80,8 @@ public class Input{
             else if(inputString.length() > 3 && inputString.substring(0,6).equals("target")){
                 thisPlayer.target(inputString.substring(7));
             }
-            else if(inputString.equals("battle")){
-                new Battle(thisPlayer, thisPlayer.getTarget(), thisPlayer.getCurrentRoom());
+            else if(inputString.equals("targeting")){
+                System.out.println(thisPlayer.target.name);
             }
             else if(inputString.length() > 3 && inputString.substring(0,4).equals("talk")) {
             	thisPlayer.talk(inputString);

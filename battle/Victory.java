@@ -3,7 +3,8 @@ package textgame.battle;
 import textgame.ConsoleColors;
 import textgame.Item;
 import textgame.battle.Battle;
-import textgame.util.Random;
+import textgame.Random;
+import textgame.Monster;
 
 public class Victory {
     public Victory(Battle battleContext){
@@ -24,6 +25,7 @@ public class Victory {
             }
          }
 
+         
          
     }
 }

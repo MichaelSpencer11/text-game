@@ -2,7 +2,7 @@ package textgame.jobs;
 
 import java.util.Random;
 import textgame.Item;
-import textgame.Job;
+import textgame.jobs.Job;
 import textgame.Monster;
 import textgame.Player;
 

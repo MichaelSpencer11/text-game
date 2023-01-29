@@ -6,6 +6,7 @@ public class Dirk extends Weapon {
         this.type = "Dirk";
 		this.battlePower = 26;
 		this.hitRate = 180;
+		this.delay = 240;
 		this.description = "Basic blade forged as stainless steel";
 		this.canThrow = true;
 		this.canUseSwdtech = false;

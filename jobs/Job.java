@@ -1,8 +1,13 @@
 package textgame.jobs;
 
+import java.util.ArrayList;
+import textgame.spells.*;
+import textgame.techniques.*;
+
 public class Job {
 
-	protected int level;
+
+	public int level;
 	protected int hp;
 	protected int mp;
 	protected int vigor;
@@ -17,6 +22,8 @@ public class Job {
 	protected ArrayList<Spell> spells;
 	protected ArrayList<Technique> techniques;
 
+	
+
 	public void addHp(int hp){
 		this.hp += hp;
 	}
@@ -25,9 +32,10 @@ public class Job {
 		this.mp += mp;
 	}
 
-	public void changeJob(Character player, Job newJob){
-		player.job = newJob;
+	public void applyDamage(int damage){
+		this.hp = this.hp - damage;
 	}
+
 	public int getLevel(){return level;}
 	public int getHp(){return hp;}
 	public int getMp(){return mp;}
@@ -42,3 +50,5 @@ public class Job {
 	public int getEvade(){return evade;}
 	public ArrayList<Spell> getSpells(){return spells;}
 }
+
+

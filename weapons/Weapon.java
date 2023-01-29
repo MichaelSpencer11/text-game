@@ -11,6 +11,7 @@ public class Weapon extends Item{
 	protected String type;
 	protected int battlePower;
 	protected int hitRate;
+	protected int delay;
 	protected EquipableBy equipableBy;
 	protected String description;
 	protected boolean canThrow;
@@ -23,7 +24,8 @@ public class Weapon extends Item{
 
 	public int getBattlePower() {return battlePower;}
 	public int getHitRate() {return hitRate;}
+	public int getDelay(){return delay;}
 
-	
+	public void applyEffect(Character player){}
 	
 }

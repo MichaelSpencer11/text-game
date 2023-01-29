@@ -2,7 +2,8 @@ package textgame;
 
 import java.util.ArrayList;
 
-import textgame.battle.BattleMenu;
+
+import textgame.battle.*;
 import textgame.elements.Element;
 import textgame.Random;
 import textgame.battle.Battle;
@@ -19,6 +20,7 @@ public class Monster {
 	protected int vigor = Random.roll(56,63);
 	protected int vigor2 = vigor * 2;
 	protected int hitRate;
+	protected int delay;
 	protected int magicPower;
 	protected int speed;
 	protected int stamina;
@@ -29,7 +31,7 @@ public class Monster {
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
 	protected ArrayList<Item> stolenItems = new ArrayList<Item>();
 	protected ArrayList<Item> drops = new ArrayList<Item>();
-	protected Room roomIn;
+	protected Room currentRoom;
 	protected String description;
 	protected int atbGauge = 0;
 	protected Character target;
@@ -51,17 +53,14 @@ public class Monster {
     }
 
 	public void startCounter(Battle battleContext){
-			while(battleContext.getPlayer().getHp() > 0){
-				World.setTimeout(() -> incrementATBGauge(), this.getSpeed() );
-				if(this.atbGauge >= 65536 ){
-					new BattleMenu(this, battleContext);
-				}
-			}
+			
+			new BattleMenu(battleContext);
+			
 		
 	}
 
-	public void attack() {
-
+	public void attack(Battle battleContext) {
+		new MonsterAttack(battleContext);
 	}
 
 	public void applyDamage(int damage){
@@ -103,6 +102,9 @@ public class Monster {
 	public Element getImmune(){return immune;}
 	public Element getResistant(){return resistant;}
 	public Element getWeak(){return weak;}
+	public Room getCurrentRoom(){return currentRoom;}
+	public int getDelay(){return delay;}
+
 
 
 	

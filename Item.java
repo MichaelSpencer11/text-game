@@ -57,6 +57,6 @@ public abstract class Item {
 			return this.getClass().toString().substring(6);
 		}
 		
-		
+		public abstract void applyEffect(Character target);
 		
 	}

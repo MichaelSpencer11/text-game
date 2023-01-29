@@ -2,7 +2,7 @@ package textgame.battle;
 
 import textgame.Action;
 import textgame.ConsoleColors;
-import textgame.util.Random;
+import textgame.Random;
 
 public class MonsterAttack extends Action {
     protected Battle battleContext;
@@ -29,7 +29,7 @@ public class MonsterAttack extends Action {
             if(battleContext.getPlayer().getProtect() == true){
                 damage = (int)(damage * 170 / 256) + 1;
             }
-            battleContext.getPlayer().applyDamage(damage); 
+            battleContext.getPlayer().getJob().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits you for " + damage + " damage." + ConsoleColors.RESET);
         }
     }

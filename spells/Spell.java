@@ -1,6 +1,9 @@
 package textgame.spells;
 
-import textgame.elements;
+import textgame.elements.Element;
+import textgame.battle.Battle;
+import textgame.Action;
+import textgame.Random;
 
 public class Spell extends Action {
 	

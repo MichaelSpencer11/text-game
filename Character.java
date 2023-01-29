@@ -4,16 +4,9 @@ import java.util.ArrayList;
 import textgame.Random;
 import java.util.Scanner;
 
-import textgame.battle.ATBGauge;
-import textgame.battle.BattleMenu;
+import textgame.battle.*;
 import textgame.items.*;
 import textgame.jobs.*;
-import textgame.jobs.BlackMage;
-import textgame.jobs.Monk;
-import textgame.jobs.RedMage;
-import textgame.jobs.Thief;
-import textgame.jobs.Warrior;
-import textgame.jobs.WhiteMage;
 import textgame.weapons.*;
 import textgame.Item;
 import textgame.spells.*;
@@ -108,14 +101,15 @@ public class Character {
     //Constructor for characters who do not have predetermined names in the beginning
     //Generally, the player will name these characters later
     public Character(Room firstRoom){
-    	this.hasName = false;
+    	//we'll hardcode the character name for now 
+		this.name = "Michael";
     	this.inventory = new ArrayList<Item>();
 		this.spells = new ArrayList<Spell>();
     	this.asleep = false;
         this.prone = false;
         this.sitting = false;
         this.standing = true;
-		this.job = thief;
+		this.job = new Thief();
 		final Dirk dirk = new Dirk();
 		this.mainHand = dirk;
         firstRoom.people.add(this);
@@ -1719,15 +1713,15 @@ public String nothingOverThere() {
     public void changeJob(Job newJob) {
     	this.job = newJob;
     	this.job.level = newJob.getLevel();
-    	this.vigor = newJob.vigor;
-    	this.speed = newJob.speed;
-    	this.stamina = newJob.stamina;
-    	this.magicPower = newJob.magicPower;
-    	this.battlePower = newJob.battlePower;
-    	this.defense = newJob.defense;
-    	this.magicDefense = newJob.defense;
-    	this.mBlock = newJob.mBlock;
-    	this.evade = newJob.evade;
+    	this.vigor = newJob.getVigor();
+    	this.speed = newJob.getSpeed();
+    	this.stamina = newJob.getStamina();
+    	this.magicPower = newJob.getMagicPower();
+    	this.battlePower = newJob.getBattlePower();
+    	this.defense = newJob.getDefense();
+    	this.magicDefense = newJob.getMagicDefense();
+    	this.mBlock = newJob.getMBlock();
+    	this.evade = newJob.getEvade();
     	
     }
     
@@ -1780,9 +1774,10 @@ public String nothingOverThere() {
 		
 		//finds the actual monster in the room
 		for ( Monster mon : currentRoom.monsters) {
-			System.out.println("Player string: {" + monsterName + "}. MonsterName: {" + mon.typeToString() + "}.");
+			System.out.println("Monster name: {" + monsterName + "}. MonsterType: {" + mon.typeToString() + "}.");
 			if(monsterName.toLowerCase().equals(mon.typeToString().toLowerCase())){
 				target = mon;
+				System.out.println(target.name + " targeted");
 				break;
 			}
 		} 
@@ -1794,25 +1789,22 @@ public String nothingOverThere() {
 
 	public void startCounter(textgame.battle.Battle battle){
 		this.atbGauge = 0;
-        while(battle.getMonster().getHp() > 0){
-            World.setTimeout(() -> incrementATBGauge(), this.getSpeed() );
-			if(this.atbGauge >= 65536 ){
-				new BattleMenu(battle);
-				this.startCounter(battle);
-			}
-        }
+        setTimeout(() -> incrementATBGauge(), this.getSpeed() );
+		if(this.atbGauge >= 65536 ){
+			new BattleMenu(battle);
+		}
     }
 
 	public void incrementATBGauge() {
-		this.atbGauge += (96 * (this.job.speed + 20)) / 16;
+		this.atbGauge += (96 * (this.job.getSpeed() + 20)) / 16;
     }
 
-	public void attack() {
-		
+	public void attack(Battle battleContext) {
+		new PlayerAttack(battleContext);
 	}
 
 	public void magicMenu(Battle battleContext){
-		if(this.spells.length > 0){
+		if(this.spells.size() > 0){
 		Scanner sc = new Scanner(System.in);
 		this.spells.forEach(s -> System.out.println(s) );
 		Spell spell = new Spell(sc.nextLine(), battleContext);
@@ -1878,13 +1870,15 @@ public String nothingOverThere() {
 	public Monster getTarget(){return target;}
 	public Room getCurrentRoom(){return currentRoom;}
 	public Job getJob(){return job;}
+	public int getLevel(){return job.getLevel();}
+	public int getMagicPower(){return job.getMagicPower();}
 
 	public void addExp(int exp){
 		this.exp += exp;
 	}
 
 	public void applyDamage(int damage){
-		this.hp = this.hp - damage;
+		this.getJob().getHp() = this.hp - damage;
 	}
 
 	public void addItem(Item i){

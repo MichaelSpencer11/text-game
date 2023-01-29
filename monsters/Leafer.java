@@ -5,8 +5,9 @@ import textgame.Room;
 import textgame.items.Tonic;
 
 public class Leafer extends Monster {
-    public Leafer(Room roomIn) {
+    public Leafer(Room firstRoom) {
 
+		this.name = "Leafer";
         this.level = 5;
 		this.hp = 33;
 		this.mp = 0;
@@ -14,6 +15,7 @@ public class Leafer extends Monster {
 		this.gp = 45;
 		this.battlePower = 13;
 		this.hitRate = 100;
+		this.delay = 250;
 		this.magicPower = 10;
 		this.speed = 30;
 		this.stamina = 0;
@@ -21,8 +23,8 @@ public class Leafer extends Monster {
 		this.magicDefense = 140;
 		this.evade = 0;
 		this.MBlock = 0;
-		this.roomIn = roomIn;
-		roomIn.getMonsters().add(this);
+		this.currentRoom = firstRoom;
+		currentRoom.getMonsters().add(this);
 		
 		//Initialize drops for Monster
 		final Tonic tonic = new Tonic();
