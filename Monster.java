@@ -32,6 +32,7 @@ public class Monster {
 	protected ArrayList<Item> stolenItems = new ArrayList<Item>();
 	protected ArrayList<Item> drops = new ArrayList<Item>();
 	protected Room currentRoom;
+	protected Room roomIn;
 	protected String description;
 	protected int atbGauge = 0;
 	protected Character target;

@@ -2,12 +2,10 @@ package textgame;
 
 import java.util.ArrayList;
 
+import textgame.*;
 import textgame.items.*;
-import textgame.Item;
 import textgame.monsters.*;
-import textgame.Party;
-import textgame.ConsoleColors;
-import textgame.Character;
+
 
 
 
@@ -43,11 +41,10 @@ public class World {
 			
 		}
 
-		public static void setTimeout(Runnable runnable, int delay){
+		public static void startThread(Runnable runnable){
 			new Thread(() -> {
 				
 				try {
-					Thread.sleep(delay);
 					runnable.run();
 				}
 				catch (Exception e){
@@ -56,10 +53,9 @@ public class World {
 			}).start();
 		}
 
-		public static void setTimeout2(Runnable runnable, int delay){
+		public static void setTimeout2(Runnable runnable){
 			new Thread(() -> {
 				try {
-					Thread.sleep(delay);
 					runnable.run();
 				}
 				catch (Exception e){
