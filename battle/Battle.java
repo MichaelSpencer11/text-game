@@ -17,12 +17,33 @@ public class Battle implements Runnable{
         this.battleOn = true;
         this.player = player;
         this.monster = monster;
-        Thread t = new Thread();
+        Thread main = Thread.currentThread();
         System.out.println("Battle started with " + monster.getName());
         playerThread = new PlayerThread(this);
         monsterThread = new MonsterThread(this);
+        playerThread.pt.start();
+        monsterThread.mt.start();
+        
+        try{
+            playerThread.pt.join();
+            monsterThread.mt.join();
+        }
+        catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
+
+        
+
         
         
+            if(player.getJob().getHp() <= 0){
+                System.out.println("Defeat...");
+                player.homePoint();
+            }
+            else if (monster.getHp() <= 0) {
+                new Victory(this);
+            }
+
         
         
         

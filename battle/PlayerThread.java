@@ -4,12 +4,13 @@ public class PlayerThread implements Runnable {
     
     Battle battleContext;
     boolean isAlive;
+    Thread pt;
     
 
     public PlayerThread(Battle battleContext){
         this.isAlive = true;
         this.battleContext = battleContext;
-       
+        pt = new Thread(this, "playerThread");
         
     }
 
@@ -26,19 +27,10 @@ public class PlayerThread implements Runnable {
                 System.out.println(e.getMessage());
             }
             new PlayerAttack(battleContext);
-            if(battleContext.getMonster().getHp() <= 0 ){
-                battleContext.stopMonsterThread();
-                battleContext.stopPlayerThread();
-                new Victory(battleContext);
-                battleContext.battleOn = false;
-                //remove monster from field
-                if(battleContext.currentRoom.getMonsters().contains(battleContext.getMonster())){
-                    battleContext.currentRoom.getMonsters().remove(battleContext.getMonster());
-                }
+            if(battleContext.getMonster().getHp() <= 0 || battleContext.getPlayer().getJob().getHp() <= 0)
+            
                 break;
             }
-            
-        }
-            
+              
     }
 }

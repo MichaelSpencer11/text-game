@@ -6,12 +6,13 @@ public class MonsterThread implements Runnable{
     
     Battle battleContext;
     boolean isAlive;
+    Thread mt;
     
 
     public MonsterThread(Battle battleContext){
         this.isAlive = true;
         this.battleContext = battleContext;
-        
+        mt = new Thread(this, "monsterThread");
     }
 
     public boolean isAlive(boolean isAlive){
@@ -27,15 +28,12 @@ public class MonsterThread implements Runnable{
                 System.out.println(e.getMessage());
             }
             new MonsterAttack(battleContext);
-            if(battleContext.getPlayer().getJob().getHp() <= 0){
-                battleContext.stopPlayerThread();
-                battleContext.stopMonsterThread();
-                battleContext.battleOn = false;
-                System.out.println("Defeated...");
-                battleContext.player.homePoint();
+            if(battleContext.getPlayer().getJob().getHp() <= 0 || battleContext.getMonster().getHp() <= 0){
+                
                 break;
             }
         }
+        
         
         
     }
