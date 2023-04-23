@@ -1,6 +1,5 @@
 package textgame;
 
-import textgame;
 import textgame.World;
 
 //import java.awt.Color;

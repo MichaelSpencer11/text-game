@@ -2,7 +2,6 @@ package textgame.jobs;
 
 import textgame.Esper;
 import textgame.Form;
-import textgame.Job;
 
 public class Polymorph extends Job {
 	protected Form<Esper> form;

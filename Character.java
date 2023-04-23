@@ -19,8 +19,6 @@ public class Character {
     protected String description;
     protected String pronounString;
     protected enum pronoun{M, F, NB};
-    protected String raceString;
-    protected enum race{Human, Elf, Orc};
     protected String areaString;
     protected enum area{Land, Sea, Space};
     protected String areaRace;
@@ -58,7 +56,6 @@ public class Character {
 	protected int mBlock;
 	protected int evade;
 	protected int gold;
-	protected int exp;
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
 	protected int critChance = Random.roll(1,32);
     
@@ -1789,7 +1786,7 @@ public String nothingOverThere() {
 
 	public void startCounter(textgame.battle.Battle battle){
 		this.atbGauge = 0;
-        setTimeout(() -> incrementATBGauge(), this.getSpeed() );
+       // setTimeout(() -> incrementATBGauge(), this.getSpeed() );
 		if(this.atbGauge >= 65536 ){
 			new BattleMenu(battle);
 		}
@@ -1812,8 +1809,8 @@ public String nothingOverThere() {
 	}
 
 	public void itemMenu(){
-		Item itemSelection;
-		Character charSelection;
+		Item itemSelection = null;
+		Character charSelection = null;
 		String selection;
 		Scanner sc = new Scanner(System.in);
 		this.printInv();
@@ -1848,6 +1845,12 @@ public String nothingOverThere() {
 		}
 	}
 
+	public void status(){
+		System.out.println("HP: " + this.job.getHp() + "/" + this.job.getMaxHp());
+		System.out.println("MP: " + this.job.getMp() + "/" + this.job.getMaxMp());
+		System.out.println("Exp: " + this.job.getExp());
+	}
+
 
 	public int getHp() {return hp;}
 	public int getSpeed() {return speed;}
@@ -1873,12 +1876,8 @@ public String nothingOverThere() {
 	public int getLevel(){return job.getLevel();}
 	public int getMagicPower(){return job.getMagicPower();}
 
-	public void addExp(int exp){
-		this.exp += exp;
-	}
-
 	public void applyDamage(int damage){
-		this.getJob().getHp() = this.hp - damage;
+		this.hp = this.hp - damage;
 	}
 
 	public void addItem(Item i){

@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import textgame.spells.*;
 import textgame.techniques.*;
 
-public class Job {
+public abstract class Job {
 
 
 	public int level;
 	protected int hp;
+	protected int maxHp;
 	protected int mp;
+	protected int maxMp;
+	protected int exp;
+	protected int maxExp;
 	protected int vigor;
 	protected int speed;
 	protected int stamina;
@@ -26,10 +30,23 @@ public class Job {
 
 	public void addHp(int hp){
 		this.hp += hp;
+		if (this.hp > maxHp){
+			this.hp = maxHp;
+		}
 	}
 
 	public void addMp(int mp){
 		this.mp += mp;
+		if (this.mp > maxMp){
+			this.mp = maxMp;
+		}
+	}
+
+	public void addExp(int exp){
+		this.exp += exp;
+		if(exp >= maxExp){
+			new LevelUp(this, exp, maxExp);
+		}
 	}
 
 	public void applyDamage(int damage){
@@ -37,8 +54,17 @@ public class Job {
 	}
 
 	public int getLevel(){return level;}
+	public void setLevel(int newLevel){level = newLevel;}
 	public int getHp(){return hp;}
+	public int getMaxHp(){return maxHp;}
+	public abstract void setMaxHp(int newLevel);
+	public void increaseMaxExp(int newLevel){
+		this.maxExp = (newLevel ^ 2) * 100;
+	}
 	public int getMp(){return mp;}
+	public int getMaxMp(){return maxMp;}
+	public int getExp(){return exp;}
+	public int getMaxExp(){return maxExp;}
 	public int getVigor(){return vigor;}
 	public int getSpeed(){return speed;}
 	public int getStamina(){return stamina;}

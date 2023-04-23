@@ -17,7 +17,7 @@ public class Fire extends Spell {
     private String description = "Emits a blast of fire at the target.";
 
 
-    public Fire(Monster target){
+    public Fire(){
 
     }
     

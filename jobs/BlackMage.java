@@ -19,4 +19,6 @@ public class BlackMage extends Job {
 		this.evade = 14;
 		this.spells.add(new Fire());	
 	}
+
+	
 }

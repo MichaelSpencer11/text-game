@@ -2,7 +2,7 @@ package textgame;
 
 public class Random {
 
-    public static int roll(int low, int high){
-        return (int)Math.floor(Math.random() * (high + low) + low);
+    public static int roll(double low, double high){
+        return (int)Math.floor(Math.random() * ((high - low) + 1) + low);
     }
 }

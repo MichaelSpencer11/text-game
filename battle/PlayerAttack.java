@@ -29,16 +29,14 @@ public class PlayerAttack extends Action {
                 damageMultiplier += 2;
             }
             damage = damage + ((damage / 2) * damageMultiplier);
-            //Random variance
-            damage = (int)(damage * Random.roll(244,255));
+            //Random variance, this can be improved with luck stat
+            damage = (damage * Random.roll(7,15) / 10);
             //defense mod
             damage = (int) (damage * (255 - battleContext.getMonster().getDefense()) / 256) + 1;
             //protect
             if(battleContext.getMonster().getProtect() == true){
                 damage = (int)(damage * 170 / 256) + 1;
             }
-            //reduction
-            damage = (int)(Math.ceil(damage / 1000));
             battleContext.getMonster().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
         }

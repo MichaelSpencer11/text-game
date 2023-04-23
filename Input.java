@@ -33,6 +33,9 @@ public class Input{
             else if(inputString.equals("l")) {
             	thisPlayer.look(inputString);
             }
+            else if(inputString.equals("status")){
+                thisPlayer.status();
+            }
             else if(inputString.equals("party list")){
                 System.out.println(inputString);
                 thisPlayer.currentParty.listMembers();
@@ -147,8 +150,8 @@ public class Input{
                 thisPlayer.printInv();
             }
             else continue;
-            } catch (StringIndexOutOfBoundsException e) {
-            	System.out.println("That didn't work, please try that again.");
+            } catch (Exception e) {
+            	System.out.println(ConsoleColors.RED + "That didn't work, please try that again. Type 'help' for a list of commands." + ConsoleColors.RESET);
             	continue;
             }
             

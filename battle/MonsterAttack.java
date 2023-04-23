@@ -13,6 +13,7 @@ public class MonsterAttack extends Action {
         this.battleContext = battleContext;
         if(this.hits()){
             attack = battleContext.getMonster().getBattlePower() + (battleContext.getMonster().getVigor2());
+            damage = battleContext.getMonster().getBattlePower() + ((battleContext.getMonster().getLevel() ^ 2 * attack) / 256 ) * 3 / 2;
             damageMultiplier = 0;
             if(battleContext.getMonster().getBerserked()){
                 damageMultiplier += 1;
@@ -22,7 +23,7 @@ public class MonsterAttack extends Action {
             }
             damage = damage + ((damage / 2) * damageMultiplier);
             //Random variance
-            damage = (int)(damage * Random.roll(244,255));
+            damage = (int)(damage * Random.roll(7,15) / 10);
             //defense mod
             damage = (int) (damage * (255 - battleContext.getPlayer().getDefense()) / 256) + 1;
             //protect

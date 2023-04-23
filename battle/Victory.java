@@ -12,7 +12,7 @@ public class Victory {
         System.out.println("Exp : " + battleContext.getMonster().getXp());
         //check for level up and level up if necessary
 
-        battleContext.getPlayer().addExp(battleContext.getMonster().getXp());
+        battleContext.getPlayer().getJob().addExp(battleContext.getMonster().getXp());
         System.out.println("Items : ");
         //go through the drops of the monster, if it drops, put it in player inventory and notify
          for (Item i : battleContext.getMonster().getDrops()){
@@ -24,6 +24,8 @@ public class Victory {
                 System.out.println("None" + ConsoleColors.RESET);
             }
          }
+         //remove monster from room
+         battleContext.getMonster().getCurrentRoom().getMonsters().remove(battleContext.getMonster());
 
          
          

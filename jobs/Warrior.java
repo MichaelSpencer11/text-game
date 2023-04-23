@@ -1,12 +1,10 @@
 package textgame.jobs;
 
-import textgame.Job;
-
 public class Warrior extends Job {
 	
     public Warrior() {
 		this.level = 1;
-		this.hp = 50;
+		setMaxHp(1);
 		this.mp = 25;
 		this.vigor = 50;
 		this.speed = 28;
@@ -17,5 +15,10 @@ public class Warrior extends Job {
 		this.magicDefense = 20;
 		this.mBlock = 1;
 		this.evade = 6;
+	}
+
+	public void setMaxHp(int newLevel){
+		maxHp = (int)Math.floor((newLevel / 7) + .3);
+		hp = maxHp;
 	}
 }
