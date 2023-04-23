@@ -16,7 +16,11 @@ public class Input{
         this.thisPlayer.currentRoom = player.currentRoom;
     }
     public void input(){
+        
+        System.out.println(ConsoleColors.CYAN + "Hello, welcome. Please 'look' or 'l' to look around the room. 'Take' some items and 'equip', 'unequip', and 'drop' them. Type 'help' to get some." + ConsoleColors.RESET );
+
         while(true){
+            
             System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
             String inputString = scanner.nextLine();
             try {

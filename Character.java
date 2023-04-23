@@ -111,6 +111,7 @@ public class Character {
 		this.mainHand = dirk;
         firstRoom.people.add(this);
         this.currentRoom = firstRoom;
+		this.homePoint = firstRoom;
         this.thoughts = new ArrayList<String>();
         
         
@@ -1867,7 +1868,6 @@ public String nothingOverThere() {
 	public boolean getBerserked(){return berserked;}
 	public int getCritChance() {return critChance;}
 	public boolean getProtect(){return protect;}
-	public int getExp() {return exp;}
 	public int getGold(){return gold;}
 	public int getDefense(){return defense;}
 	public Monster getTarget(){return target;}
