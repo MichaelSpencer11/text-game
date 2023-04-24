@@ -12,7 +12,7 @@ public class TsiporimTown extends Region {
     public TsiporimTown(World world){
         Room inFrontOfHome = new Room("town", "Peregrine street in front of home", "The street in front of your home. It extends to the east and terminates to the west with a view of the forest.", null,null,null,null,null,null,null,null,null,null );
         Room ParkNW = new Room("grass", "Park with a footpath", "A park with a footpath and trees defies the constant rain. You can see a pond to the southeast.", inFrontOfHome, null,null,null,null,null,null,null,null,null);
-        Room ParkN = new Room("grass", "Park with a footpath", "A park with a footpath circles around a delicately surfaced pond. The rain jabbers the ground in sheety layers.", null,null,null,null,null,null, null, ParkNW,null,null );
+        Room ParkN = new Room("grass", "Park with a footpath", "A park with a footpath circles around a delicately surfaced pond. The rain jabbers the ground in sheety layers.", null,null,null,null,null,null, ParkNW, null,null,null );
         Room ParkNE = new Room("grass","Park with a footpath","The northeast corner of the park. There is a restroom here.",null,null,null,null,null,null,ParkN,null,null,null);
         Room ParkE = new Room("grass", "Park with a footpath", "The end of the park that runs along Main street.",ParkNE,null,null,null,null,null,null,ParkN,null,null);
         Room ParkSE = new Room("grass","Park with a footpath","The southeast section of the park. There is a new looking tennis court here.", ParkE,null,null,null,null,null,null,null,null,null);

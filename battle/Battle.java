@@ -43,11 +43,11 @@ public class Battle implements Runnable{
             else if (monster.getHp() <= 0) {
                 new Victory(this);
             }
-
+            this.battleOn = false;
+        
+        //return control to input
         
         
-        
-        //get rid of this while loop and put a while loop in playerthread and monsterthread
         
         
 

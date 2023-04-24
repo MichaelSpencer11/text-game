@@ -132,6 +132,9 @@ public class Input{
             else if(inputString.equals("e")){
                 thisPlayer.move(inputString);
             }
+            else if(inputString.equals("se")){
+                thisPlayer.move(inputString);
+            }
             else if(inputString.equals("s")){
                 thisPlayer.move(inputString);
             }

@@ -43,7 +43,7 @@ public class Monster {
 	protected Element resistant;
 	protected Element weak;
 	protected boolean berserked;
-	protected int critChance = Random.roll(1,32);
+	protected int critChance;
 
 	public String typeToString() {
 		return this.getClass().toString().substring(24);
@@ -97,7 +97,7 @@ public class Monster {
 	public ArrayList<Item> getDrops () {return drops;}
 	public String getDescription() {return description;}
 	public boolean getBerserked() {return berserked;}
-	public int getCritChance() {return critChance;}
+	public int getCritChance() {return Random.roll(1,32);}
 	public int getVigor2() {return vigor2;}
 	public Element getAbsorbs(){return absorbs;}
 	public Element getImmune(){return immune;}
