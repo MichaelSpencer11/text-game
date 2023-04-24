@@ -27,6 +27,7 @@ public class PlayerAttack extends Action {
             }
             if( battleContext.getPlayer().getCritChance() == 32){
                 damageMultiplier += 2;
+                System.out.println("Critical hit!");
             }
             damage = damage + ((damage / 2) * damageMultiplier);
             //Random variance, this can be improved with luck stat

@@ -57,7 +57,7 @@ public class Character {
 	protected int evade;
 	protected int gp;
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
-	protected int critChance = Random.roll(1,32);
+	protected int critChance;
     
     //location and other stuff
     protected Room currentRoom;
@@ -1869,7 +1869,6 @@ public String nothingOverThere() {
 	public int getVigor(){return vigor;}
 	public int getVigor2(){return vigor * 2;}
 	public boolean getBerserked(){return berserked;}
-	public int getCritChance() {return critChance;}
 	public boolean getProtect(){return protect;}
 	public int getGp(){return gp;}
 	public int getDefense(){return defense;}
@@ -1878,6 +1877,7 @@ public String nothingOverThere() {
 	public Job getJob(){return job;}
 	public int getLevel(){return job.getLevel();}
 	public int getMagicPower(){return job.getMagicPower();}
+	public int getCritChance(){return Random.roll(1,32);}
 
 	public void applyDamage(int damage){
 		this.hp = this.hp - damage;

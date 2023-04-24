@@ -31,7 +31,7 @@ public class MonsterAttack extends Action {
                 damage = (int)(damage * 170 / 256) + 1;
             }
             battleContext.getPlayer().getJob().applyDamage(damage); 
-            System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits you for " + damage + " damage." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits " + battleContext.getPlayer().getName() + " for " + damage + " damage." + ConsoleColors.RESET);
         } else {
             System.out.println("The " + battleContext.getMonster().getName() + " misses you.");
         }
@@ -59,7 +59,7 @@ public class MonsterAttack extends Action {
             return true;
         }
 
-        System.out.println(ConsoleColors.YELLOW + "The " + battleContext.getMonster().typeToString() + "misses you." + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW + "The " + battleContext.getMonster().getName() + "misses you." + ConsoleColors.RESET);
         return false;
 
     }
