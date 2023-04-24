@@ -1,6 +1,7 @@
 package textgame.monsters;
 
 import textgame.Monster;
+import textgame.Random;
 import textgame.Room;
 import textgame.items.Tonic;
 
@@ -9,10 +10,10 @@ public class Leafer extends Monster {
 
 		this.name = "Leafer";
         this.level = 1;
-		this.hp = 33;
+		this.hp = 32;
 		this.mp = 0;
 		this.xp = 24;
-		this.gp = 45;
+		this.gp = Random.roll(10,20);
 		this.battlePower = 5;
 		this.hitRate = 100;
 		this.delay = 300;

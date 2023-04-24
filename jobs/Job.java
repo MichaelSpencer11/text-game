@@ -26,7 +26,6 @@ public abstract class Job {
 	protected ArrayList<Spell> spells;
 	protected ArrayList<Technique> techniques;
 
-	
 
 	public void addHp(int hp){
 		this.hp += hp;
@@ -58,8 +57,9 @@ public abstract class Job {
 	public int getHp(){return hp;}
 	public int getMaxHp(){return maxHp;}
 	public abstract void setMaxHp(int newLevel);
-	public void increaseMaxExp(int newLevel){
-		this.maxExp = (newLevel ^ 2) * 100;
+	public abstract void setMaxMp(int newLevel);
+	public void setMaxExp(int newLevel){
+		maxExp = (newLevel * newLevel) * 100;
 	}
 	public int getMp(){return mp;}
 	public int getMaxMp(){return maxMp;}

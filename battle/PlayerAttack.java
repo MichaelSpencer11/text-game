@@ -20,7 +20,7 @@ public class PlayerAttack extends Action {
             // 1b
             attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getVigor2());
             //1d
-            damage = battleContext.getPlayer().getMainHand().getBattlePower() + ((battleContext.getPlayer().getLevel() ^ 2 * attack) / 256 ) * 3 / 2;
+            damage = battleContext.getPlayer().getMainHand().getBattlePower() + ((battleContext.getPlayer().getLevel() * battleContext.getPlayer().getLevel() * attack) / 256 ) * 3 / 2;
             damageMultiplier = 0;
             if(battleContext.getPlayer().getBerserked()){
                 damageMultiplier++;
@@ -39,6 +39,8 @@ public class PlayerAttack extends Action {
             }
             battleContext.getMonster().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
+        } else {
+            System.out.println("You miss the " + battleContext.getMonster().getName() + ".");
         }
     }
 

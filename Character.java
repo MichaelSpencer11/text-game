@@ -55,7 +55,7 @@ public class Character {
 	protected int magicDefense;
 	protected int mBlock;
 	protected int evade;
-	protected int gold;
+	protected int gp;
 	protected int blockValue = (255 - this.getMBlock() * 2) + 1;
 	protected int critChance = Random.roll(1,32);
     
@@ -100,13 +100,14 @@ public class Character {
     public Character(Room firstRoom){
     	//we'll hardcode the character name for now 
 		this.name = "Michael";
+		this.hasName = true;
     	this.inventory = new ArrayList<Item>();
 		this.spells = new ArrayList<Spell>();
     	this.asleep = false;
         this.prone = false;
         this.sitting = false;
         this.standing = true;
-		this.job = new Thief();
+		this.job = new Warrior();
 		final Dirk dirk = new Dirk();
 		this.mainHand = dirk;
         firstRoom.people.add(this);
@@ -1847,12 +1848,14 @@ public String nothingOverThere() {
 	}
 
 	public void status(){
+		System.out.println("Level: " + job.getLevel());
 		System.out.println("HP: " + this.job.getHp() + "/" + this.job.getMaxHp());
 		System.out.println("MP: " + this.job.getMp() + "/" + this.job.getMaxMp());
-		System.out.println("Exp: " + this.job.getExp());
+		System.out.println("Exp: " + this.job.getExp() + "/" + this.job.getMaxExp());
 	}
 
 
+	
 	public int getHp() {return hp;}
 	public int getSpeed() {return speed;}
 	public boolean getClear(){return clear;}
@@ -1868,7 +1871,7 @@ public String nothingOverThere() {
 	public boolean getBerserked(){return berserked;}
 	public int getCritChance() {return critChance;}
 	public boolean getProtect(){return protect;}
-	public int getGold(){return gold;}
+	public int getGp(){return gp;}
 	public int getDefense(){return defense;}
 	public Monster getTarget(){return target;}
 	public Room getCurrentRoom(){return currentRoom;}
@@ -1882,6 +1885,10 @@ public String nothingOverThere() {
 
 	public void addItem(Item i){
 		this.inventory.add(i);
+	}
+
+	public void addGp(int newGp){
+		this.gp = this.gp + newGp;
 	}
 
 	public void setBlockValue(int blockValue){

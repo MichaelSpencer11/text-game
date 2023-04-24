@@ -13,7 +13,7 @@ public class MonsterAttack extends Action {
         this.battleContext = battleContext;
         if(this.hits()){
             attack = battleContext.getMonster().getBattlePower() + (battleContext.getMonster().getVigor2());
-            damage = battleContext.getMonster().getBattlePower() + ((battleContext.getMonster().getLevel() ^ 2 * attack) / 256 ) * 3 / 2;
+            damage = battleContext.getMonster().getBattlePower() + ((battleContext.getMonster().getLevel() * battleContext.getMonster().getLevel() * attack) / 256 ) * 3 / 2;
             damageMultiplier = 0;
             if(battleContext.getMonster().getBerserked()){
                 damageMultiplier += 1;
@@ -32,6 +32,8 @@ public class MonsterAttack extends Action {
             }
             battleContext.getPlayer().getJob().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits you for " + damage + " damage." + ConsoleColors.RESET);
+        } else {
+            System.out.println("The " + battleContext.getMonster().getName() + " misses you.");
         }
     }
 

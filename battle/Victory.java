@@ -10,8 +10,9 @@ public class Victory {
     public Victory(Battle battleContext){
         System.out.println(ConsoleColors.BLUE + "Victory!");
         System.out.println("Exp : " + battleContext.getMonster().getXp());
+        System.out.println("GP: " + battleContext.getMonster().getGp());
+        battleContext.getPlayer().addGp(battleContext.getMonster().getGp());
         //check for level up and level up if necessary
-
         battleContext.getPlayer().getJob().addExp(battleContext.getMonster().getXp());
         System.out.println("Items : ");
         //go through the drops of the monster, if it drops, put it in player inventory and notify
