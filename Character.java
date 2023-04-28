@@ -1773,16 +1773,12 @@ public String nothingOverThere() {
 		
 		//finds the actual monster in the room
 		for ( Monster mon : currentRoom.monsters) {
-			System.out.println("Monster name: {" + monsterName + "}. MonsterType: {" + mon.typeToString() + "}.");
 			if(monsterName.toLowerCase().equals(mon.typeToString().toLowerCase())){
 				target = mon;
-				System.out.println(target.name + " targeted");
 				break;
 			}
 		} 
-
-		System.out.println("Target: " + target.typeToString());
-
+		System.out.println(target.name + " targeted");
 
 	}
 
@@ -1873,6 +1869,7 @@ public String nothingOverThere() {
 	public int getGp(){return gp;}
 	public int getDefense(){return defense;}
 	public Monster getTarget(){return target;}
+	public void setTarget(Monster monster){target = monster;}
 	public Room getCurrentRoom(){return currentRoom;}
 	public Job getJob(){return job;}
 	public int getLevel(){return job.getLevel();}

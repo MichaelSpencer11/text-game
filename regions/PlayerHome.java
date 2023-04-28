@@ -18,6 +18,7 @@ public class PlayerHome extends Region {
 
     Character player;
     Room sLink;
+	Room backyardLink;
     
 	
     public PlayerHome(){}
@@ -38,7 +39,8 @@ public class PlayerHome extends Region {
 	Room diningRoom = new Room("interior", "The dining room", "An oakwood dinner table is in the center of the room, surrounded by four folding chairs.", null, null, null, null, livingRoom, null, kitchen, null, null, null );
 	Room garage = new Room("interior", "The garage", "The family car is in here, as well as some storage containers.", null, null, null, null, null, null, livingRoom, null, null, null);
 	Room frontLawn = new Room("grass", "The front Lawn", "The lawn is overgrown and looks like it hasn't been taken care of in ages.", livingRoom, null, null, null, null, null, null, null, null, null);
-		        
+	Room backyard = new Room("grass", "The backyard","The backyard of your childhood home, its got green grass freshly cut.",null,null,null,null,diningRoom,null,null,null,null,null);
+	
 	//Item practiceStaff = new Weapon("wooden staff", "A wooden practice staff. It has a few nicks and cuts in it and is quite worn.", "The staff feels as heavy as a metal staff in your hand, but it is still made out of wood.", playerCloset);
 	//Item practicesword = new Weapon("wooden sword", "A wooden practice sword. It has a few nicks and cuts in it and is quite worn.", "The sword feels as heavy as a metal sword in your hand, but it is still made out of wood.", playerCloset);
 	Desk desk = new Desk("desk", "Your wooden desk in your room. It has a few nicks in the finish but is very sturdy.", room);
@@ -48,6 +50,7 @@ public class PlayerHome extends Region {
 	Character automaton = new Automaton("An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
 	Monster Leafer = new Leafer(room);
     sLink = frontLawn;
+	backyardLink = backyard;
     }
 
     public Character getPlayer() {
@@ -57,5 +60,9 @@ public class PlayerHome extends Region {
     public Room getSLink(){
         return sLink;
     }
+
+	public Room getBackyardLink(){
+		return backyardLink;
+	}
 
 }

@@ -27,7 +27,7 @@ public class Victory {
          }
          //remove monster from room
          battleContext.getMonster().getCurrentRoom().getMonsters().remove(battleContext.getMonster());
-
+         battleContext.getPlayer().setTarget(null);
          
          
     }

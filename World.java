@@ -75,6 +75,7 @@ public class World {
 		public void createWorld() {
 
 			//create regions
+			
 			playerHome = new PlayerHome(this);
 			tsiporimTown = new TsiporimTown(this);
 
@@ -85,6 +86,12 @@ public class World {
 			tsiporimTown.getNLink().setnRoom(playerHome.getSLink());
 			tsiporimTown.getNLink().getAdjacentRooms().add(playerHome.getSLink());
 			tsiporimTown.getNLink().setHasN(true);
+			playerHome.getBackyardLink().setnRoom(tsiporimTown.getAlleyLink());
+			playerHome.getBackyardLink().getAdjacentRooms().add(tsiporimTown.getAlleyLink());
+			playerHome.getBackyardLink().setHasN(true);
+			tsiporimTown.getAlleyLink().setsRoom(playerHome.getBackyardLink());
+			tsiporimTown.getAlleyLink().getAdjacentRooms().add(playerHome.getBackyardLink());
+			tsiporimTown.getAlleyLink().setHasS(true);
 
 		    Input input = new Input(playerHome.getPlayer());
 		    input.input();
