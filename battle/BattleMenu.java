@@ -6,8 +6,7 @@ import textgame.Monster;
 
 public class BattleMenu {
     public BattleMenu(Battle battleContext){
-        System.out.println("Attack");
-        //load job abilities
+        battleContext.getPlayer().getJob().loadAbilities();
     }
 
     public BattleMenu(Monster monster, Battle battleContext){

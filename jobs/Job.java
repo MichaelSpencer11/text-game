@@ -52,6 +52,8 @@ public abstract class Job {
 		this.hp = this.hp - damage;
 	}
 
+	public abstract void loadAbilities();
+
 	public int getLevel(){return level;}
 	public void setLevel(int newLevel){level = newLevel;}
 	public int getHp(){return hp;}

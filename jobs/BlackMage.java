@@ -1,8 +1,14 @@
 package textgame.jobs;
 
 import textgame.spells.*;
+import java.util.ArrayList;
 
 public class BlackMage extends Job {
+
+	protected ArrayList<Ability> abilities;
+	protected Ability attack;
+	protected Ability magic;
+	protected Ability item;
 
     public BlackMage() {
 		this.level = 1;
@@ -18,7 +24,13 @@ public class BlackMage extends Job {
 		this.magicDefense = 40;
 		this.mBlock = 7;
 		this.evade = 14;
-		//this.spells.add(new Fire());	
+		//this.spells.add(new Fire());
+		this.attack.setName("Attack");
+		this.magic.setName("Magic");
+		this.item.setName("Item");
+		this.abilities.add(attack);
+		this.abilities.add(magic);
+		this.abilities.add(item);	
 	}
 
 	public void setMaxHp(int newLevel){
@@ -29,6 +41,12 @@ public class BlackMage extends Job {
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.2 + (newLevel / 14.0)) * 100 );
 		hp = maxMp;
+	}
+
+	public void loadAbilities(){
+		for (Ability a : abilities){
+			System.out.println(a.getName());
+		}
 	}
 
 	
