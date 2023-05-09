@@ -7,6 +7,12 @@ import textgame.Monster;
 import textgame.Player;
 
 public class Thief extends Job {
+
+	protected ArrayList<Ability> abilities;
+	protected Ability attack;
+	protected Ability magic;
+	protected Ability item;
+
 	public Thief() {
 		this.level = 1;
 		setMaxExp(level);
@@ -21,6 +27,12 @@ public class Thief extends Job {
 		this.magicDefense = 23;
 		this.mBlock = 2;
 		this.evade = 15;
+		this.attack = new Abilities("Attack");
+		this.magic = new Ability("Magic");
+		this.item = new Ability("Item");
+		this.abilities.add(attack);
+		this.abilities.add(magic);
+		this.abilities.add(item);
 	}
 	
 	public void steal(Monster monster, Player player) {
@@ -40,6 +52,12 @@ public class Thief extends Job {
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.17 + (newLevel / 22.0)) * 100 );
 		hp = maxMp;
+	}
+
+	public void loadAbilities(){
+		for (Ability a : abilities){
+			System.out.println(a.getName());
+		}
 	}
 
 }

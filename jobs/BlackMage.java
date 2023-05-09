@@ -25,9 +25,9 @@ public class BlackMage extends Job {
 		this.mBlock = 7;
 		this.evade = 14;
 		//this.spells.add(new Fire());
-		this.attack.setName("Attack");
-		this.magic.setName("Magic");
-		this.item.setName("Item");
+		this.attack = new Ability("Attack");
+		this.magic = new Ability("Magic");
+		this.item = new Ability("Item");
 		this.abilities.add(attack);
 		this.abilities.add(magic);
 		this.abilities.add(item);	

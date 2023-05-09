@@ -1,6 +1,11 @@
 package textgame.jobs;
 
 public class Warrior extends Job {
+
+	protected ArrayList<Ability> abilities;
+	protected Ability attack;
+	protected Ability magic;
+	protected Ability item;
 	
     public Warrior() {
 		this.level = 1;
@@ -16,6 +21,12 @@ public class Warrior extends Job {
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;
+		this.attack = new Ability("Attack");
+		this.magic = new Ability("Magic");
+		this.item = new Ability("Item");
+		this.abilities.add(attack);
+		this.abilities.add(magic);
+		this.abilities.add(item);
 	}
 
 	public void setMaxHp(int newLevel){
@@ -26,5 +37,11 @@ public class Warrior extends Job {
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.16 + (newLevel / 25.0)) * 100 );
 		hp = maxMp;
+	}
+
+	public void loadAbilities(){
+		for (Ability a : abilities){
+			System.out.println(a.getName());
+		}
 	}
 }
