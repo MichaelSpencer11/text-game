@@ -7,7 +7,7 @@ import textgame.elements.*;
 import textgame.Item;
 import textgame.SpecialEffect;
 
-public abstract class Weapon extends Item{
+public class Weapon extends Item{
 	protected String type;
 	protected int battlePower;
 	protected int hitRate;
@@ -26,6 +26,6 @@ public abstract class Weapon extends Item{
 	public int getHitRate() {return hitRate;}
 	public int getDelay(){return delay;}
 
-	public abstract void applyEffect(Character player);
+	
 	
 }
