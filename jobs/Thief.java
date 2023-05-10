@@ -5,6 +5,8 @@ import textgame.Item;
 import textgame.jobs.Job;
 import textgame.Monster;
 import textgame.Player;
+import java.util.ArrayList;
+import textgame.jobs.Ability;
 
 public class Thief extends Job {
 
@@ -27,6 +29,7 @@ public class Thief extends Job {
 		this.magicDefense = 23;
 		this.mBlock = 2;
 		this.evade = 15;
+		this.abilities = new ArrayList<Ability>();
 		this.attack = new Abilities("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");

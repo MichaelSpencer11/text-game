@@ -24,7 +24,7 @@ public class Leafer extends Monster {
 		this.magicDefense = 140;
 		this.evade = 0;
 		this.MBlock = 0;
-		this.respawnTime = 30000; 
+		this.respawnTime = 10000; 
 		this.currentRoom = firstRoom;
 		currentRoom.getMonsters().add(this);
 		

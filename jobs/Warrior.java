@@ -1,5 +1,7 @@
 package textgame.jobs;
 
+import java.util.ArrayList;
+
 public class Warrior extends Job {
 
 	protected ArrayList<Ability> abilities;
@@ -21,6 +23,7 @@ public class Warrior extends Job {
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;
+		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");

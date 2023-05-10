@@ -23,6 +23,7 @@ public class Monk extends Job {
 		this.magicDefense = 21;
 		this.mBlock = 4;
 		this.evade = 12;
+		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");

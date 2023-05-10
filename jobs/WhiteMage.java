@@ -21,6 +21,7 @@ public class WhiteMage extends Job {
 		this.magicDefense = 35;
 		this.mBlock = 9;
 		this.evade = 13;
+		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");

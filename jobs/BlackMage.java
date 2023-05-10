@@ -25,6 +25,7 @@ public class BlackMage extends Job {
 		this.mBlock = 7;
 		this.evade = 14;
 		//this.spells.add(new Fire());
+		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");

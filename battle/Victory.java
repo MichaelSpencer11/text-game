@@ -5,6 +5,7 @@ import textgame.Item;
 import textgame.battle.Battle;
 import textgame.Random;
 import textgame.Monster;
+import textgame.battle.RespawnThread;
 
 public class Victory {
 
