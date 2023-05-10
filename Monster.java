@@ -44,6 +44,7 @@ public class Monster {
 	protected Element weak;
 	protected boolean berserked;
 	protected int critChance;
+	protected int respawnTime;
 
 	public String typeToString() {
 		return this.getClass().toString().substring(24);
@@ -105,6 +106,7 @@ public class Monster {
 	public Element getWeak(){return weak;}
 	public Room getCurrentRoom(){return currentRoom;}
 	public int getDelay(){return delay;}
+	public int getRespawnTime(){return respawnTime;}
 
 
 

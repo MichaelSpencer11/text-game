@@ -3,6 +3,8 @@ package textgame;
 import java.util.ArrayList;
 
 import textgame.*;
+import textgame.Item;
+import textgame.Door;
 import textgame.items.*;
 import textgame.monsters.*;
 import textgame.regions.PlayerHome;

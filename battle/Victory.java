@@ -7,6 +7,9 @@ import textgame.Random;
 import textgame.Monster;
 
 public class Victory {
+
+    RespawnThread respawnThread;
+
     public Victory(Battle battleContext){
         System.out.println(ConsoleColors.BLUE + "Victory!");
         System.out.println("Exp : " + battleContext.getMonster().getXp());
@@ -26,6 +29,7 @@ public class Victory {
             }
          }
          //remove monster from room
+         respawnThread = new RespawnThread(battleContext);
          battleContext.getMonster().getCurrentRoom().getMonsters().remove(battleContext.getMonster());
          battleContext.getPlayer().setTarget(null);
          
