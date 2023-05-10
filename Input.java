@@ -37,6 +37,9 @@ public class Input{
             else if(inputString.equals("l")) {
             	thisPlayer.look(inputString);
             }
+            else if(inputString.substring(0,3).equals("use")){
+                thisPlayer.use(inputString);
+            }
             else if(inputString.equals("status")){
                 thisPlayer.status();
             }

@@ -1843,6 +1843,14 @@ public String nothingOverThere() {
 		}
 	}
 
+	public void use(String inputString){
+		String secondWord;
+		String thirdWord;
+		secondWord = inputString.substring(4,inputString.substring(4).indexOf(" "));
+		System.out.println(secondWord);
+		
+	}
+
 	public void status(){
 		System.out.println("Level: " + job.getLevel());
 		System.out.println("HP: " + this.job.getHp() + "/" + this.job.getMaxHp());
