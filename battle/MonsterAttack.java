@@ -12,8 +12,8 @@ public class MonsterAttack extends Action {
     public MonsterAttack(Battle battleContext){
         this.battleContext = battleContext;
         if(this.hits()){
-            attack = battleContext.getMonster().getBattlePower() + (battleContext.getMonster().getVigor2());
-            damage = battleContext.getMonster().getBattlePower() + ((battleContext.getMonster().getLevel() * battleContext.getMonster().getLevel() * attack) / 256 ) * 3 / 2;
+            attack = battleContext.getMonster().getBattlePower() + (battleContext.getMonster().getVigor());
+            damage = attack * (battleContext.getMonster().getLevel());
             damageMultiplier = 0;
             if(battleContext.getMonster().getBerserked()){
                 damageMultiplier += 1;
@@ -25,11 +25,14 @@ public class MonsterAttack extends Action {
             //Random variance
             damage = (int)(damage * Random.roll(7,15) / 10);
             //defense mod
-            damage = (int) (damage * (255 - battleContext.getPlayer().getDefense()) / 256) + 1;
+            //we're fucking things up here
+            //damage = damage / 100;
+            damage = (int) (damage - (battleContext.getPlayer().getJob().getDefense() ));
             //protect
             if(battleContext.getPlayer().getProtect() == true){
-                damage = (int)(damage * 170 / 256) + 1;
+                damage = (int)(damage * .5);
             }
+
             battleContext.getPlayer().getJob().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits " + battleContext.getPlayer().getName() + " for " + damage + " damage." + ConsoleColors.RESET);
         } else {

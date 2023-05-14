@@ -1229,6 +1229,7 @@ public String nothingOverThere() {
     		return;
     	}
 
+
     }
     
     
@@ -1239,55 +1240,7 @@ public String nothingOverThere() {
     		System.out.println("You can't really do that while asleep.");
     		return;
     	}
-    	for (Item i : this.inventory) {
-    		if(inputString.substring(8).equals(i.getItemName()) && i.equipped == true) {
-    			if(i.typeToString().equals("Tool") && this.mainHand == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.mainHand = null;
-    			}
-    			else if(i.typeToString().equals("Head") && this.head == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.head = null;
-    			}
-    			else if(i.typeToString().equals("Hands") && this.hands == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.hands = null;
-    			}
-    			else if(i.typeToString().equals("Body") && this.body == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.body = null;
-    			}
-    			else if(i.typeToString().equals("Back") && this.back == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.back = null;
-    			}
-    			else if(i.typeToString().equals("Legs") && this.legs == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.legs = null;
-    			}
-    			else if(i.typeToString().equals("Feet") && this.feet == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.feet = null;
-    			}
-    			else if(i.typeToString().equals("Ring") && this.ring1 == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.ring1 = null;
-    			}
-    			else if(i.typeToString().equals("Ring") && this.ring2 == i) {
-    				System.out.println("You unequip the " + i.getItemName() + ".");
-    				i.equipped = false;
-    				this.ring2 = null;
-    			}
-    		}
-    	}
+
     }
     
     //drop something in the room

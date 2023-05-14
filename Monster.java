@@ -18,7 +18,7 @@ public class Monster {
 	protected int xp;
 	protected int gp;
 	protected int battlePower;
-	protected int vigor = Random.roll(56,63);
+	protected int vigor;
 	protected int vigor2 = vigor * 2;
 	protected int hitRate;
 	protected int delay;
@@ -116,5 +116,8 @@ public class Monster {
 		this.mp = maxMp;
 	}
 
-	
+
+	public int getVigor() {
+		return vigor;
+	}
 }

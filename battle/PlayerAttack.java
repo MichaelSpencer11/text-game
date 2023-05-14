@@ -18,9 +18,9 @@ public class PlayerAttack extends Action {
         if(this.hits()){
             
             // 1b
-            attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getVigor2());
+            attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getJob().getVigor());
             //1d
-            damage = battleContext.getPlayer().getMainHand().getBattlePower() + ((battleContext.getPlayer().getLevel() * battleContext.getPlayer().getLevel() * attack) / 256 ) * 3 / 2;
+            damage = attack * (battleContext.getPlayer().getLevel());
             damageMultiplier = 0;
             if(battleContext.getPlayer().getBerserked()){
                 damageMultiplier++;
@@ -33,11 +33,14 @@ public class PlayerAttack extends Action {
             //Random variance, this can be improved with luck stat
             damage = (damage * Random.roll(7,15) / 10);
             //defense mod
-            damage = (int) (damage * (255 - battleContext.getMonster().getDefense()) / 256) + 1;
+            //we're fucking things up here
+            //damage = damage / 100;
+            damage = (int) (damage - (battleContext.getMonster().getDefense()));
             //protect
             if(battleContext.getMonster().getProtect() == true){
-                damage = (int)(damage * 170 / 256) + 1;
+                damage = (int)(damage * .5);
             }
+
             battleContext.getMonster().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
         } else {
@@ -66,7 +69,7 @@ public class PlayerAttack extends Action {
         if(battleContext.getMonster().getBlockValue() > 255){battleContext.getPlayer().setBlockValue(255);}
         if(battleContext.getMonster().getBlockValue() < 1){battleContext.getPlayer().setBlockValue(1);}
 
-        if((battleContext.getPlayer().getMainHand().getHitRate() * battleContext.getMonster().getBlockValue()) >= (int) ((Math.random() * (99 - 0)) + 0)){
+        if((battleContext.getPlayer().getMainHand().getHitRate() * battleContext.getMonster().getBlockValue()) >= (int) Random.roll(0,99)){
             return true;
         }
 

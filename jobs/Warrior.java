@@ -19,7 +19,7 @@ public class Warrior extends Job {
 		this.stamina = 33;
 		this.magicPower = 25;
 		this.battlePower = 25;
-		this.defense = 48;
+		this.defense = 50;
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;

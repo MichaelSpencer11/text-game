@@ -40,7 +40,7 @@ public class Input{
             else if(inputString.length() > 3 && inputString.substring(0,3).equals("use")){
                 thisPlayer.use(inputString, thisPlayer);
             }
-            else if(inputString.equals("status")){
+            else if(inputString.equals("status") || inputString.equals("st")){
                 thisPlayer.status();
             }
             else if(inputString.equals("party list")){
