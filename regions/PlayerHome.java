@@ -10,6 +10,7 @@ import textgame.items.Bed;
 import textgame.items.Desk;
 import textgame.Automaton;
 import textgame.Character;
+import textgame.monsters.Commander;
 import textgame.monsters.Leafer;
 
 
@@ -48,7 +49,18 @@ public class PlayerHome extends Region {
 	
     Character familiar = new Familiar("Someone is standing or floating here, it is very hard to see them, they are almost not there but you know that there is definitely a presence here.", room, player);
 	Character automaton = new Automaton("An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
-	Monster Leafer = new Leafer(room);
+	Monster leafer = new Leafer(room);
+	Monster leafer1 = new Leafer(playerCloset);
+	Monster leafer2 = new Leafer(hallwayStairs);
+	Monster leafer3 = new Leafer(bathroom);
+	Monster leafer4 = new Leafer(parentsRoom);
+	Monster leafer5 = new Leafer(stairway);
+	Monster leafer6 = new Leafer(kitchen);
+	Monster leafer7 = new Leafer(livingRoom);
+	Monster leafer8 = new Leafer(diningRoom);
+	Monster leafer9 = new Leafer(garage);
+	Monster leafer10 = new Leafer(backyard);
+	Monster commander = new Commander(livingRoom, frontLawn);
     sLink = frontLawn;
 	backyardLink = backyard;
     }

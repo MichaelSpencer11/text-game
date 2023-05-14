@@ -1,7 +1,7 @@
 package textgame.weapons;
 
 import textgame.Effect;
-import textgame.Weapon;
+import textgame.weapons.Weapon;
 
 public class Guardian extends Weapon {
     public Guardian () {
@@ -15,8 +15,6 @@ public class Guardian extends Weapon {
 		this.canUseRunic = true;
 		this.canUse2Handed = true;
 		this.element = null;
-        this.effects.add(new Effect("speed", 4));
-        this.effects.add(new Effect("evade", 10));
 		this.specialEffect.setDescription("");
 		//this.morphedInto.add("Thief");
     }

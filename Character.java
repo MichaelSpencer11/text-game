@@ -42,8 +42,12 @@ public class Character {
 	protected boolean stopped;
 	protected boolean berserked;
 	protected boolean protect;
-    
-    //stats
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	//stats
 	protected int hp;
 	protected int mp;
 	protected int vigor;
@@ -753,6 +757,12 @@ public class Character {
     	}
     	else {
     		if (inputString.equals("n")){
+				for(Monster m : currentRoom.getMonsters()){
+					if(m.blocking != null && m.blocking == currentRoom.getnRoom()){
+						System.out.println("The " + m.getName() + " is blocking that way.");
+						return;
+					}
+				}
     			for (Door d : currentRoom.getDoors()) {
             		if(d.getDoorDir().equals("north")) {
             			if(!d.getOpened()) {
@@ -784,6 +794,12 @@ public class Character {
         }
         
         if (inputString.equals("ne")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getNeRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("northeast")) {
         			if(!d.getOpened()) {
@@ -815,6 +831,12 @@ public class Character {
         }
         
         if (inputString.equals("e")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.geteRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("east")) {
         			if(!d.getOpened()) {
@@ -846,6 +868,12 @@ public class Character {
         }
         
         if (inputString.equals("se")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getSeRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("southeast")) {
         			if(!d.getOpened()) {
@@ -877,6 +905,13 @@ public class Character {
         }
         
         if (inputString.equals("s")){
+			//check for blocking monster
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getSroom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("south")) {
         			if(!d.getOpened()) {
@@ -908,6 +943,12 @@ public class Character {
         }
         
         if (inputString.equals("sw")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getSwRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("southwest")) {
         			if(!d.getOpened()) {
@@ -939,6 +980,12 @@ public class Character {
         }
         
         if (inputString.equals("w")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getwRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("west")) {
         			if(!d.getOpened()) {
@@ -970,6 +1017,12 @@ public class Character {
         }
         
         if (inputString.equals("nw")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getNwRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("northwest")) {
         			if(!d.getOpened()) {
@@ -1001,6 +1054,12 @@ public class Character {
         }
         
         if (inputString.equals("u")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getuRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("up")) {
         			if(!d.getOpened()) {
@@ -1032,6 +1091,12 @@ public class Character {
         }
         
         if (inputString.equals("d")){
+			for(Monster m : currentRoom.getMonsters()){
+				if(m.blocking != null && m.blocking == currentRoom.getdRoom()){
+					System.out.println("The " + m.getName() + " is blocking that way.");
+					return;
+				}
+			}
         	for (Door d : currentRoom.getDoors()) {
         		if(d.getDoorDir().equals("down")) {
         			if(!d.getOpened()) {
@@ -1147,6 +1212,13 @@ public String nothingOverThere() {
     		}
     	}
     	System.out.println("|                                        |");
+		System.out.print("| " + "GP:" + gp);
+		int gpLength = String.valueOf(gp).length();
+		for (int j = 0; j < (this.invLength - gpLength) - 3; j++) {
+			System.out.print(" ");
+		}
+		System.out.println(" |");
+		System.out.println("|                                        |");
     	System.out.println("\\v~~^^\"'``\"'``''^^~~vv~~^^'\"``'\"``'\"^^~~v/");
     }
     
@@ -1835,6 +1907,9 @@ public String nothingOverThere() {
 
 	public void homePoint(){
 		this.currentRoom = homePoint;
+		System.out.println("Returning to home point.");
+		this.getJob().setHp(this.getJob().getMaxHp());
+		this.getJob().setMp(this.getJob().getMaxMp());
 	}
 
 	public void flee(){
@@ -1849,10 +1924,10 @@ public String nothingOverThere() {
 		String substring1 = inputString.substring(4);
 		String secondWord = substring1.substring(0,substring1.indexOf(' '));
 		String thirdWord = substring1.substring(substring1.indexOf(' ')).trim();
-		System.out.println("inputString: " + "{" + inputString + "}");
-		System.out.println("substring1: " + "{" + substring1 + "}");
-		System.out.println("secondWord: " + "{" + secondWord + "}");
-		System.out.println("thirdWord: " + "{" + thirdWord + "}");
+		//System.out.println("inputString: " + "{" + inputString + "}");
+		//System.out.println("substring1: " + "{" + substring1 + "}");
+		//System.out.println("secondWord: " + "{" + secondWord + "}");
+		//System.out.println("thirdWord: " + "{" + thirdWord + "}");
 		for(Character c : player.currentRoom.people){
 			if(thirdWord.toLowerCase().equals(c.name.toLowerCase())){
 				targetCharacter = c;
@@ -1868,6 +1943,7 @@ public String nothingOverThere() {
 			if(secondWord.toLowerCase().equals(i.itemName.toLowerCase())){
 				targetItem = i;
 			}
+			break;
 		}
 
 		if(targetItem == null){
@@ -1875,6 +1951,7 @@ public String nothingOverThere() {
 		}
 
 		targetItem.applyEffect(targetCharacter);
+		System.out.println("Used " + targetItem.getItemName() + " on " + targetCharacter.getName());
 
 	}
 

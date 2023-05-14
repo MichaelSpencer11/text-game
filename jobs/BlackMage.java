@@ -41,7 +41,7 @@ public class BlackMage extends Job {
 
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.2 + (newLevel / 14.0)) * 100 );
-		hp = maxMp;
+		mp = maxMp;
 	}
 
 	public void loadAbilities(){

@@ -1,5 +1,7 @@
 package textgame.jobs;
 
+import java.util.ArrayList;
+
 public class WhiteMage extends Job {
 
 	protected ArrayList<Ability> abilities;
@@ -10,8 +12,10 @@ public class WhiteMage extends Job {
     public WhiteMage() {
 		this.level = 1;
 		setMaxHp(level);
+		setHp(getMaxHp());
 		setMaxExp(level);
 		setMaxMp(level);
+		setMp(getMaxMp());
 		this.vigor = 26;
 		this.speed = 34;
 		this.stamina = 22;
@@ -38,7 +42,7 @@ public class WhiteMage extends Job {
 
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.2 + (newLevel / 15.0)) * 100 );
-		hp = maxMp;
+		mp = maxMp;
 	}
 
 	public void loadAbilities(){

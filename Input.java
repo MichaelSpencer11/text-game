@@ -37,7 +37,7 @@ public class Input{
             else if(inputString.equals("l")) {
             	thisPlayer.look(inputString);
             }
-            else if(inputString.substring(0, 3).equals("use")){
+            else if(inputString.length() > 3 && inputString.substring(0,3).equals("use")){
                 thisPlayer.use(inputString, thisPlayer);
             }
             else if(inputString.equals("status")){
@@ -161,6 +161,7 @@ public class Input{
             }
             else continue;
             } catch (Exception e) {
+                e.printStackTrace();
             	System.out.println(ConsoleColors.RED + "That didn't work, please try that again. Type 'help' for a list of commands." + ConsoleColors.RESET);
             	continue;
             }

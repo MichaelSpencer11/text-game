@@ -1,6 +1,6 @@
 package textgame.jobs;
 
-import textgame.Job;
+import textgame.jobs.Job;
 
 public class Ability {
     protected String name;

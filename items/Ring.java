@@ -1,5 +1,6 @@
 package textgame.items;
 
+import textgame.Item;
 import textgame.Room;
 
 public class Ring extends Item {

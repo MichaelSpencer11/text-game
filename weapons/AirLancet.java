@@ -1,6 +1,6 @@
 package textgame.weapons;
 
-import textgame.Weapon;
+import textgame.weapons.Weapon;
 import textgame.elements.Air;
 
 public class AirLancet extends Weapon {

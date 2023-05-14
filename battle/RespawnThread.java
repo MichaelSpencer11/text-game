@@ -14,10 +14,10 @@ public class RespawnThread implements Runnable {
     public void run(){
         try{
         Thread.sleep(battleContext.getMonster().getRespawnTime());
-        System.out.println("Sleeping the respawn thread");
         } catch (InterruptedException ie){
             System.out.println(ie.getMessage());
         }
+        battleContext.getMonster().respawn();
         battleContext.getCurrentRoom().getMonsters().add(battleContext.getMonster());
 
     }

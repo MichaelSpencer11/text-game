@@ -3,12 +3,15 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
+import textgame.weapons.Dagger;
 
 public class Commander extends Monster {
-    public Commander(Room roomIn) {
+    public Commander(Room roomIn, Room blocking) {
 
+		this.name = "Commander";
         this.level = 10;
-		this.hp = 102;
+		this.maxHp = 102;
+		this.hp = maxHp;
 		this.mp = 50;
 		this.xp = 85;
 		this.gp = 153;
@@ -22,11 +25,15 @@ public class Commander extends Monster {
 		this.evade = 0;
 		this.MBlock = 0;
 		this.roomIn = roomIn;
+		this.respawnTime = 60000;
 		roomIn.getMonsters().add(this);
-		
+		this.blocking = blocking;
+
 		//Initialize drops for Monster
 		final Tonic tonic = new Tonic();
 		this.stolenItems.add(tonic);
+		final Dagger dagger = new Dagger();
+		this.drops.add(dagger);
 
     }
 }

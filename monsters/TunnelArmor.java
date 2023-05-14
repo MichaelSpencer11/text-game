@@ -1,7 +1,7 @@
 package textgame.monsters;
 
 import textgame.Monster;
-import textgame.Weapon;
+import textgame.weapons.Weapon;
 import textgame.weapons.AirLancet;
 import textgame.Room;
 

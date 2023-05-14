@@ -12,8 +12,10 @@ public class RedMage extends Job {
     public RedMage() {
 		this.level = 1;
 		setMaxHp(level);
+		setHp(getMaxHp());
 		setMaxExp(level);
 		setMaxMp(level);
+		setMp(getMaxMp());
 		this.vigor = 34;
 		this.speed = 34;
 		this.stamina = 31;
@@ -40,7 +42,7 @@ public class RedMage extends Job {
 
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.2 + (newLevel / 16.0)) * 100 );
-		hp = maxMp;
+		mp = maxMp;
 	}
 
 	public void loadAbilities(){

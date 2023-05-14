@@ -1,5 +1,6 @@
 package textgame.spells;
 
+import textgame.battle.Battle;
 import textgame.elements.Element;
 
 public class Fire extends Spell {

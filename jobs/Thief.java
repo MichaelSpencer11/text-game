@@ -19,7 +19,9 @@ public class Thief extends Job {
 		this.level = 1;
 		setMaxExp(level);
 		setMaxHp(level);
+		setHp(getMaxHp());
 		setMaxMp(level);
+		setMp(getMaxMp());
 		this.vigor = 37;
 		this.speed = 40;
 		this.stamina = 31;
@@ -30,7 +32,7 @@ public class Thief extends Job {
 		this.mBlock = 2;
 		this.evade = 15;
 		this.abilities = new ArrayList<Ability>();
-		this.attack = new Abilities("Attack");
+		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
 		this.item = new Ability("Item");
 		this.abilities.add(attack);
@@ -54,7 +56,7 @@ public class Thief extends Job {
 
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.17 + (newLevel / 22.0)) * 100 );
-		hp = maxMp;
+		mp = maxMp;
 	}
 
 	public void loadAbilities(){

@@ -21,13 +21,14 @@ public class Spell extends Action {
 	private String description;
 	
 	public Spell(String spellName, Battle battleContext){
-		Spell selection;
+		Spell selection = null;
 		int damage;
 		for (Spell s : battleContext.getPlayer().getJob().getSpells()){
 			if(s.name.equals(spellName)){
 				selection = s;
 			}
 		}
+
 		
 		damage = selection.spellPower * 4 + (battleContext.getPlayer().getLevel() * battleContext.getPlayer().getMagicPower() * selection.spellPower / 32 );
 		//Random variance
@@ -55,6 +56,6 @@ public class Spell extends Action {
 		battleContext.getMonster().applyDamage(damage);
 	}
 
-	
+	public Spell(){}
 	
 }

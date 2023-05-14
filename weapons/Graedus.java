@@ -1,7 +1,7 @@
 package textgame.weapons;
 
 import textgame.Effect;
-import textgame.Weapon;
+import textgame.weapons.Weapon;
 import textgame.elements.Pearl;
 
 public class Graedus extends Weapon {
@@ -16,6 +16,6 @@ public class Graedus extends Weapon {
 		this.canUseRunic = true;
 		this.canUse2Handed = true;
 		this.element = new Pearl();;
-		this.effects.add(new Effect("evade", 10));
+
     }
 }

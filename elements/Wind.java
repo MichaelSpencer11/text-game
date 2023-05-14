@@ -1,6 +1,6 @@
 package textgame.elements;
 
-import textgame.Element;
+import textgame.elements.Element;
 
 public class Wind extends Element {
     

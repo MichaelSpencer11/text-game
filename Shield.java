@@ -1,5 +1,7 @@
 package textgame;
 
+import textgame.elements.Element;
+
 import java.util.List;
 
 public class Shield {

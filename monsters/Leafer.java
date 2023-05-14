@@ -10,9 +10,11 @@ public class Leafer extends Monster {
 
 		this.name = "Leafer";
         this.level = 1;
-		this.hp = 32;
-		this.mp = 0;
-		this.xp = 24;
+		this.maxHp = 32;
+		this.hp = maxHp;
+		this.maxMp = 0;
+		this.mp = maxMp;
+		this.xp = Random.roll(15,20);
 		this.gp = Random.roll(10,20);
 		this.battlePower = 5;
 		this.hitRate = 100;
@@ -24,7 +26,7 @@ public class Leafer extends Monster {
 		this.magicDefense = 140;
 		this.evade = 0;
 		this.MBlock = 0;
-		this.respawnTime = 10000; 
+		this.respawnTime = 10000;
 		this.currentRoom = firstRoom;
 		currentRoom.getMonsters().add(this);
 		

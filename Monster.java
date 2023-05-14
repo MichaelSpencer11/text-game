@@ -14,6 +14,7 @@ public class Monster {
 	protected int hp;
 	protected int maxHp;
 	protected int mp;
+	protected int maxMp;
 	protected int xp;
 	protected int gp;
 	protected int battlePower;
@@ -45,6 +46,8 @@ public class Monster {
 	protected boolean berserked;
 	protected int critChance;
 	protected int respawnTime;
+
+	protected Room blocking;
 
 	public String typeToString() {
 		return this.getClass().toString().substring(24);
@@ -108,7 +111,10 @@ public class Monster {
 	public int getDelay(){return delay;}
 	public int getRespawnTime(){return respawnTime;}
 
-
+	public void respawn(){
+		this.hp = maxHp;
+		this.mp = maxMp;
+	}
 
 	
 }

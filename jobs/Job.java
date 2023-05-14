@@ -43,7 +43,7 @@ public abstract class Job {
 
 	public void addExp(int exp){
 		this.exp += exp;
-		if(exp >= maxExp){
+		if(this.exp >= maxExp){
 			new LevelUp(this, exp, maxExp);
 		}
 	}
@@ -77,6 +77,14 @@ public abstract class Job {
 	public int getMBlock(){return mBlock;}
 	public int getEvade(){return evade;}
 	public ArrayList<Spell> getSpells(){return spells;}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public void setMp(int mp) {
+		this.mp = mp;
+	}
 }
 
 

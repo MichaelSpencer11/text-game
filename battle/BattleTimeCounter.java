@@ -12,7 +12,7 @@ public class BattleTimeCounter {
 
     public void startCounter(){
         while(true){
-            World.setTimeout(() -> incrementBattleTimeCounter(), 33 );
+           // World.setTimeout(() -> incrementBattleTimeCounter(), 33 );
         }
     }
 
