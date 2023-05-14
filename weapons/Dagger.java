@@ -2,6 +2,7 @@ package textgame.weapons;
 
 public class Dagger extends Weapon{
     public Dagger () {
+        this.itemName = "Dagger";
         this.type = "Dagger";
         this.battlePower = 25;
         this.hitRate = 180;
@@ -12,5 +13,6 @@ public class Dagger extends Weapon{
         this.canUseRunic = true;
         this.canUse2Handed = false;
         this.element = null;
+        this.dropRate = 100;
     }
 }
