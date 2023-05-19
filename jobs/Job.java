@@ -60,6 +60,8 @@ public abstract class Job {
 	public int getMaxHp(){return maxHp;}
 	public abstract void setMaxHp(int newLevel);
 	public abstract void setMaxMp(int newLevel);
+	public abstract void setVigor(int newLevel);
+	public abstract void setDefense();
 	public void setMaxExp(int newLevel){
 		maxExp = (newLevel * newLevel) * 100;
 	}

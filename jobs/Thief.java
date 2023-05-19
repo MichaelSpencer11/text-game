@@ -16,13 +16,13 @@ public class Thief extends Job {
 	protected Ability item;
 
 	public Thief() {
-		this.level = 1;
+		this.level = 5;
 		setMaxExp(level);
 		setMaxHp(level);
 		setHp(getMaxHp());
 		setMaxMp(level);
 		setMp(getMaxMp());
-		this.vigor = 37;
+		setVigor(level);
 		this.speed = 40;
 		this.stamina = 31;
 		this.magicPower = 28;
@@ -58,6 +58,11 @@ public class Thief extends Job {
 		maxMp = (int)Math.floor((.17 + (newLevel / 22.0)) * 100 );
 		mp = maxMp;
 	}
+
+	public void setVigor(int newLevel){
+		this.vigor = 37 + newLevel;
+	}
+	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){

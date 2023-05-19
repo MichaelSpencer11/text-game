@@ -48,7 +48,7 @@ public class PlayerHome extends Region {
 	player = new Character(room);
 	
     Character familiar = new Familiar("Someone is standing or floating here, it is very hard to see them, they are almost not there but you know that there is definitely a presence here.", room, player);
-	Character automaton = new Automaton("An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
+	Character automaton = new Automaton("Incom","An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
 	Monster leafer = new Leafer(room);
 	Monster leafer1 = new Leafer(playerCloset);
 	Monster leafer2 = new Leafer(hallwayStairs);

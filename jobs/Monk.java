@@ -10,10 +10,13 @@ public class Monk extends Job {
 	protected Ability item;
 
     public Monk() {
-		this.level = 1;
+		this.level = 2;
 		setMaxHp(level);
+		setHp(maxHp);
 		setMaxExp(level);
-		this.mp = 23;
+		setMaxMp(level);
+		setMp(maxMp);
+		setVigor(level);
 		this.vigor = 47;
 		this.speed = 37;
 		this.stamina = 39;
@@ -41,6 +44,11 @@ public class Monk extends Job {
 		maxMp = (int)Math.floor((.18 + (newLevel / 23.0)) * 100 );
 		mp = maxMp;
 	}
+
+	public void setVigor(int newLevel){
+		vigor = 47 + newLevel;
+	}
+	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){

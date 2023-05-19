@@ -13,9 +13,11 @@ public class BlackMage extends Job {
     public BlackMage() {
 		this.level = 1;
 		setMaxHp(level);
+		setHp(maxHp);
 		setMaxExp(level);
 		setMaxMp(level);
-		this.vigor = 28;
+		setMp(maxMp);
+		setVigor(level);
 		this.speed = 33;
 		this.stamina = 28;
 		this.magicPower = 45;
@@ -43,6 +45,11 @@ public class BlackMage extends Job {
 		maxMp = (int)Math.floor((.2 + (newLevel / 14.0)) * 100 );
 		mp = maxMp;
 	}
+
+	public void setVigor(int newLevel){
+		vigor = 28 + newLevel;
+	}
+	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){

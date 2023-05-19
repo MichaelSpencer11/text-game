@@ -15,6 +15,10 @@ public class LevelUp {
         job.setMaxHp(job.getLevel());
         //set new mp
         job.setMaxMp(job.getLevel());
+        //set new vigor
+        job.setVigor(job.getLevel());
+        //set new defense
+        job.setDefense();
         
 
     }

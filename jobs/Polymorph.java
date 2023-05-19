@@ -53,6 +53,11 @@ public class Polymorph extends Job {
 		mp = maxMp;
 	}
 
+	public void setVigor(int newLevel){
+		vigor = 31 + newLevel;
+	}
+	public void setDefense(){}
+
 	public void loadAbilities(){
 		for (Ability a : abilities){
 			System.out.println(a.getName());

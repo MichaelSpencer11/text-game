@@ -1,5 +1,7 @@
 package textgame.jobs;
 
+import textgame.Random;
+
 import java.util.ArrayList;
 
 public class Warrior extends Job {
@@ -10,16 +12,15 @@ public class Warrior extends Job {
 	protected Ability item;
 	
     public Warrior() {
-		this.level = 1;
+		this.level = 2;
 		setMaxHp(level);
 		setMaxExp(level);
 		setMaxMp(level);
-		this.vigor = 50;
+		setVigor(level);
 		this.speed = 28;
 		this.stamina = 33;
 		this.magicPower = 25;
-		this.battlePower = 25;
-		this.defense = 50;
+		this.defense = 10;
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;
@@ -40,6 +41,15 @@ public class Warrior extends Job {
 	public void setMaxMp(int newLevel){
 		maxMp = (int)Math.floor((.16 + (newLevel / 25.0)) * 100 );
 		mp = maxMp;
+	}
+
+	public void setVigor(int newLevel)
+	{
+		vigor = 43 + newLevel;
+	}
+
+	public void setDefense(){
+		defense = defense + Random.roll(4,5);
 	}
 
 	public void loadAbilities(){

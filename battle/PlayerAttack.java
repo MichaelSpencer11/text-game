@@ -9,37 +9,28 @@ import textgame.Random;
 public class PlayerAttack extends Action {
     protected Battle battleContext;
     protected int attack;
+    protected double dmg;
     protected int damage;
     protected int damageMultiplier;
     protected boolean magical;
     protected boolean physical;
     public PlayerAttack(Battle battleContext){
         this.battleContext = battleContext;
+        int bp = battleContext.getPlayer().getMainHand().getBattlePower();
+        int level = battleContext.getPlayer().getJob().getLevel();
+        int vigor = battleContext.getPlayer().getJob().getVigor();
+        int eDef = battleContext.getMonster().getDefense();
         if(this.hits()){
-            
-            // 1b
-            attack = battleContext.getPlayer().getMainHand().getBattlePower() + (battleContext.getPlayer().getJob().getVigor());
-            //1d
-            damage = attack * (battleContext.getPlayer().getLevel());
-            damageMultiplier = 0;
-            if(battleContext.getPlayer().getBerserked()){
-                damageMultiplier++;
-            }
-            if( battleContext.getPlayer().getCritChance() == 32){
-                damageMultiplier += 2;
-                System.out.println("Critical hit!");
-            }
-            damage = damage + ((damage / 2) * damageMultiplier);
+
+            dmg = bp * level / 4;
+            dmg = dmg * vigor;
+            dmg = dmg / eDef;
+
+            damage = (int)Math.floor(dmg);
             //Random variance, this can be improved with luck stat
-            damage = (damage * Random.roll(7,15) / 10);
+            //damage = (damage * Random.roll(7,15) / 10);
             //defense mod
-            //we're fucking things up here
             //damage = damage / 100;
-            damage = (int) (damage - (battleContext.getMonster().getDefense()));
-            //protect
-            if(battleContext.getMonster().getProtect() == true){
-                damage = (int)(damage * .5);
-            }
 
             battleContext.getMonster().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);

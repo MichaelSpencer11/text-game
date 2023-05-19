@@ -111,7 +111,7 @@ public class Character {
         this.prone = false;
         this.sitting = false;
         this.standing = true;
-		this.job = new Warrior();
+		this.job = new WhiteMage();
 		final Dirk dirk = new Dirk();
 		this.mainHand = dirk;
         firstRoom.people.add(this);
@@ -1228,6 +1228,7 @@ public String nothingOverThere() {
     		System.out.println("You can't do that while asleep.");
     		return;
     	}
+
 
 
     }

@@ -16,7 +16,7 @@ public class RedMage extends Job {
 		setMaxExp(level);
 		setMaxMp(level);
 		setMp(getMaxMp());
-		this.vigor = 34;
+		setVigor(level);
 		this.speed = 34;
 		this.stamina = 31;
 		this.magicPower = 38;
@@ -44,6 +44,11 @@ public class RedMage extends Job {
 		maxMp = (int)Math.floor((.2 + (newLevel / 16.0)) * 100 );
 		mp = maxMp;
 	}
+
+	public void setVigor(int newLevel){
+		vigor = 34 + newLevel;
+	}
+	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){

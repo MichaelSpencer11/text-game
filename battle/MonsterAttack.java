@@ -8,30 +8,26 @@ public class MonsterAttack extends Action {
     protected Battle battleContext;
     protected int attack;
     protected int damage;
+    protected double dmg;
     protected int damageMultiplier;
     public MonsterAttack(Battle battleContext){
         this.battleContext = battleContext;
+        int bp = battleContext.getMonster().getBattlePower();
+        int vigor = battleContext.getMonster().getVigor();
+        int level = battleContext.getMonster().getLevel();
+        int pDef = battleContext.getPlayer().getJob().getDefense();
+
         if(this.hits()){
-            attack = battleContext.getMonster().getBattlePower() + (battleContext.getMonster().getVigor());
-            damage = attack * (battleContext.getMonster().getLevel());
-            damageMultiplier = 0;
-            if(battleContext.getMonster().getBerserked()){
-                damageMultiplier += 1;
-            }
-            if( battleContext.getMonster().getCritChance() == 32){
-                damageMultiplier += 2;
-            }
-            damage = damage + ((damage / 2) * damageMultiplier);
+            dmg = bp * level / 4;
+            dmg = dmg * vigor;
+            dmg = dmg / pDef;
+            damage = (int)Math.floor(dmg);
+
             //Random variance
-            damage = (int)(damage * Random.roll(7,15) / 10);
+            //damage = (int)(damage * Random.roll(7,15) / 10);
             //defense mod
             //we're fucking things up here
             //damage = damage / 100;
-            damage = (int) (damage - (battleContext.getPlayer().getJob().getDefense() ));
-            //protect
-            if(battleContext.getPlayer().getProtect() == true){
-                damage = (int)(damage * .5);
-            }
 
             battleContext.getPlayer().getJob().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits " + battleContext.getPlayer().getName() + " for " + damage + " damage." + ConsoleColors.RESET);

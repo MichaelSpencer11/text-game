@@ -10,13 +10,13 @@ public class WhiteMage extends Job {
 	protected Ability item;
 
     public WhiteMage() {
-		this.level = 1;
+		this.level = 2;
 		setMaxHp(level);
 		setHp(getMaxHp());
 		setMaxExp(level);
 		setMaxMp(level);
 		setMp(getMaxMp());
-		this.vigor = 26;
+		setVigor(level);
 		this.speed = 34;
 		this.stamina = 22;
 		this.magicPower = 44;
@@ -44,6 +44,12 @@ public class WhiteMage extends Job {
 		maxMp = (int)Math.floor((.2 + (newLevel / 15.0)) * 100 );
 		mp = maxMp;
 	}
+
+	public void setVigor(int newLevel){
+		vigor = 26 + newLevel;
+	}
+
+	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){
