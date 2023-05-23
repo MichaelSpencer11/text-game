@@ -23,6 +23,7 @@ public abstract class Job {
 	protected int magicDefense;
 	protected int mBlock;
 	protected int evade;
+	protected int defMod;
 	protected ArrayList<Spell> spells;
 	protected ArrayList<Technique> techniques;
 
@@ -61,9 +62,15 @@ public abstract class Job {
 	public abstract void setMaxHp(int newLevel);
 	public abstract void setMaxMp(int newLevel);
 	public abstract void setVigor(int newLevel);
-	public abstract void setDefense();
+	public void setDefense(int defense){
+		this.defense = defense;
+	}
+	public int getDefMod(){return defMod;}
+	public String typeToString(){
+		return this.getClass().toString().substring(20);
+	}
 	public void setMaxExp(int newLevel){
-		maxExp = (newLevel * newLevel) * 100;
+		maxExp = (newLevel * newLevel) * 25;
 	}
 	public int getMp(){return mp;}
 	public int getMaxMp(){return maxMp;}

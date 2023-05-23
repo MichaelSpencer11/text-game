@@ -25,6 +25,7 @@ public class WhiteMage extends Job {
 		this.magicDefense = 35;
 		this.mBlock = 9;
 		this.evade = 13;
+		this.defMod = 2;
 		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
@@ -48,8 +49,6 @@ public class WhiteMage extends Job {
 	public void setVigor(int newLevel){
 		vigor = 26 + newLevel;
 	}
-
-	public void setDefense(){}
 
 	public void loadAbilities(){
 		for (Ability a : abilities){

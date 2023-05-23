@@ -18,7 +18,7 @@ public class LevelUp {
         //set new vigor
         job.setVigor(job.getLevel());
         //set new defense
-        job.setDefense();
+        job.setDefense(job.getDefense() + (job.getLevel() + job.getDefMod()));
         
 
     }

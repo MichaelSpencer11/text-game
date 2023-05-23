@@ -20,14 +20,9 @@ public class MonsterAttack extends Action {
         if(this.hits()){
             dmg = bp * level / 4;
             dmg = dmg * vigor;
+            dmg = dmg * Random.roll(7,15) / 10;
             dmg = dmg / pDef;
             damage = (int)Math.floor(dmg);
-
-            //Random variance
-            //damage = (int)(damage * Random.roll(7,15) / 10);
-            //defense mod
-            //we're fucking things up here
-            //damage = damage / 100;
 
             battleContext.getPlayer().getJob().applyDamage(damage); 
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits " + battleContext.getPlayer().getName() + " for " + damage + " damage." + ConsoleColors.RESET);
@@ -40,13 +35,13 @@ public class MonsterAttack extends Action {
         if(battleContext.getPlayer().getClear()){
             return false;
         }
-        if(this.unblockable == true){
+        if(this.unblockable){
             return true;
         }
-        if(battleContext.getPlayer().getAsleep() == true ||
-           battleContext.getPlayer().getPetrify() == true ||
-           battleContext.getPlayer().getFrozen() == true ||
-           battleContext.getPlayer().getStop() == true) {
+        if(battleContext.getPlayer().getAsleep() ||
+           battleContext.getPlayer().getPetrify() ||
+           battleContext.getPlayer().getFrozen() ||
+           battleContext.getPlayer().getStop()) {
             return true;
         }
         //when implementing ninja

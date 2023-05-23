@@ -25,6 +25,7 @@ public class RedMage extends Job {
 		this.magicDefense = 40;
 		this.mBlock = 9;
 		this.evade = 14;
+		this.defMod = 3;
 		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");

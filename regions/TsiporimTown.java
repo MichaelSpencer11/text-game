@@ -2,7 +2,9 @@ package textgame.regions;
 
 import textgame.Automaton;
 import textgame.Room;
+import textgame.ShopKeep;
 import textgame.World;
+import textgame.armors.*;
 
 public class TsiporimTown extends Region {
 
@@ -43,7 +45,22 @@ public class TsiporimTown extends Region {
         Room house2WPeregrine = new Room("town","House at 2 West Peregrine","Someone's house on West Peregrine Street.",null,null,null,null,westPeregrine2,null,null,null,null,null);
         Room house1WPeregrine = new Room("town","House at 1 West Peregrine street","A green house on West Peregrine street.",null,null,mainAndGeneral,null,westPeregrine1,null,null,null,null,null);
         Room generalStore = new Room("interior", "General Store", "The general store is neatly arranged with all kinds of products on the shelves.",null,null,null,null,eastPeregrine1,null,mainAndGeneral,null,null,null);
-        Automaton exy = new Automaton("Exy", "The robotic shopkeep is standing behind the counter, looking down at some inventory papers and emitting a tune.",generalStore);
+        ShopKeep exy = new ShopKeep("Exy",generalStore,
+                                                new CottonGloves(),
+                                                new CottonHood(),
+                                                new CottonShirt(),
+                                                new Jeans(),
+                                                new Sneakers(),
+                                                new LeatherBoots(),
+                                                new LeatherCap(),
+                                                new LeatherGloves(),
+                                                new LeatherPants(),
+                                                new LeatherVest(),
+                                                new PlateBoots(),
+                                                new PlateGauntlets(),
+                                                new PlateHelm(),
+                                                new PlateLeggings(),
+                                                new PlateVest());
         Room anotherArtGallery = new Room("interior", "Another Art Gallery", "The art gallery has walls filled with paintings and the space is nicely apportioned with sculptures of various things.",null,null,null,null,eastPeregrine2,null,null,null,null,null);
         Room schoolEntrance = new Room("interior", "School entrance", "The main lobby of the local school. Pictures and trophies of student accomplishments line the walls of this processing room where records are created and administrative activities happen.",null,null,null,null,null,null,mainAndSchool,null,null,null);
         Room burgerTime = new Room("interior","BurgerTime","The burger shop in town, this place serves up a lot of burgers to feed people. Good prices too.",null,null,null,null,null,null,mainAndBurgertime,null,null,null);

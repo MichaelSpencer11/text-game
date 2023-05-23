@@ -21,6 +21,12 @@ public class World {
 	private static ArrayList<Door> globalDoorList = new ArrayList<Door>();
 	private static ArrayList<Character> globalCharacterList = new ArrayList<Character>();
 	private static ArrayList<Party> globalPartyList = new ArrayList<Party>();
+
+	public static ArrayList<ShopKeep> getGlobalShopKeepList() {
+		return globalShopKeepList;
+	}
+
+	private static ArrayList<ShopKeep> globalShopKeepList = new ArrayList<ShopKeep>();
 	PlayerHome playerHome;
 	TsiporimTown tsiporimTown;
 

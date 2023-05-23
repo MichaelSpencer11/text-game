@@ -31,6 +31,7 @@ public class Thief extends Job {
 		this.magicDefense = 23;
 		this.mBlock = 2;
 		this.evade = 15;
+		this.defMod = 3;
 		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");

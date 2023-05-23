@@ -60,7 +60,7 @@ public class PlayerHome extends Region {
 	Monster leafer8 = new Leafer(diningRoom);
 	Monster leafer9 = new Leafer(garage);
 	Monster leafer10 = new Leafer(backyard);
-	Monster commander = new Commander(livingRoom, frontLawn);
+	//Monster commander = new Commander(livingRoom, frontLawn);
     sLink = frontLawn;
 	backyardLink = backyard;
     }

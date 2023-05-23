@@ -43,6 +43,10 @@ public class Input{
             else if(inputString.equals("status") || inputString.equals("st")){
                 thisPlayer.status();
             }
+            else if(inputString.equals("getJobClass")){
+                System.out.println(thisPlayer.getJob().getClass());
+                System.out.println(thisPlayer.getJob().typeToString());
+            }
             else if(inputString.equals("party list")){
                 System.out.println(inputString);
                 thisPlayer.currentParty.listMembers();
@@ -53,15 +57,11 @@ public class Input{
             else if (inputString.length() > 3 && inputString.substring(0,4).equals("exit")){
                 System.exit(0);
             }
-            else if(inputString.length() > 3 && inputString.substring(0,12).equals("party create")){
-                Party.createParty(inputString.substring(13), thisPlayer);
+            else if(inputString.length() > 3 && inputString.substring(0,4).equals("shop")) {
+                thisPlayer.shop(inputString);
             }
-            else if(inputString.length() > 3 && inputString.substring(0, 9).equals("party add")){
+            else if(inputString.length() == 9 && inputString.substring(0, 9).equals("party add")){
                 thisPlayer.currentParty.addMember(inputString.substring(10));
-            }
-            
-            else if (inputString.length() > 3 && inputString.substring(0,thisPlayer.familiar.getName().length()).toLowerCase().equals(thisPlayer.familiar.getName().toLowerCase())){
-                thisPlayer.familiar.buddyRequest(inputString);
             }
             else if(inputString.length() > 3 && inputString.substring(0,4).equals("wake")) {
             	thisPlayer.wake();
@@ -87,7 +87,7 @@ public class Input{
             else if(inputString.equals("stand")) {
             	thisPlayer.stand();
             }
-            else if(inputString.length() > 3 && inputString.substring(0,6).equals("target")){
+            else if(inputString.length() > 6 && inputString.substring(0,6).equals("target")){
                 thisPlayer.target(inputString.substring(7));
             }
             else if(inputString.equals("targeting")){
@@ -102,14 +102,17 @@ public class Input{
             else if (inputString.length() > 3 && inputString.substring(0,5).equals("sleep")) {
             	thisPlayer.sleep();
             }
-            else if(inputString.length() > 3 && inputString.substring(0,8).equals("lie down")) {
-            	thisPlayer.lieDown();
+            else if(inputString.length() == 5 && inputString.substring(0,5).equals("equip")) {
+                thisPlayer.equip(inputString);
             }
             else if(inputString.length() > 3 && inputString.substring(0,5).equals("equip")) {
             	thisPlayer.equip(inputString);
             }
             else if(inputString.length() > 3 && inputString.substring(0,7).equals("unequip")) {
             	thisPlayer.unequip(inputString);
+            }
+            else if(inputString.length() > 3 && inputString.substring(0,8).equals("lie down")) {
+                thisPlayer.lieDown();
             }
             else if(inputString.length() > 3 && inputString.substring(0,4).equals("drop")) {
             	thisPlayer.drop(inputString);
@@ -122,6 +125,9 @@ public class Input{
             }
             else if(inputString.length() > 3 && inputString.substring(0,11).equals("unfollow me")) {
             	thisPlayer.unFollowMe(inputString);
+            }
+            else if(inputString.length() > 3 && inputString.substring(0,12).equals("party create")){
+                Party.createParty(inputString.substring(13), thisPlayer);
             }
             else if (inputString.equals("sit")) {
             	thisPlayer.sit();
@@ -158,6 +164,9 @@ public class Input{
             }
             else if(inputString.equals("i") || inputString.equals("inv")){
                 thisPlayer.printInv();
+            }
+            else if (inputString.length() > 3 && inputString.substring(0,thisPlayer.familiar.getName().length()).toLowerCase().equals(thisPlayer.familiar.getName().toLowerCase())){
+                thisPlayer.familiar.buddyRequest(inputString);
             }
             else continue;
             } catch (Exception e) {

@@ -5,8 +5,12 @@ import java.util.Scanner;
 
 public class Automaton extends Character {
 	
-	private int autoStoryCount = 0;
-	private boolean following;
+	protected int autoStoryCount = 0;
+	protected boolean following;
+
+	public Automaton(){
+
+	}
 	
 	public Automaton(String name, String description, Room firstRoom){
 		this.name = name;
@@ -25,16 +29,5 @@ public class Automaton extends Character {
         
     }
 
-	public void talk(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Hello. How can I help you today?");
-		System.out.println("Buy");
-		System.out.println("Sell");
-		String response = sc.nextLine();
-		if(response.equalsIgnoreCase("buy")){
-			//what can you buy
 
-		}
-
-	}
 }

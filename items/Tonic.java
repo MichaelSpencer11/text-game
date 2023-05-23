@@ -13,6 +13,7 @@ public class Tonic extends Item {
         
     }
 
+
     public void applyEffect(Character player) {
         player.getJob().addHp(healingAmount);
         this.empty = true;

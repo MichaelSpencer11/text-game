@@ -24,6 +24,7 @@ public class Warrior extends Job {
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;
+		this.defMod = 4;
 		this.abilities = new ArrayList<Ability>();
 		this.attack = new Ability("Attack");
 		this.magic = new Ability("Magic");
