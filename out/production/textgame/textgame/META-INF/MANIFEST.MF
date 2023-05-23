@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: textgame.Main
+Class-Path: C:\Users\mspen\source\repos\EI\textgame\out\production\textg
+ ame\textgame
+
