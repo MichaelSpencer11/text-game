@@ -7,5 +7,6 @@ public class PlateHelm extends Armor{
         this.type = "head";
         this.weight = "heavy";
         this.defense = 8;
+        this.gpValue = defense * 20;
     }
 }

@@ -6,6 +6,7 @@ public class CottonGloves extends Armor{
         this.itemName = "Cotton Gloves";
         this.type = "hands";
         this.weight = "light";
-        this.defense = 4;
+        this.defense = 6;
+        this.gpValue = defense * 20;
     }
 }

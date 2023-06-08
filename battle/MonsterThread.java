@@ -9,9 +9,9 @@ public class MonsterThread implements Runnable{
     Thread mt;
     
 
-    public MonsterThread(Battle battleContext){
+    public MonsterThread(Battle battle){
         this.isAlive = true;
-        this.battleContext = battleContext;
+        this.battleContext = battle;
         mt = new Thread(this, "monsterThread");
     }
 
@@ -20,23 +20,27 @@ public class MonsterThread implements Runnable{
     }
 
     public void run(){
-        while(battleContext.getPlayerThread().isAlive && battleContext.getMonsterThread().isAlive){
-            try{
-            Thread.sleep(battleContext.getPlayer().getMainHand().getDelay());
-            }
-            catch(Exception e){
-                System.out.println(e.getMessage());
-            }
-            new MonsterAttack(battleContext);
-            if(battleContext.getPlayer().getJob().getHp() <= 0 || battleContext.getMonster().getHp() <= 0){
-                
-                break;
-            }
+        while ((battleContext.getMonster().getHp() >= 0 && battleContext.battleOn) || (battleContext.getPlayer().getJob().getHp() >= 0 && battleContext.battleOn) ) {
+
+                try {
+                    Thread.sleep(battleContext.getMonster().getDelay());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                if(battleContext.getMonster().getHp() >= 0 && battleContext.battleOn) {
+                    new MonsterAttack(battleContext);
+                }
+
         }
-        
-        
-        
     }
+
+    public void run(Battle battleContext){
+
+    }
+
+
+
+
 
     
 }

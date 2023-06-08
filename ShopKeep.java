@@ -91,4 +91,8 @@ public class ShopKeep extends Automaton{
             }
         }
     }
+
+    public void getResponse(String inputString){
+        System.out.println("Hello, I am a shopkeep. My name is " + this.name + ".");
+    }
 }

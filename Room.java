@@ -517,7 +517,7 @@ public class Room {
 
 	public void printMons() {
 		for(Monster m : monsters) {
-    		System.out.println("A " + m.typeToString() + " is here.");
+    		System.out.println("A " + m.getName() + " is here.");
     	}
 	}
     

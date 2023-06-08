@@ -12,7 +12,7 @@ public class Warrior extends Job {
 	protected Ability item;
 	
     public Warrior() {
-		this.level = 2;
+		this.level = 10;
 		setMaxHp(level);
 		setMaxExp(level);
 		setMaxMp(level);
@@ -20,7 +20,7 @@ public class Warrior extends Job {
 		this.speed = 28;
 		this.stamina = 33;
 		this.magicPower = 25;
-		this.defense = 10;
+		setDefense(level);
 		this.magicDefense = 30;
 		this.mBlock = 1;
 		this.evade = 6;
@@ -49,8 +49,8 @@ public class Warrior extends Job {
 		vigor = 43 + newLevel;
 	}
 
-	public void setDefense(){
-		defense = defense + Random.roll(4,5);
+	public void setDefense(int level){
+		defense = ((level + 1) * 10);
 	}
 
 	public void loadAbilities(){

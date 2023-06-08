@@ -4,7 +4,7 @@ package textgame.weapons;
 public class Dirk extends Weapon {
     public Dirk () {
         this.type = "Dirk";
-		this.battlePower = 19;
+		this.battlePower = 60;
 		this.hitRate = 180;
 		this.delay = 500;
 		this.description = "Basic blade forged as stainless steel";

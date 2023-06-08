@@ -7,5 +7,6 @@ public class PlateGauntlets extends Armor{
         this.type = "hands";
         this.weight = "heavy";
         this.defense = 8;
+        this.gpValue = defense * 20;
     }
 }

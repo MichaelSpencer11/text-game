@@ -6,6 +6,7 @@ public class CottonShirt extends Armor{
         this.itemName = "Cotton Tunic";
         this.type = "body";
         this.weight = "light";
-        this.defense = 5;
+        this.defense = 8;
+        this.gpValue = defense * 20;
     }
 }

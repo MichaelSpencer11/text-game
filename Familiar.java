@@ -31,7 +31,7 @@ public class Familiar extends Character{
     }
 	
 	//checks for the story marker famStoryCount before starting some dialog
-	public void talk() {
+	public void getResponse(String inputString) {
 		Scanner sc = new Scanner(System.in);
 		if(famStoryCount == 0) {
 			System.out.println("Hello there, I'm a new person here. I don't have a name or even a form. Why don't you go ahead and give me a name?");
@@ -82,6 +82,10 @@ public class Familiar extends Character{
 		}
 		
 		
+	}
+
+	public String typeToString(){
+		return this.getClass().toString().substring(15);
 	}
 	
 	public void goToPlayer() {

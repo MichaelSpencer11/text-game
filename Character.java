@@ -105,7 +105,7 @@ public class Character {
     //Constructor for characters who do not have predetermined names in the beginning
     //Generally, the player will name these characters later
     public Character(Room firstRoom){
-    	//we'll hardcode the character name for now 
+    	//we'll hard code the character name for now
 		this.name = "Michael";
 		this.hasName = true;
     	this.inventory = new ArrayList<Item>();
@@ -114,14 +114,14 @@ public class Character {
         this.prone = false;
         this.sitting = false;
         this.standing = true;
-		this.job = new WhiteMage();
+		this.job = new Warrior();
 		final Dirk dirk = new Dirk();
 		this.mainHand = dirk;
         firstRoom.people.add(this);
         this.currentRoom = firstRoom;
 		this.homePoint = firstRoom;
         this.thoughts = new ArrayList<String>();
-		this.gp = 1000;
+		this.gp = 0;
         
         
     }
@@ -1580,9 +1580,17 @@ public String nothingOverThere() {
         	thoughts.add(thought);
         	System.out.println("You can think about that later.");
     	}
-
+		for(Character c : this.currentRoom.getPeople()){
+			if(inputString.substring(5).equalsIgnoreCase(c.getName())){
+				c.getResponse(inputString.substring(5));
+			}
+		}
 
     }
+
+	public void getResponse(String inputString){
+		System.out.println("Talking to your self again?");
+	}
 
 	public void shop(String inputString){
 		Character shopKeep = null;
@@ -1612,7 +1620,7 @@ public String nothingOverThere() {
 				for (Item i : shopKeep.getInventory()) {
 					System.out.print("| ");
 					System.out.print(i.itemName);
-					for (int j = 0; j < (this.invLength - i.getItemName().length()) - 1; j++) {
+					for (int j = 0; j < (this.invLength - i.getItemName().length()) - String.valueOf(i.getGpValue()).length() ; j++) {
 						System.out.print(".");
 					}
 					System.out.println(i.gpValue + " |");
@@ -1623,6 +1631,13 @@ public String nothingOverThere() {
 				selection = sc.nextLine();
 				for (Item i : shopKeep.getInventory()) {
 					if (selection.equalsIgnoreCase(i.itemName)) {
+						if(this.gp >= i.gpValue){
+
+						}else{
+							System.out.println("Not enough gp");
+							return;
+						}
+
 						System.out.println(ConsoleColors.CYAN + "Confirm purchase of:");
 						System.out.println(i.itemName + " : " + ConsoleColors.YELLOW + i.gpValue + "GP" + ConsoleColors.CYAN + " : y/n");
 						System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
@@ -1669,6 +1684,8 @@ public String nothingOverThere() {
 						System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
 						if (sc.nextLine().equalsIgnoreCase("y")) {
 							shopAgain = true;
+						}else{
+							shopAgain = false;
 						}
 					}
 				}
@@ -1694,7 +1711,7 @@ public String nothingOverThere() {
     		return;
     	}
     	for(Character c : currentRoom.people) {
-    		if(inputString.substring(10).equals(c.getName()) && c.typeToString().equals("Familiar")) {
+    		if(inputString.substring(10).equalsIgnoreCase(c.getName()) && c.typeToString().equalsIgnoreCase("Familiar")) {
     			c.setFollowing(true);
     			follower = c;
     			System.out.println(c.name + ": Ok, I'll go with you.");
@@ -2100,12 +2117,17 @@ public String nothingOverThere() {
 		
 		//finds the actual monster in the room
 		for ( Monster mon : currentRoom.monsters) {
-			if(monsterName.toLowerCase().equals(mon.typeToString().toLowerCase())){
+			if(monsterName.equalsIgnoreCase(mon.getName())){
 				target = mon;
 				break;
 			}
 		} 
 		System.out.println(target.name + " targeted");
+		System.out.println("HP: "+target.hp);
+		System.out.println("vigor: " + target.getVigor());
+		System.out.println("battlepower: " + target.getBattlePower());
+		System.out.println("defense: " + target.getDefense());
+
 
 	}
 
@@ -2165,6 +2187,7 @@ public String nothingOverThere() {
 		System.out.println("Returning to home point.");
 		this.getJob().setHp(this.getJob().getMaxHp());
 		this.getJob().setMp(this.getJob().getMaxMp());
+		this.setTarget(null);
 	}
 
 	public void flee(){
@@ -2223,6 +2246,16 @@ public String nothingOverThere() {
 		System.out.print(" | MP: " + this.job.getMp() + "/" + this.job.getMaxMp());
 		System.out.print(" | Exp: " + this.job.getExp() + "/" + this.job.getMaxExp());
 		for (int j = 0; j < (this.invLength - String.valueOf(job.getExp()).length()) - String.valueOf(getJob().getMaxExp()).length() - 29; j++) {
+			System.out.print(" ");
+		}
+		System.out.println("|");
+		System.out.print("| Vigor: " + this.job.getVigor());
+		for (int j = 0; j < (this.invLength - String.valueOf(job.getVigor()).length()) - 6; j++) {
+			System.out.print(" ");
+		}
+		System.out.println("|");
+		System.out.print("| BattlePower: " + this.getMainHand().getBattlePower());
+		for (int j = 0; j < (this.invLength - String.valueOf(this.getMainHand().getBattlePower()).length()) - 12; j++) {
 			System.out.print(" ");
 		}
 		System.out.println("|");

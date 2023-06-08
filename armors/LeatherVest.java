@@ -6,6 +6,7 @@ public class LeatherVest extends Armor{
         this.itemName = "Leather Vest";
         this.type = "body";
         this.weight = "medium";
-        this.defense = 8;
+        this.defense = 9;
+        this.gpValue = defense * 20;
     }
 }

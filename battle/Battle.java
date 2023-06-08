@@ -7,6 +7,7 @@ import textgame.World;
 
 public class Battle implements Runnable{
     protected boolean battleOn;
+    protected boolean waiting;
     protected Character player;
     protected Monster monster;
     protected Room currentRoom;
@@ -15,6 +16,7 @@ public class Battle implements Runnable{
     public Battle(Character player, Monster monster, Room currentRoom ){
         this.currentRoom = currentRoom;
         this.battleOn = true;
+        this.waiting = false;
         this.player = player;
         this.monster = monster;
         Thread main = Thread.currentThread();
@@ -35,7 +37,7 @@ public class Battle implements Runnable{
         
 
         
-        
+            /*
             if(player.getJob().getHp() <= 0){
                 System.out.println("Defeat...");
                 player.homePoint();
@@ -44,7 +46,7 @@ public class Battle implements Runnable{
                 new Victory(this);
             }
             this.battleOn = false;
-        
+            */
         //return control to input
         
         
@@ -105,4 +107,6 @@ public class Battle implements Runnable{
         World.startThread(monsterThread);
 
     }
+
+
 }

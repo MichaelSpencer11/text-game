@@ -10,8 +10,8 @@ public class MonsterAttack extends Action {
     protected int damage;
     protected double dmg;
     protected int damageMultiplier;
-    public MonsterAttack(Battle battleContext){
-        this.battleContext = battleContext;
+    public MonsterAttack(Battle battle){
+        this.battleContext = battle;
         int bp = battleContext.getMonster().getBattlePower();
         int vigor = battleContext.getMonster().getVigor();
         int level = battleContext.getMonster().getLevel();
@@ -28,6 +28,9 @@ public class MonsterAttack extends Action {
             System.out.println(ConsoleColors.RED + battleContext.getMonster().getName() + " hits " + battleContext.getPlayer().getName() + " for " + damage + " damage." + ConsoleColors.RESET);
         } else {
             System.out.println("The " + battleContext.getMonster().getName() + " misses you.");
+        }
+        if(battleContext.getPlayer().getJob().getHp() <= 0){
+            new Defeat(battleContext);
         }
     }
 

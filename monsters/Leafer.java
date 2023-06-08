@@ -10,12 +10,12 @@ public class Leafer extends Monster {
 
 		this.name = "Leafer";
         this.level = 2;
-		this.maxHp = 32;
+		setStartingMaxHp(this.level);
 		this.hp = maxHp;
 		this.maxMp = 0;
 		this.mp = maxMp;
 		this.vigor = 15;
-		this.xp = Random.roll(15,20);
+		this.xp = Random.roll(35,40);
 		this.gp = Random.roll(10,20);
 		this.battlePower = 19;
 		this.hitRate = 100;

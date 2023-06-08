@@ -6,6 +6,7 @@ public class LeatherBoots extends Armor{
         this.itemName = "Leather Boots";
         this.type = "feet";
         this.weight = "medium";
-        this.defense = 4;
+        this.defense = 5;
+        this.gpValue = defense * 20;
     }
 }

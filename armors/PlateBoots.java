@@ -7,5 +7,6 @@ public class PlateBoots extends Armor{
         this.type = "feet";
         this.weight = "heavy";
         this.defense = 6;
+        this.gpValue = defense * 20;
     }
 }

@@ -7,5 +7,6 @@ public class PlateVest extends Armor{
         this.type = "body";
         this.weight = "heavy";
         this.defense = 10;
+        this.gpValue = defense * 20;
     }
 }

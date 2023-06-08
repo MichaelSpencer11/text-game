@@ -14,8 +14,8 @@ public class PlayerAttack extends Action {
     protected int damageMultiplier;
     protected boolean magical;
     protected boolean physical;
-    public PlayerAttack(Battle battleContext){
-        this.battleContext = battleContext;
+    public PlayerAttack(Battle battle){
+        this.battleContext = battle;
         int bp = battleContext.getPlayer().getMainHand().getBattlePower();
         int level = battleContext.getPlayer().getJob().getLevel();
         int vigor = battleContext.getPlayer().getJob().getVigor();
@@ -29,9 +29,13 @@ public class PlayerAttack extends Action {
             damage = (int)Math.floor(dmg);
 
             battleContext.getMonster().applyDamage(damage); 
-            System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().typeToString() + " for " + damage + " damage." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + battleContext.getPlayer().getName() + " hits " + battleContext.getMonster().getName() + " for " + damage + " damage." + ConsoleColors.RESET);
         } else {
             System.out.println("You miss the " + battleContext.getMonster().getName() + ".");
+        }
+        if(battleContext.getMonster().getHp() <= 0){
+
+            new Victory(battleContext);
         }
     }
 

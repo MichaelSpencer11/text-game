@@ -12,6 +12,8 @@ import textgame.Automaton;
 import textgame.Character;
 import textgame.monsters.Commander;
 import textgame.monsters.Leafer;
+import textgame.monsters.SandRay;
+import textgame.monsters.WereRat;
 
 
 public class PlayerHome extends Region {
@@ -49,17 +51,17 @@ public class PlayerHome extends Region {
 	
     Character familiar = new Familiar("Someone is standing or floating here, it is very hard to see them, they are almost not there but you know that there is definitely a presence here.", room, player);
 	Character automaton = new Automaton("Incom","An ordinary looking automaton with mechanical limbs and a rudimentary programmed action stack. It is currently sitting in a corner non-functionally." , room);
-	Monster leafer = new Leafer(room);
-	Monster leafer1 = new Leafer(playerCloset);
-	Monster leafer2 = new Leafer(hallwayStairs);
-	Monster leafer3 = new Leafer(bathroom);
-	Monster leafer4 = new Leafer(parentsRoom);
-	Monster leafer5 = new Leafer(stairway);
-	Monster leafer6 = new Leafer(kitchen);
-	Monster leafer7 = new Leafer(livingRoom);
-	Monster leafer8 = new Leafer(diningRoom);
-	Monster leafer9 = new Leafer(garage);
-	Monster leafer10 = new Leafer(backyard);
+	Monster l1 = new Monster("l2",2,500,hallwayStairs);
+	Monster l10 = new Monster("l10", 10,3000,hallwayStairs);
+	Monster l20 = new Monster("l20",20,500,hallwayStairs);
+	Monster l30 = new Monster("l30", 30,500,hallwayStairs);
+	Monster l40 = new Monster("l40",40,500,hallwayStairs);
+	Monster l50 = new Monster("l50", 50, 500,hallwayStairs);
+	Monster l60 = new Monster("l60",60,500,hallwayStairs);
+	Monster l70 = new Monster("l70",70,500,hallwayStairs);
+	Monster l80 = new Monster("l80", 80, 500,hallwayStairs);
+	Monster l90 = new Monster("l90", 90,500,hallwayStairs);
+	Monster l100 = new Monster("l100",100,500, hallwayStairs);
 	//Monster commander = new Commander(livingRoom, frontLawn);
     sLink = frontLawn;
 	backyardLink = backyard;

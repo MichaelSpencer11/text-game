@@ -6,6 +6,7 @@ public class Jeans extends Armor{
         this.itemName = "Jeans";
         this.type = "legs";
         this.weight = "light";
-        this.defense = 4;
+        this.defense = 6;
+        this.gpValue = defense * 20;
     }
 }

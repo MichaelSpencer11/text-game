@@ -1,7 +1,7 @@
 package textgame.battle;
 
 public class PlayerThread implements Runnable {
-    
+
     Battle battleContext;
     boolean isAlive;
     Thread pt;
@@ -11,6 +11,7 @@ public class PlayerThread implements Runnable {
         this.isAlive = true;
         this.battleContext = battleContext;
         pt = new Thread(this, "playerThread");
+
         
     }
 
@@ -19,18 +20,22 @@ public class PlayerThread implements Runnable {
     }
 
     public void run(){
-        while(battleContext.getMonsterThread().isAlive && battleContext.getPlayerThread().isAlive){
-            try{
-            Thread.sleep(battleContext.getPlayer().getMainHand().getDelay());
-            }
-            catch(Exception e){
+        while((battleContext.getMonster().getHp() >= 0 && battleContext.battleOn) || (battleContext.getPlayer().getJob().getHp() >= 0 && battleContext.battleOn)) {
+            try {
+                Thread.sleep(battleContext.getPlayer().getMainHand().getDelay());
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            new PlayerAttack(battleContext);
-            if(battleContext.getMonster().getHp() <= 0 || battleContext.getPlayer().getJob().getHp() <= 0)
-            
-                break;
-            }
+            new BattleMenu(battleContext);
+        }
               
     }
+
+    public void run(Battle battleContext){
+
+    }
+
+
+
+
 }

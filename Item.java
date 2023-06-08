@@ -90,6 +90,7 @@ public class Item{
 		public String getDescription() {
 			return this.description;
 		}
+		public int getGpValue(){return gpValue;}
 		
 		public String getDesc2() {
 			return this.closeDescription;

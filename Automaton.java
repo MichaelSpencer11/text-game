@@ -29,5 +29,9 @@ public class Automaton extends Character {
         
     }
 
+	public void getResponse(String inputString){
+		System.out.println("I am an automaton. My name is " + this.name + ".");
+	}
+
 
 }

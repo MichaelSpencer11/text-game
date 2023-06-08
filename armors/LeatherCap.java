@@ -6,6 +6,7 @@ public class LeatherCap extends Armor{
         this.itemName = "Leather Cap";
         this.type = "head";
         this.weight = "medium";
-        this.defense = 6;
+        this.defense = 7;
+        this.gpValue = defense * 20;
     }
 }

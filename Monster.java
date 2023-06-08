@@ -50,7 +50,7 @@ public class Monster {
 	protected Room blocking;
 
 	public String typeToString() {
-		return this.getClass().toString().substring(24);
+		return this.getClass().toString().substring(15);
 	}
 
 	public void incrementATBGauge() {
@@ -63,6 +63,22 @@ public class Monster {
 			
 		
 	}
+
+	public Monster(String name, int level, int delay, Room room){
+		this.name = name;
+		this.level = level;
+		setStartingMaxHp(level);
+		setStartingVigor(level);
+		setStartingBatPow(level);
+		setStartingDefense(level);
+		this.delay = delay;
+		this.hitRate = 100;
+		setStartingGp(level);
+		setStartingXp(level);
+		this.currentRoom = room;
+		currentRoom.getMonsters().add(this);
+	}
+	public Monster(){}
 
 	public void attack(Battle battleContext) {
 		new MonsterAttack(battleContext);
@@ -112,12 +128,36 @@ public class Monster {
 	public int getRespawnTime(){return respawnTime;}
 
 	public void respawn(){
-		this.hp = maxHp;
+		setStartingMaxHp(level);
 		this.mp = maxMp;
 	}
 
 
+
 	public int getVigor() {
 		return vigor;
+	}
+	public void setStartingMaxHp(int level){
+		hp = (level + 1) * 10;
+	}
+
+	public void setStartingVigor(int level){
+		vigor = 40 + level;
+	}
+
+	public void setStartingBatPow(int level){
+		battlePower = (int)((level + 2) / .2);
+	}
+
+	public void setStartingDefense(int level){
+		defense = (int)((level + 1) * 10);
+	}
+
+	public void setStartingGp(int level){
+		gp = (int) (((level + 1) * 10) + (Random.roll(.9,1.2) * 10) );
+	}
+
+	public void setStartingXp(int level){
+		xp = (int) ((level * level ) + Random.roll((int)level /2,level*2));
 	}
 }

@@ -16,7 +16,7 @@ public class Thief extends Job {
 	protected Ability item;
 
 	public Thief() {
-		this.level = 5;
+		this.level = 2;
 		setMaxExp(level);
 		setMaxHp(level);
 		setHp(getMaxHp());

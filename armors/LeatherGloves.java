@@ -6,6 +6,7 @@ public class LeatherGloves extends Armor{
         this.itemName = "Leather Gloves";
         this.type = "hands";
         this.weight = "medium";
-        this.defense = 6;
+        this.defense = 7;
+        this.gpValue = defense * 20;
     }
 }
