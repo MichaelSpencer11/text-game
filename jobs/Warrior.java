@@ -12,7 +12,7 @@ public class Warrior extends Job {
 	protected Ability item;
 	
     public Warrior() {
-		this.level = 10;
+		this.level = 2;
 		setMaxHp(level);
 		setMaxExp(level);
 		setMaxMp(level);
@@ -26,16 +26,16 @@ public class Warrior extends Job {
 		this.evade = 6;
 		this.defMod = 4;
 		this.abilities = new ArrayList<Ability>();
-		this.attack = new Ability("Attack");
-		this.magic = new Ability("Magic");
-		this.item = new Ability("Item");
+		this.attack = new Ability("a: Attack");
+		this.magic = new Ability("m: Magic");
+		this.item = new Ability("i: Item");
 		this.abilities.add(attack);
 		this.abilities.add(magic);
 		this.abilities.add(item);
 	}
 
 	public void setMaxHp(int newLevel){
-		maxHp = (int)Math.floor((.3 + (newLevel / 7.0)) * 100 );
+		maxHp = (int)Math.floor((.3 + (newLevel / 7.0)) * 100/*battle length*/ * 3 );
 		hp = maxHp;
 	}
 
@@ -50,7 +50,7 @@ public class Warrior extends Job {
 	}
 
 	public void setDefense(int level){
-		defense = ((level + 1) * 10);
+		defense = (((level + 1) * 10) + /*this will later be moved to armor*/(int)Math.ceil(level * 14));
 	}
 
 	public void loadAbilities(){

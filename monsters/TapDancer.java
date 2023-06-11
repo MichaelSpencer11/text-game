@@ -2,7 +2,6 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.Room;
-import textgame.weapons.Dirk;
 
 public class TapDancer extends Monster {
     public TapDancer(Room roomIn) {
@@ -25,8 +24,7 @@ public class TapDancer extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final Dirk dirk = new Dirk();
-		this.stolenItems.add(dirk);
+
 
     }
 }

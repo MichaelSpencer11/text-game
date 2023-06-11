@@ -2,7 +2,6 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.Room;
-import textgame.weapons.Dirk;
 
 public class Chupon extends Monster {
     public Chupon(Room roomIn) {
@@ -25,8 +24,7 @@ public class Chupon extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final Dirk dirk = new Dirk();
-		this.drops.add(dirk);
+
 
     }
 }

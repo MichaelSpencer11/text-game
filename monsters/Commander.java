@@ -3,7 +3,6 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
-import textgame.weapons.Dagger;
 
 public class Commander extends Monster {
     public Commander(Room firstRoom, Room blocking) {
@@ -33,8 +32,7 @@ public class Commander extends Monster {
 		//Initialize drops for Monster
 		final Tonic tonic = new Tonic();
 		this.stolenItems.add(tonic);
-		final Dagger dagger = new Dagger();
-		this.drops.add(dagger);
+
 
     }
 }

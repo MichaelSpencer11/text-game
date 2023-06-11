@@ -11,6 +11,7 @@ public class Weapon extends Item{
 	protected String type;
 	protected int battlePower;
 	protected int hitRate;
+	protected int level;
 	protected int delay;
 	protected EquipableBy equipableBy;
 	protected String description;
@@ -26,6 +27,31 @@ public class Weapon extends Item{
 	public int getHitRate() {return hitRate;}
 	public int getDelay(){return delay;}
 
+	public Weapon(String name, int lvl, int dly, int batPow){
+		this.setRarity();
+		this.itemName = rarity + " " + name;
+		this.type = "weapon";
+		this.hitRate = 100;
+		this.level = lvl;
+		this.delay = dly;
+		if(this.rarity.equalsIgnoreCase("ultra")){
+			this.battlePower = (int)Math.ceil(batPow * 3);
+		} else if(this.rarity.equalsIgnoreCase("legendary")){
+			this.battlePower = (int)Math.ceil(batPow * 2);
+		}else if(this.rarity.equalsIgnoreCase("rare")){
+			this.battlePower = (int)Math.ceil(batPow * 1.8);
+		}else if(this.rarity.equalsIgnoreCase("exceptional")){
+			this.battlePower = (int)Math.ceil(batPow * 1.6);
+		}else if(this.rarity.equalsIgnoreCase("fine")){
+			this.battlePower = (int)Math.ceil(batPow * 1.4);
+		}else if(this.rarity.equalsIgnoreCase("common")){
+			this.battlePower = (int)Math.ceil(batPow * 1.2);
+		}else if(this.rarity.equalsIgnoreCase("coarse")){
+			this.battlePower = batPow ;
+		}
+
+		this.gpValue = battlePower * 20;
+	}
 	
 	
 }

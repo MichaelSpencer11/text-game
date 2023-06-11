@@ -3,7 +3,6 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
-import textgame.weapons.Dirk;
 
 public class Areneid extends Monster {
     public Areneid(Room roomIn) {
@@ -27,8 +26,6 @@ public class Areneid extends Monster {
 		
 		//Initialize drops for Monster
 		final Tonic tonic = new Tonic();
-		final Dirk dirk = new Dirk();
-		this.stolenItems.add(dirk);
 		this.stolenItems.add(tonic);
 		this.drops.add(tonic);
 

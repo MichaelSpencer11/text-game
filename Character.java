@@ -115,8 +115,8 @@ public class Character {
         this.sitting = false;
         this.standing = true;
 		this.job = new Warrior();
-		final Dirk dirk = new Dirk();
-		this.mainHand = dirk;
+		final Weapon cerSwd = new Weapon("Ceramic Sword",2,500,20);
+		this.mainHand = cerSwd;
         firstRoom.people.add(this);
         this.currentRoom = firstRoom;
 		this.homePoint = firstRoom;
@@ -1235,6 +1235,28 @@ public String nothingOverThere() {
 		if (inputString.equalsIgnoreCase("equip")) {
 			System.out.println(ConsoleColors.BLUE + "/----_____......~Equipment~....._____----\\" + ConsoleColors.RESET);
 			System.out.println(ConsoleColors.BLUE + "|                                        |" + ConsoleColors.RESET);
+			System.out.print(ConsoleColors.BLUE + "| MainHand: " + (this.mainHand != null ? (mainHand.getItemName() + " | BattlePower: " + mainHand.battlePower) : "{Empty}"));
+			if (this.mainHand != null) {
+				for (int j = 0; j < this.mainHand.getItemName().length() - String.valueOf(mainHand.battlePower).length() - 1; j++) {
+					System.out.print(" ");
+				}
+			} else {
+				for (int j = 0; j < 26; j++) {
+					System.out.print(" ");
+				}
+			}
+			System.out.println("|" + ConsoleColors.RESET);
+			System.out.print(ConsoleColors.BLUE + "| OffHand: " + (this.offHand != null ? (offHand.getItemName() + " | BattlePower: " + offHand.battlePower) : "{Empty}"));
+			if (this.offHand != null) {
+				for (int j = 0; j < this.offHand.getItemName().length() - String.valueOf(offHand.battlePower).length() - 1; j++) {
+					System.out.print(" ");
+				}
+			} else {
+				for (int j = 0; j < 26; j++) {
+					System.out.print(" ");
+				}
+			}
+			System.out.println("|" + ConsoleColors.RESET);
 			System.out.print(ConsoleColors.BLUE + "| Head: " + (this.head != null ? (head.getItemName() + " | Def: " + head.getDefense()) : "{Empty}"));
 			if (this.head != null) {
 				for (int j = 0; j < this.head.getItemName().length() - String.valueOf(head.getDefense()).length() + 3; j++) {
@@ -1302,10 +1324,14 @@ public String nothingOverThere() {
 
 		for (Item i : this.inventory) {
 			if (inputString.substring(6).equalsIgnoreCase(i.getItemName())) {
+				if(i.getLevel() > this.getJob().getLevel()){
+					System.out.println("Your level is too low to equip the " + i.getItemName() + "("+ i.getLevel() +").");
+					break;
+				}
 				if ((this.getJob().typeToString().equalsIgnoreCase("WhiteMage") ||
 						this.getJob().typeToString().equalsIgnoreCase("BlackMage") ||
 						this.getJob().typeToString().equalsIgnoreCase("RedMage") ||
-						this.getJob().typeToString().equalsIgnoreCase("Monk")) && i.getWeight().equalsIgnoreCase("light")) {
+						this.getJob().typeToString().equalsIgnoreCase("Monk")) && i.getWeight() == 1) {
 					if (i.getType().equalsIgnoreCase("head")) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
@@ -1373,7 +1399,7 @@ public String nothingOverThere() {
 					System.out.println("You equip the " + i.getItemName() + ".");
 				}
 				if ((this.getJob().typeToString().equalsIgnoreCase("RedMage") ||
-						this.getJob().typeToString().equalsIgnoreCase("Thief")) && i.getWeight().equalsIgnoreCase("medium")) {
+						this.getJob().typeToString().equalsIgnoreCase("Thief")) && i.getWeight() == 2) {
 					if (i.getType().equalsIgnoreCase("head")) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
@@ -1440,7 +1466,7 @@ public String nothingOverThere() {
 					}
 					System.out.println("You equip the " + i.getItemName() + ".");
 				}
-				if ((this.getJob().typeToString().equalsIgnoreCase("Warrior")) && i.getWeight().equalsIgnoreCase("light")) {
+				if ((this.getJob().typeToString().equalsIgnoreCase("Warrior")) && i.getWeight() == 3) {
 					if (i.getType().equalsIgnoreCase("head")) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
@@ -1623,7 +1649,7 @@ public String nothingOverThere() {
 					for (int j = 0; j < (this.invLength - i.getItemName().length()) - String.valueOf(i.getGpValue()).length() ; j++) {
 						System.out.print(".");
 					}
-					System.out.println(i.gpValue + " |");
+					System.out.println(i.getGpValue() + " |");
 				}
 				System.out.println("|________________________________________|" + ConsoleColors.RESET);
 				System.out.println(ConsoleColors.YELLOW + "Your GP: " + this.getGp() + ConsoleColors.RESET);
@@ -2256,6 +2282,12 @@ public String nothingOverThere() {
 		System.out.println("|");
 		System.out.print("| BattlePower: " + this.getMainHand().getBattlePower());
 		for (int j = 0; j < (this.invLength - String.valueOf(this.getMainHand().getBattlePower()).length()) - 12; j++) {
+			System.out.print(" ");
+		}
+		System.out.println("|");
+		System.out.println("|");
+		System.out.print("| Defense: " + this.getJob().getDefense());
+		for (int j = 0; j < (this.invLength - String.valueOf(this.getJob().getDefense()).length()) - 8; j++) {
 			System.out.print(" ");
 		}
 		System.out.println("|");

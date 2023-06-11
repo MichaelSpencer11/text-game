@@ -75,6 +75,8 @@ public class Monster {
 		this.hitRate = 100;
 		setStartingGp(level);
 		setStartingXp(level);
+		//drop
+
 		this.currentRoom = room;
 		currentRoom.getMonsters().add(this);
 	}
@@ -93,6 +95,10 @@ public class Monster {
 		if(hp > maxHp ){
 			hp = maxHp;
 		}
+	}
+
+	public void setDrops(int level){
+
 	}
 
 	public String getName () {return name;}
@@ -138,7 +144,7 @@ public class Monster {
 		return vigor;
 	}
 	public void setStartingMaxHp(int level){
-		hp = (level + 1) * 10;
+		hp = (level + 1) * 10 /*battle length*/ * 3;
 	}
 
 	public void setStartingVigor(int level){
@@ -150,11 +156,11 @@ public class Monster {
 	}
 
 	public void setStartingDefense(int level){
-		defense = (int)((level + 1) * 10);
+		defense = (int)((level + 1) * 20);
 	}
 
 	public void setStartingGp(int level){
-		gp = (int) (((level + 1) * 10) + (Random.roll(.9,1.2) * 10) );
+		gp = (int) (((level + 1) * 10) + (Random.roll(1,10) * 10) );
 	}
 
 	public void setStartingXp(int level){

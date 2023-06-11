@@ -20,7 +20,7 @@ public class MonsterAttack extends Action {
         if(this.hits()){
             dmg = bp * level / 4;
             dmg = dmg * vigor;
-            dmg = dmg * Random.roll(7,15) / 10;
+            dmg = dmg * Random.roll(9,11) / 10;
             dmg = dmg / pDef;
             damage = (int)Math.floor(dmg);
 

@@ -15,7 +15,7 @@ public class Victory {
     public Victory(Battle battle){
         battleContext = battle;
         battleContext.battleOn = false;
-        int exp = battleContext.getMonster().getXp() * (battleContext.getMonster().getLevel() - battleContext.getPlayer().getJob().getLevel() + 1);
+        int exp = battleContext.getMonster().getXp() * (battleContext.getMonster().getLevel() / battleContext.getPlayer().getJob().getLevel() + 1);
         if (exp < 0 ) exp = Math.abs(exp);
         System.out.println(ConsoleColors.BLUE + "Victory!");
         System.out.println("Exp : " + exp);

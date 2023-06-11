@@ -2,7 +2,6 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.Room;
-import textgame.weapons.ThunderRod;
 
 public class Wizard extends Monster {
     public Wizard(Room roomIn) {
@@ -24,7 +23,6 @@ public class Wizard extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for TunnelArmor
-		final ThunderRod thunderRod = new ThunderRod();
-		this.stolenItems.add(thunderRod);
+
     }
 }

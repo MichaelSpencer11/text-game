@@ -3,7 +3,6 @@ package textgame.monsters;
 import textgame.Monster;
 import textgame.Room;
 import textgame.items.Tonic;
-import textgame.weapons.AirLancet;
 
 public class Darkwind extends Monster {
 
@@ -27,9 +26,8 @@ public class Darkwind extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final AirLancet airLancet = new AirLancet();
 		final Tonic tonic = new Tonic();
-		this.drops.add(airLancet);
+
 		this.stolenItems.add(tonic);
 
     }

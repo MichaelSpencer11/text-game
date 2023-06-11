@@ -2,7 +2,6 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.weapons.Weapon;
-import textgame.weapons.AirLancet;
 import textgame.Room;
 
 public class TunnelArmor extends Monster {
@@ -26,7 +25,6 @@ public class TunnelArmor extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for TunnelArmor
-		final Weapon airLancet = new AirLancet();
-		this.stolenItems.add(airLancet);
+
 	}
 }

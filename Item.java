@@ -25,7 +25,23 @@ public class Item{
 		protected int defense;
 		protected int delay;
 		protected int hitRate;
-		protected String weight;
+		protected int weight;
+		protected enum Rarity{
+			Coarse,
+			Common,
+			Fine,
+			Exceptional,
+			Rare,
+			Legendary,
+			Ultra
+		}
+
+		protected String rarity;
+		protected int rarityValueMod;
+
+
+
+	protected int level;
 
 
 		
@@ -86,11 +102,12 @@ public class Item{
 		public int getBattlePower() {return battlePower;}
 		public int getDefense(){return defense;}
 		public int getHitRate(){return hitRate;}
-		public String getWeight(){return weight;}
+		public int getWeight(){return weight;}
 		public String getDescription() {
 			return this.description;
 		}
 		public int getGpValue(){return gpValue;}
+		public int getLevel() {return level;}
 		
 		public String getDesc2() {
 			return this.closeDescription;
@@ -101,5 +118,25 @@ public class Item{
 		}
 		
 		public void applyEffect(Character target){};
+
+		public void setRarity(){
+			int rareNumber = Random.roll(1,10000);
+			if(rareNumber >= 9990  && rareNumber <= 10000){
+				this.rarity = Rarity.Ultra.name();
+			} else if(rareNumber >= 8990  && rareNumber <= 9989){
+				this.rarity = Rarity.Legendary.name();
+			}else if(rareNumber >= 8790  && rareNumber <= 8989){
+				this.rarity = Rarity.Rare.name();
+			}else if(rareNumber >= 8390  && rareNumber <= 8789){
+				this.rarity = Rarity.Exceptional.name();
+			}else if(rareNumber >= 7590  && rareNumber <= 8389){
+				this.rarity = Rarity.Fine.name();
+			}else if(rareNumber >= 5990  && rareNumber <= 7589){
+				this.rarity = Rarity.Common.name();
+			}else if(rareNumber >= 1  && rareNumber <= 5989){
+				this.rarity = Rarity.Coarse.name();
+			}
+
+		}
 
 	}

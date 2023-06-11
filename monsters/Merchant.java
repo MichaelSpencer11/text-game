@@ -2,7 +2,6 @@ package textgame.monsters;
 
 import textgame.Monster;
 import textgame.Room;
-import textgame.weapons.Guardian;
 
 public class Merchant extends Monster {
     public Merchant(Room roomIn) {
@@ -25,8 +24,7 @@ public class Merchant extends Monster {
 		roomIn.getMonsters().add(this);
 		
 		//Initialize drops for Monster
-		final Guardian guardian = new Guardian();
-		this.stolenItems.add(guardian);
+
 
     }
 }

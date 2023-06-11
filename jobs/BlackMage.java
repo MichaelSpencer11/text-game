@@ -29,9 +29,9 @@ public class BlackMage extends Job {
 		this.defMod = 2;
 		//this.spells.add(new Fire());
 		this.abilities = new ArrayList<Ability>();
-		this.attack = new Ability("Attack");
-		this.magic = new Ability("Magic");
-		this.item = new Ability("Item");
+		this.attack = new Ability("a: Attack");
+		this.magic = new Ability("m: Magic");
+		this.item = new Ability("i: Item");
 		this.abilities.add(attack);
 		this.abilities.add(magic);
 		this.abilities.add(item);	
