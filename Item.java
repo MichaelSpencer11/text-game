@@ -10,7 +10,10 @@ public class Item{
 		protected String description;
 		protected String closeDescription;
 		protected Room roomIn;
-		protected boolean equipped;
+
+
+
+	protected boolean equipped;
 		protected boolean plural;
 		protected boolean takeable;
 		protected boolean consumable;
@@ -118,6 +121,13 @@ public class Item{
 		}
 		
 		public void applyEffect(Character target){};
+		public boolean isEquipped() {
+			return equipped;
+		}
+
+		public void setEquipped(boolean equipped) {
+			this.equipped = equipped;
+		}
 
 		public void setRarity(){
 			int rareNumber = Random.roll(1,10000);

@@ -15,6 +15,7 @@ public class Armor extends Item {
         this.type = type;
         this.weight = weight;
         this.setRarity();
+        this.dropRate = 85;
         this.itemName = rarity + " " + name;
         if(this.type.equalsIgnoreCase("feet")){
             defense = (level * 14) * (int)Math.ceil(.15);
@@ -47,10 +48,27 @@ public class Armor extends Item {
         this.gpValue = this.defense * 20 ;
     }
 
+    //simple copy constructor
+    public Armor(Armor a){
+        this.equippable = a.equippable;
+        this.itemName = a.itemName;
+        this.level = a.level;
+        this.type = a.type;
+        this.weight = a.weight;
+        this.defense = a.defense;
+        this.rarity = a.rarity;
+        this.gpValue = a.gpValue;
+    }
+
     public int getLevel() {
         return level;
     }
     public int getGpValue(){return gpValue;}
+
+    @Override
+    public int getDefense() {
+        return defense;
+    }
 
 
 

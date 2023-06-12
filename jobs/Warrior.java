@@ -50,7 +50,7 @@ public class Warrior extends Job {
 	}
 
 	public void setDefense(int level){
-		defense = (((level + 1) * 10) + /*this will later be moved to armor*/(int)Math.ceil(level * 14));
+		defense = (((level + 1) * 10));
 	}
 
 	public void loadAbilities(){

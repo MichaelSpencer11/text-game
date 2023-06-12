@@ -13,7 +13,7 @@ public class Weapon extends Item{
 	protected int hitRate;
 	protected int level;
 	protected int delay;
-	protected EquipableBy equipableBy;
+
 	protected String description;
 	protected boolean canThrow;
 	protected boolean canUseSwdtech;
@@ -34,6 +34,7 @@ public class Weapon extends Item{
 		this.hitRate = 100;
 		this.level = lvl;
 		this.delay = dly;
+		this.dropRate = 85;
 		if(this.rarity.equalsIgnoreCase("ultra")){
 			this.battlePower = (int)Math.ceil(batPow * 3);
 		} else if(this.rarity.equalsIgnoreCase("legendary")){
@@ -52,6 +53,20 @@ public class Weapon extends Item{
 
 		this.gpValue = battlePower * 20;
 	}
+
+	//simple copy constructor
+	public Weapon(Weapon w){
+		this.itemName = w.itemName;
+		this.type = w.type;
+		this.battlePower = w.battlePower;
+		this.hitRate = w.hitRate;
+		this.level = w.level;
+		this.delay = w.delay;
+		this.rarity = w.rarity;
+		this.gpValue = w.gpValue;
+	}
+
+	public String getType(){return this.type;}
 	
 	
 }

@@ -1,6 +1,7 @@
 package textgame;
 
 import java.io.Console;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import textgame.Random;
 import java.util.Scanner;
@@ -114,14 +115,24 @@ public class Character {
         this.prone = false;
         this.sitting = false;
         this.standing = true;
-		this.job = new Warrior();
-		final Weapon cerSwd = new Weapon("Ceramic Sword",2,500,20);
-		this.mainHand = cerSwd;
+		warrior = new Warrior();
+		redMage = new RedMage();
+		thief = new Thief();
+		monk = new Monk();
+		whiteMage = new WhiteMage();
+		blackMage = new BlackMage();
+		this.job = warrior;
+		final Weapon ceramicSword = new Weapon("Ceramic Sword",2,500,20);
+		this.mainHand = ceramicSword;
+		this.inventory.add(ceramicSword);
+		final Tonic potion = new Tonic("Potion",2);
+		this.inventory.add(potion);
+		ceramicSword.equipped = true;
         firstRoom.people.add(this);
         this.currentRoom = firstRoom;
 		this.homePoint = firstRoom;
         this.thoughts = new ArrayList<String>();
-		this.gp = 0;
+		this.gp = 10000;
         
         
     }
@@ -1228,31 +1239,32 @@ public String nothingOverThere() {
     
     //equip a weapon or clothing
     public void equip(String inputString) {
+		int equipLength = 80;
 		if (asleep) {
 			System.out.println("You can't do that while asleep.");
 			return;
 		}
 		if (inputString.equalsIgnoreCase("equip")) {
-			System.out.println(ConsoleColors.BLUE + "/----_____......~Equipment~....._____----\\" + ConsoleColors.RESET);
-			System.out.println(ConsoleColors.BLUE + "|                                        |" + ConsoleColors.RESET);
-			System.out.print(ConsoleColors.BLUE + "| MainHand: " + (this.mainHand != null ? (mainHand.getItemName() + " | BattlePower: " + mainHand.battlePower) : "{Empty}"));
+			System.out.println(ConsoleColors.BLUE + "/---------__________..........~~~~~~Equipment~~~~~~..........__________---------\\" + ConsoleColors.RESET);
+			System.out.println(ConsoleColors.BLUE + "|                                                                               |" + ConsoleColors.RESET);
+			System.out.print(ConsoleColors.BLUE + "| MainHand: " + (this.mainHand != null ? (mainHand.getItemName() + "         | BattlePower: " + mainHand.getBattlePower()) : "{Empty}"));
 			if (this.mainHand != null) {
-				for (int j = 0; j < this.mainHand.getItemName().length() - String.valueOf(mainHand.battlePower).length() - 1; j++) {
+				for (int j = 0; j < equipLength - this.mainHand.getItemName().length() - String.valueOf(mainHand.battlePower).length() - 37; j++) {
 					System.out.print(" ");
 				}
 			} else {
-				for (int j = 0; j < 26; j++) {
+				for (int j = 0; j < equipLength - 18; j++) {
 					System.out.print(" ");
 				}
 			}
 			System.out.println("|" + ConsoleColors.RESET);
 			System.out.print(ConsoleColors.BLUE + "| OffHand: " + (this.offHand != null ? (offHand.getItemName() + " | BattlePower: " + offHand.battlePower) : "{Empty}"));
 			if (this.offHand != null) {
-				for (int j = 0; j < this.offHand.getItemName().length() - String.valueOf(offHand.battlePower).length() - 1; j++) {
+				for (int j = 0; j < equipLength - this.offHand.getItemName().length() - String.valueOf(offHand.battlePower).length() -1; j++) {
 					System.out.print(" ");
 				}
 			} else {
-				for (int j = 0; j < 26; j++) {
+				for (int j = 0; j < 23; j++) {
 					System.out.print(" ");
 				}
 			}
@@ -1330,9 +1342,8 @@ public String nothingOverThere() {
 				}
 				if ((this.getJob().typeToString().equalsIgnoreCase("WhiteMage") ||
 						this.getJob().typeToString().equalsIgnoreCase("BlackMage") ||
-						this.getJob().typeToString().equalsIgnoreCase("RedMage") ||
-						this.getJob().typeToString().equalsIgnoreCase("Monk")) && i.getWeight() == 1) {
-					if (i.getType().equalsIgnoreCase("head")) {
+						this.getJob().typeToString().equalsIgnoreCase("Monk"))) {
+					if (i.getType().equalsIgnoreCase("head") && i.getWeight() == 1) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1341,7 +1352,7 @@ public String nothingOverThere() {
 							this.head = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("body")) {
+					} else if (i.getType().equalsIgnoreCase("body") && i.getWeight() == 1) {
 						if(this.body != null && this.body.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1350,7 +1361,7 @@ public String nothingOverThere() {
 							this.body = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("hands")) {
+					} else if (i.getType().equalsIgnoreCase("hands") && i.getWeight() == 1) {
 						if(this.hands != null && this.hands.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1359,7 +1370,7 @@ public String nothingOverThere() {
 							this.hands = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("legs")) {
+					} else if (i.getType().equalsIgnoreCase("legs") && i.getWeight() == 1) {
 						if(this.legs != null && this.legs.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1368,7 +1379,7 @@ public String nothingOverThere() {
 							this.legs = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("feet")) {
+					} else if (i.getType().equalsIgnoreCase("feet") && i.getWeight() == 1) {
 						if(this.feet != null && this.feet.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1399,8 +1410,8 @@ public String nothingOverThere() {
 					System.out.println("You equip the " + i.getItemName() + ".");
 				}
 				if ((this.getJob().typeToString().equalsIgnoreCase("RedMage") ||
-						this.getJob().typeToString().equalsIgnoreCase("Thief")) && i.getWeight() == 2) {
-					if (i.getType().equalsIgnoreCase("head")) {
+						this.getJob().typeToString().equalsIgnoreCase("Thief")) ) {
+					if (i.getType().equalsIgnoreCase("head") && (i.getWeight() == 2 || i.getWeight() == 1)) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1409,7 +1420,7 @@ public String nothingOverThere() {
 							this.head = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("body")) {
+					} else if (i.getType().equalsIgnoreCase("body") && (i.getWeight() == 2 || i.getWeight() == 1)) {
 						if(this.body != null && this.body.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1418,7 +1429,7 @@ public String nothingOverThere() {
 							this.body = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("hands")) {
+					} else if (i.getType().equalsIgnoreCase("hands") && (i.getWeight() == 2 || i.getWeight() == 1)) {
 						if(this.hands != null && this.hands.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1427,7 +1438,7 @@ public String nothingOverThere() {
 							this.hands = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("legs")) {
+					} else if (i.getType().equalsIgnoreCase("legs") && (i.getWeight() == 2 || i.getWeight() == 1)) {
 						if(this.legs != null && this.legs.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1436,7 +1447,7 @@ public String nothingOverThere() {
 							this.legs = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("feet")) {
+					} else if (i.getType().equalsIgnoreCase("feet") && (i.getWeight() == 2 || i.getWeight() == 1)) {
 						if(this.feet != null && this.feet.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1466,8 +1477,8 @@ public String nothingOverThere() {
 					}
 					System.out.println("You equip the " + i.getItemName() + ".");
 				}
-				if ((this.getJob().typeToString().equalsIgnoreCase("Warrior")) && i.getWeight() == 3) {
-					if (i.getType().equalsIgnoreCase("head")) {
+				if ((this.getJob().typeToString().equalsIgnoreCase("Warrior"))) {
+					if (i.getType().equalsIgnoreCase("head") && i.getWeight() == 3) {
 						if(this.head != null && this.head.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1476,7 +1487,7 @@ public String nothingOverThere() {
 							this.head = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("body")) {
+					} else if (i.getType().equalsIgnoreCase("body") && i.getWeight() == 3) {
 						if(this.body != null && this.body.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1485,7 +1496,7 @@ public String nothingOverThere() {
 							this.body = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("hands")) {
+					} else if (i.getType().equalsIgnoreCase("hands") && i.getWeight() == 3) {
 						if(this.hands != null && this.hands.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1494,7 +1505,7 @@ public String nothingOverThere() {
 							this.hands = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("legs")) {
+					} else if (i.getType().equalsIgnoreCase("legs") && i.getWeight() == 3) {
 						if(this.legs != null && this.legs.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1503,7 +1514,7 @@ public String nothingOverThere() {
 							this.legs = i;
 							this.getJob().setDefense(this.getJob().getDefense() + i.getDefense());
 						}
-					} else if (i.getType().equalsIgnoreCase("feet")) {
+					} else if (i.getType().equalsIgnoreCase("feet") && i.getWeight() == 3) {
 						if(this.feet != null && this.feet.getItemName().equalsIgnoreCase(i.getItemName())) {
 							break;
 						}
@@ -1665,12 +1676,18 @@ public String nothingOverThere() {
 						}
 
 						System.out.println(ConsoleColors.CYAN + "Confirm purchase of:");
-						System.out.println(i.itemName + " : " + ConsoleColors.YELLOW + i.gpValue + "GP" + ConsoleColors.CYAN + " : y/n");
+						System.out.println(i.itemName + " : " + ConsoleColors.YELLOW + i.getGpValue() + "GP" + ConsoleColors.CYAN + " : y/n");
 						System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
 						if (sc.nextLine().equalsIgnoreCase("y")) {
-							Item j = new Item(i);
-							this.getInventory().add(j);
-							this.setGp(this.getGp() - i.gpValue);
+							//armor and weapon copy
+							if(i instanceof Armor){
+								Armor j = new Armor((Armor) i);
+								this.getInventory().add(j);
+							}else if(i instanceof Weapon){
+								Weapon j = new Weapon((Weapon) i);
+								this.getInventory().add(j);
+							}
+							this.setGp(this.getGp() - i.getGpValue());
 							System.out.println(ConsoleColors.CYAN + "You buy the " + i.getItemName() + " for " + i.gpValue + "GP." + ConsoleColors.RESET);
 						} else {
 							System.out.println(ConsoleColors.CYAN + "You decline the purchase." + ConsoleColors.RESET);
@@ -1861,22 +1878,174 @@ public String nothingOverThere() {
     }
     
     public void sleep() {
-    	if(asleep) System.out.println("You are already sleeping.");
+		Scanner sc = new Scanner(System.in);
+    	if(asleep) System.out.println(ConsoleColors.PURPLE + "You are already sleeping.");
     	else if(standing) {
     		System.out.println("You cannot sleep standing up.");
+			return;
     	}
     	else if(sitting || prone) {
     		asleep = true;
-    		System.out.println("You nod off and fall asleep.");
+    		System.out.println(ConsoleColors.PINK + "You nod off and fall asleep." + ConsoleColors.RESET);
     	}
-    		
-    	
+
+		if(currentRoom == homePoint) {
+			System.out.println(ConsoleColors.PURPLE + "A miasma of possibilities is swirling around your vision range.");
+			System.out.println("You can see different ways to be.");
+			System.out.println("Would you like to change jobs? y/n");
+			System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+			String inputString = sc.nextLine();
+			if (inputString.equalsIgnoreCase("y")) {
+				System.out.println(ConsoleColors.PURPLE + "Which job would you like to take on?");
+				if(this.getJob() instanceof Warrior){
+					System.out.println("WhiteMage");
+					System.out.println("BlackMage");
+					System.out.println("Monk");
+					System.out.println("Thief");
+					System.out.println("RedMage");
+					System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+					inputString = sc.nextLine();
+					if(inputString.equalsIgnoreCase("whitemage") || inputString.equalsIgnoreCase("white mage")){
+						System.out.println(ConsoleColors.PURPLE + "When you wake up, you will be a WhiteMage.");
+						changeJob(whiteMage);
+					}else if(inputString.equalsIgnoreCase("blackmage" )
+							|| inputString.equalsIgnoreCase("black mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a BlackMage.");
+						changeJob(blackMage);
+					}else if(inputString.equalsIgnoreCase("redmage" )
+							|| inputString.equalsIgnoreCase("red mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a RedMage.");
+						changeJob(redMage);
+					}else if(inputString.equalsIgnoreCase("monk" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Monk.");
+						changeJob(monk);
+					}else if(inputString.equalsIgnoreCase("thief")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Thief.");
+						changeJob(thief);
+					}
+
+				} else if(this.getJob() instanceof Thief){
+					System.out.println("WhiteMage");
+					System.out.println("BlackMage");
+					System.out.println("Monk");
+					System.out.println("RedMage");
+					System.out.println("Warrior");
+					System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+					inputString = sc.nextLine();
+					if(inputString.equalsIgnoreCase("whitemage")
+							|| inputString.equalsIgnoreCase("white mage")){
+						System.out.println(ConsoleColors.PURPLE + "When you wake up, you will be a WhiteMage.");
+						changeJob(whiteMage);
+					}else if(inputString.equalsIgnoreCase("blackmage" )
+							|| inputString.equalsIgnoreCase("black mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a BlackMage.");
+						changeJob(blackMage);
+					}else if(inputString.equalsIgnoreCase("redmage" )
+							|| inputString.equalsIgnoreCase("red mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a RedMage.");
+						changeJob(redMage);
+					}else if(inputString.equalsIgnoreCase("monk" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Monk.");
+						changeJob(monk);
+					}else if(inputString.equalsIgnoreCase("warrior" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Warrior.");
+						changeJob(warrior);
+					}
+
+				} else if(this.getJob() instanceof Monk){
+					System.out.println("WhiteMage");
+					System.out.println("BlackMage");
+					System.out.println("Thief");
+					System.out.println("RedMage");
+					System.out.println("Warrior");
+					System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+					inputString = sc.nextLine();
+					if(inputString.equalsIgnoreCase("whitemage")
+							|| inputString.equalsIgnoreCase("white mage")){
+						System.out.println(ConsoleColors.PURPLE + "When you wake up, you will be a WhiteMage.");
+						changeJob(whiteMage);
+					}else if(inputString.equalsIgnoreCase("blackmage" )
+							|| inputString.equalsIgnoreCase("black mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a BlackMage.");
+						changeJob(blackMage);
+					}else if(inputString.equalsIgnoreCase("redmage" )
+							|| inputString.equalsIgnoreCase("red mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a RedMage.");
+						changeJob(redMage);
+					}else if(inputString.equalsIgnoreCase("thief" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Thief.");
+						changeJob(thief);
+					}else if(inputString.equalsIgnoreCase("warrior" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Warrior.");
+						changeJob(warrior);
+					}
+
+				}else if(this.getJob() instanceof WhiteMage){
+					System.out.println("RedMage");
+					System.out.println("BlackMage");
+					System.out.println("Monk");
+					System.out.println("Thief");
+					System.out.println("Warrior");
+					System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+					inputString = sc.nextLine();
+					if(inputString.equalsIgnoreCase("redmage")
+							|| inputString.equalsIgnoreCase("red mage")){
+						System.out.println(ConsoleColors.PURPLE + "When you wake up, you will be a RedMage.");
+						changeJob(redMage);
+					}else if(inputString.equalsIgnoreCase("blackmage" )
+							|| inputString.equalsIgnoreCase("black mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a BlackMage.");
+						changeJob(blackMage);
+					}else if(inputString.equalsIgnoreCase("thief" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Thief.");
+						changeJob(thief);
+					}else if(inputString.equalsIgnoreCase("monk" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Monk.");
+						changeJob(monk);
+					}else if(inputString.equalsIgnoreCase("warrior" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Warrior.");
+						changeJob(warrior);
+					}
+
+				}else if(this.getJob() instanceof BlackMage){
+					System.out.println("WhiteMage");
+					System.out.println("RedMage");
+					System.out.println("Monk");
+					System.out.println("Thief");
+					System.out.println("Warrior");
+					System.out.print(ConsoleColors.GREEN + ">>>" + ConsoleColors.RESET);
+					inputString = sc.nextLine();
+					if(inputString.equalsIgnoreCase("whitemage")
+							|| inputString.equalsIgnoreCase("white mage")){
+						System.out.println(ConsoleColors.PURPLE + "When you wake up, you will be a WhiteMage.");
+						changeJob(whiteMage);
+					}else if(inputString.equalsIgnoreCase("redmage" )
+							|| inputString.equalsIgnoreCase("red mage")){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a RedMage.");
+						changeJob(redMage);
+					}else if(inputString.equalsIgnoreCase("thief" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Thief.");
+						changeJob(thief);
+					}else if(inputString.equalsIgnoreCase("monk" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Monk.");
+						changeJob(monk);
+					}else if(inputString.equalsIgnoreCase("warrior" )){
+						System.out.println(ConsoleColors.PURPLE +"When you wake up, you will be a Warrior.");
+						changeJob(warrior);
+					}
+
+				}
+
+			}
+		}else {
+			System.out.println("You must be in your home point to change jobs.");
+		}
     }
     
     public void wake() {
     	if(asleep) {
     		asleep = false;
-    		System.out.println("You wake up.");
+    		System.out.println(ConsoleColors.PINK + "You wake up." + ConsoleColors.RESET);
     	}
     }
     
@@ -2086,11 +2255,40 @@ public String nothingOverThere() {
     	this.speed = newJob.getSpeed();
     	this.stamina = newJob.getStamina();
     	this.magicPower = newJob.getMagicPower();
-    	this.battlePower = newJob.getBattlePower();
     	this.defense = newJob.getDefense();
     	this.magicDefense = newJob.getMagicDefense();
     	this.mBlock = newJob.getMBlock();
     	this.evade = newJob.getEvade();
+
+		if(mainHand != null) {
+			this.mainHand.setEquipped(false);
+			this.mainHand = null;
+		}
+		if(offHand != null) {
+			this.offHand.setEquipped(false);
+			this.offHand = null;
+		}
+		if(head != null) {
+			this.head.setEquipped(false);
+			this.head = null;
+		}
+		if (body != null) {
+			this.body.setEquipped(false);
+			this.body = null;
+		}
+		if(hands != null){
+			this.hands.setEquipped(false);
+			this.hands = null;
+		}
+		if(legs != null) {
+			this.legs.setEquipped(false);
+			this.legs = null;
+		}
+		if(feet != null) {
+			this.feet.setEquipped(false);
+			this.feet = null;
+		}
+
     	
     }
     
@@ -2226,8 +2424,8 @@ public String nothingOverThere() {
 		Item targetItem = null;
 		Character targetCharacter = null;
 		String substring1 = inputString.substring(4);
-		String secondWord = substring1.substring(0,substring1.indexOf(' '));
-		String thirdWord = substring1.substring(substring1.indexOf(' ')).trim();
+		String secondWord = substring1.substring(0,substring1.indexOf('/'));
+		String thirdWord = substring1.substring(substring1.indexOf('/') + 1);
 		//System.out.println("inputString: " + "{" + inputString + "}");
 		//System.out.println("substring1: " + "{" + substring1 + "}");
 		//System.out.println("secondWord: " + "{" + secondWord + "}");
@@ -2280,12 +2478,13 @@ public String nothingOverThere() {
 			System.out.print(" ");
 		}
 		System.out.println("|");
-		System.out.print("| BattlePower: " + this.getMainHand().getBattlePower());
-		for (int j = 0; j < (this.invLength - String.valueOf(this.getMainHand().getBattlePower()).length()) - 12; j++) {
-			System.out.print(" ");
+		if(this.mainHand != null) {
+			System.out.print("| BattlePower: " + this.getMainHand().getBattlePower());
+			for (int j = 0; j < (this.invLength - String.valueOf(this.getMainHand().getBattlePower()).length()) - 12; j++) {
+				System.out.print(" ");
+			}
+			System.out.println("|");
 		}
-		System.out.println("|");
-		System.out.println("|");
 		System.out.print("| Defense: " + this.getJob().getDefense());
 		for (int j = 0; j < (this.invLength - String.valueOf(this.getJob().getDefense()).length()) - 8; j++) {
 			System.out.print(" ");

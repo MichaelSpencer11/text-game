@@ -38,7 +38,6 @@ public class Victory {
          respawnThread = new RespawnThread(battleContext);
          battleContext.getMonster().getCurrentRoom().getMonsters().remove(battleContext.getMonster());
          battleContext.getPlayer().setTarget(null);
-         
-         
+
     }
 }
